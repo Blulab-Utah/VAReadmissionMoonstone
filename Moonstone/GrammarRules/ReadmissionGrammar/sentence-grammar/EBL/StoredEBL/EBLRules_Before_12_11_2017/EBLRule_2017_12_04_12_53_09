@@ -1,0 +1,135 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-passive-sentence-rule-0-2017/12/04 12:53:09") 
+  (specialized) 
+  (example-snippet "He was discharged home in the care of his family") 
+  (ordered true) 
+  (sourceid "passive-sentence-rule") 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-passive-event-rule-1-2017/12/04 12:53:09@")) 
+  (properties 
+    (subject ?0) 
+    (event 
+      (event ?1))) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-passive-event-rule-1-2017/12/04 12:53:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "was discharged home in the care of his family") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-complex-rule-social-support-rule-2-2017/12/04 12:53:09@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-complex-rule-social-support-rule-2-2017/12/04 12:53:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "discharged home in the care of his family") 
+  (sourceid "complex-rule-social-support-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-ditransitive-event-rule-3-2017/12/04 12:53:09@")) 
+  (tests 
+    (notneg ?0)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-3-2017/12/04 12:53:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "discharged home in the care of his family") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@discharge-word-rule@") 
+    ("@home-word-rule@") 
+    ("@AUTO-simple-pp-rule-4-2017/12/04 12:53:09@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-4-2017/12/04 12:53:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in the care of his family") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-care-for-the-patient-event-rule-5-2017/12/04 12:53:09@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-care-for-the-patient-event-rule-5-2017/12/04 12:53:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "care of his family") 
+  (sourceid "care-for-the-patient-event-rule") 
+  (concept ":PROVIDE_CARE:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-event-thing-rule-6-2017/12/04 12:53:09@")))
+
+(
+  (ruleid "AUTO-event-thing-rule-6-2017/12/04 12:53:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "care of his family") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@care-rule-1@") 
+    ("@AUTO-possessive-thing-rule-4-2016/06/06 12:14:50@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-7-2017/12/04 12:53:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his family") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 8.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@multi-family-member-word-rule@")) 
+  (properties 
+    (thing ?1)))
+
+)

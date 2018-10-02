@@ -1,0 +1,46 @@
+'(
+inferencerule
+
+((ruleid match-every-concept-rule)
+ (-> (and (concept ?annotation ?concept ?patient))
+	 (annotation-with-concept ?annotation ?concept ?patient)))
+	
+
+((ruleid event-with-patient-short-rule)
+ (-> (and (concept ?annotation ?concept ?patient)
+		  ("conceptContainsStringRecursive" ?annotation ":PATIENT:")
+		  ("containsSomeConcepts" ?annotation (":FRIEND:" ":FAMILY:")))
+	(event-with-patient ?annotation ?concept ?patient)))
+
+	
+((ruleid event-with-patient-short-rule-2)
+ (-> (and (concept ?annotation ?concept ?patient)
+		  ("conceptContainsStringRecursive" ?annotation ":PATIENT:")
+		  ("containsSomeConcepts" ?annotation 
+				(":NON-PATIENT-PERSON:" ":FRIEND:" ":FAMILY:" ":SPOUSE:" 
+				":SINGLE_FAMILY_MEMBERS:" ":MULTI_FAMILY_MEMBERS:")))
+	(event-with-patient ?annotation ?concept ?patient)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; NOT USED
+((XXXruleid event-with-subject-rule)
+ (-> (and (event-with-object ?annotation ?event ?object ?concept)
+		  (subject ?annotation ?subject))
+	(event-with-subject ?annotation ?event ?subject ?object ?concept)))
+
+((XXXruleid event-with-object-rule)
+ (-> (and (concept ?annotation ?concept)
+		  (event ?annotation ?event)
+		  (object ?annotation ?object))
+	(event-with-object ?annotation ?event ?object ?concept)))
+
+((XXXruleid event-with-patient-rule)
+ (-> (and (event-with-object ?a ?e ?o ?c)
+		  ("conceptContainsStringRecursive" ?e ":PATIENT:"))
+	(event-with-patient ?a ?e ?o ?c)))
+	
+((XXXruleid event-helping-patient-rule)
+ (-> (and (event-with-patient ?a ?e ?o ?c)
+		  ("containsSomeConcepts" ?e (":CHORE:" ":TRANSPORTATION:")))
+	(event-helping-patient ?a)))
+
+)

@@ -1,0 +1,333 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-0-2016/06/05 15:37:47") 
+  (specialized) 
+  (example-snippet "Veteran reports that he has his godson to assist") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-affirmation-to-person-of-event-rule-1-2016/06/05 15:37:47@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-affirmation-to-person-of-event-rule-1-2016/06/05 15:37:47") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "reports that he has his godson to assist") 
+  (ordered true) 
+  (sourceid "affirmation-to-person-of-event-rule") 
+  (concept "?2") 
+  (stype "<COMMUNICATION>") 
+  (window 32.0) 
+  (words 
+    ("@affirmative-communication-word-rule@") 
+    ("@patient-rule-1@") 
+    ("@AUTO-person-event-rule-2-2016/06/05 15:37:47@")) 
+  (properties 
+    (communication true) 
+    (directionality negated)))
+
+(
+  (ruleid "AUTO-person-event-rule-2-2016/06/05 15:37:47") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his godson to assist") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept "?1") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-possessive-thing-rule-3-2016/06/05 15:37:47@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/03 19:44:13@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-3-2016/06/05 15:37:47") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his godson") 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@family-definition-rule@")) 
+  (properties 
+    (person ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-5-2016/06/05 15:48:46") 
+  (specialized) 
+  (example-snippet "neighbors  help him with shopping") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@friend-rule@") 
+    ("@AUTO-dative-event-rule-6-2016/06/05 15:48:46@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-dative-event-rule-6-2016/06/05 15:48:46") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "help him with shopping") 
+  (ordered true) 
+  (sourceid "dative-event-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@patient-rule-1@") 
+    ("@AUTO-simple-pp-rule-7-2016/06/05 15:48:46@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object 
+      (object ?2))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-7-2016/06/05 15:48:46") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with shopping") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<IADL_ACTIVITY>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@iadl-chores-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-8-2016/06/05 15:55:16") 
+  (specialized) 
+  (example-snippet "neighbors  help him with transportation") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@friend-rule@") 
+    ("@AUTO-ditransitive-event-rule-9-2016/06/05 15:55:16@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-9-2016/06/05 15:55:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "help him with transportation") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@patient-rule-1@") 
+    ("@AUTO-simple-pp-rule-10-2016/06/05 15:55:16@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-10-2016/06/05 15:55:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with transportation") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<EVENT_THING>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@transportation-rule-2@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-non-patient-person-rule-1-11-2016/06/05 16:08:54") 
+  (specialized) 
+  (example-snippet "Veteran primary caregiver and support system is Other friend") 
+  (sourceid "non-patient-person-rule-1") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-predicate-adjective-sentence-rule-12-2016/06/05 16:08:54@")))
+
+(
+  (ruleid "AUTO-predicate-adjective-sentence-rule-12-2016/06/05 16:08:54") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Veteran primary caregiver and support system is Other friend") 
+  (ordered true) 
+  (sourceid "predicate-adjective-sentence-rule") 
+  (concept "?2") 
+  (stype "<SENTENCE>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-person-thing-rule-1-13-2016/06/05 16:08:54@") 
+    ("@is-auxilliary-word-rule@") 
+    ("@friend-rule@")))
+
+(
+  (ruleid "AUTO-person-thing-rule-1-13-2016/06/05 16:08:54") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Veteran primary caregiver and support") 
+  (ordered true) 
+  (sourceid "person-thing-rule-1") 
+  (concept "?1") 
+  (stype "<THING>") 
+  (window 16.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-caregiver-rule-2-14-2016/06/05 16:08:54@")) 
+  (properties 
+    (subject ?0) 
+    (object ?1)) 
+  (relations 
+    (pertains-to ?1 "?0")))
+
+(
+  (ruleid "AUTO-caregiver-rule-2-14-2016/06/05 16:08:54") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "primary caregiver and support") 
+  (ordered true) 
+  (sourceid "caregiver-rule-2") 
+  (concept ":CAREGIVER:") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("primary") 
+    ("@caregiver-rule-1@")))
+
+(
+  (ruleid "AUTO-predicate-adjective-sentence-rule-15-2016/06/05 16:15:02") 
+  (specialized) 
+  (example-snippet "daughter is vets POA") 
+  (ordered true) 
+  (sourceid "predicate-adjective-sentence-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 16.0) 
+  (words 
+    ("@single-family-member-word-rule@") 
+    ("@is-auxilliary-word-rule@") 
+    ("@power-of-attorney-rule-1@")))
+
+(
+  (ruleid "AUTO-person-event-rule-16-2016/06/05 16:23:25") 
+  (specialized) 
+  (example-snippet "veteran stated that his wife will provide transportation") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-patient-communication-event-affirmed-17-2016/06/05 16:23:25@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-patient-communication-event-affirmed-17-2016/06/05 16:23:25") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "stated that his wife will provide transportation") 
+  (ordered true) 
+  (sourceid "patient-communication-event-affirmed") 
+  (concept "?1") 
+  (stype "<COMMUNICATION>") 
+  (window 32.0) 
+  (words 
+    ("@affirmative-communication-word-rule@") 
+    ("@AUTO-person-event-rule-18-2016/06/05 16:23:25@")) 
+  (properties 
+    (communication true)))
+
+(
+  (ruleid "AUTO-person-event-rule-18-2016/06/05 16:23:25") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his wife will provide transportation") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept "?1") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-possessive-thing-rule-3-2016/06/05 15:37:47@") 
+    ("@transportation-rule-2@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-20-2016/06/05 17:58:58") 
+  (specialized) 
+  (example-snippet "family supports patient") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@multi-family-member-word-rule@") 
+    ("@AUTO-event-thing-rule-21-2016/06/05 17:58:58@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-21-2016/06/05 17:58:58") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "supports patient") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@care-rule-1@") 
+    ("@patient-rule-1@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+)

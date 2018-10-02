@@ -1,0 +1,57 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-0-2016/06/14 14:25:05") 
+  (specialized) 
+  (example-snippet "wife helps him at home") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@spouse-word-rule@") 
+    ("@AUTO-dative-event-rule-1-2016/06/14 14:25:05@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-dative-event-rule-1-2016/06/14 14:25:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "helps him at home") 
+  (ordered true) 
+  (sourceid "dative-event-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@patient-rule-1@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/14 14:25:05@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object 
+      (object ?2))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-2-2016/06/14 14:25:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "at home") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PLACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@home-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

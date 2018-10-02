@@ -1,0 +1,110 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-ditransitive-event-rule-10-2017/12/11 23:30:32") 
+  (specialized) 
+  (example-snippet "DISPOSITION  The patient was discharged to home in the company of his family") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@discharge-word-rule@") 
+    ("@patient-rule-1@") 
+    ("@AUTO-not-living-alone-at-home-indicates-living-at-home-rule-11-2017/12/11 23:30:32@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-not-living-alone-at-home-indicates-living-at-home-rule-11-2017/12/11 23:30:32") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "was discharged to home in the company of his family") 
+  (sourceid "not-living-alone-at-home-indicates-living-at-home-rule") 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<HOUSING_STATUS>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-BOC-BOC-complex-rule-social-support-rule-3-2016/07/26 17:35:54-26-2017/12/04 23:18:39-12-2017/12/11 23:30:32@")) 
+  (tests 
+    (notneg ?0) 
+    (or 
+      (hcr ?0 ":LIVING_SPACE:") 
+      (hcr ?0 ":HOME:"))))
+
+(
+  (ruleid "AUTO-BOC-BOC-complex-rule-social-support-rule-3-2016/07/26 17:35:54-26-2017/12/04 23:18:39-12-2017/12/11 23:30:32") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "was discharged to home in the company of his family") 
+  (ordered true) 
+  (sourceid "BOC-BOC-complex-rule-social-support-rule-3-2016/07/26 17:35:54-26-2017/12/04 23:18:39") 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-passive-event-rule-7-2017/12/11 23:25:05@") 
+    ("@preposition-word-rule@") 
+    ("@home-word-rule@") 
+    ("@AUTO-simple-pp-rule-14-2017/12/11 23:30:32@")) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-passive-event-rule-13-2017/12/11 23:30:32") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "was discharged") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@discharge-word-rule@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-14-2017/12/11 23:30:32") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in the company of his family") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-18-2017/12/04 13:42:31@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-15-2017/12/11 23:30:32") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his family") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 8.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@family-definition-rule@")) 
+  (properties 
+    (thing ?1)))
+
+)

@@ -1,0 +1,392 @@
+'(
+wordrule
+
+(
+  (ruleid medical-thing-thing-conjunct-rule) 
+  (concept ?0) 
+  (ordered true) 
+  (juxtaposed true) 
+  (flags conj) 
+  (words 
+    ("<MEDICAL_THING>") 
+    ("and" "or" "as well as") 
+    ("<MEDICAL_THING>")) 
+  (tests 
+    (or 
+      (and 
+        ("isUMLSCondition" ?0) 
+        ("isUMLSCondition" ?2)) 
+      (and 
+        ("isUMLSLocation" ?0) 
+        ("isUMLSLocation" ?2)))))
+
+(
+  (ruleid modifier-conjunct-rule) 
+  (stype "<MODIFIER>") 
+  (concept ?0) 
+  (ordered true) 
+  (juxtaposed true) 
+  (flags conj) 
+  (words 
+    ("<MODIFIER>") 
+    ("and" "or" "as well as") 
+    ("<MODIFIER>")))
+
+(
+  (ruleid recursive-medical-thing-conjunct-rule) 
+  (concept ?0) 
+  (ordered true) 
+  (juxtaposed true) 
+  (window 100.0) 
+  (flags conj) 
+  (words 
+    ("<MEDICAL_THING>") 
+    ("@recursive-medical-thing-conjunct-rule@" "@medical-thing-thing-conjunct-rule@")) 
+  (tests 
+    (and 
+      ("isConjunct" ?1) 
+      (or 
+        (and 
+          ("isUMLSCondition" ?0) 
+          ("isUMLSCondition" ?1)) 
+        (and 
+          ("isUMLSLocation" ?0) 
+          ("isUMLSLocation" ?1))))))
+
+(
+  (ruleid pre-negation-context-action-rule) 
+  (ordered true) 
+  (window 32.0) 
+  (words 
+    (?filestring) 
+    (?interpreted)) 
+  (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=forward")) 
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_")) 
+  (properties 
+    ("directionality" "negated")) 
+  (actions 
+    ("applyModifierProperties" ?rule ?1)))
+
+(
+  (ruleid post-negation-context-action-rule) 
+  (window 32.0) 
+  (ordered true) 
+  (words 
+    (?interpreted) 
+    (?filestring)) 
+  (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=backward")) 
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_")) 
+  (properties 
+    ("directionality" "negated")) 
+  (actions 
+    ("applyModifierProperties" ?rule ?0)))
+
+(
+  (ruleid number-range-rule-1) 
+  (concept ":NUMBER:") 
+  (ordered true) 
+  (juxtaposed true) 
+  (balance true) 
+  (words 
+    (":NUMBER:") 
+    ("to") 
+    (":NUMBER:")) 
+  (properties 
+    (low 
+      ("getNumericValue" ?0)) 
+    (high 
+      ("getNumericValue" ?2))))
+
+(
+  (ruleid medical-thing-at-time-rule) 
+  (concept ?0) 
+  (ordered true) 
+  (words 
+    ("<MEDICAL_THING>") 
+    ("<DATE>" "<TIME>")) 
+  (relations 
+    (time-of ?0 ?1)))
+
+(
+  (ruleid finding-positive-for-result-rule-1) 
+  (concept ?2) 
+  (ordered true) 
+  (window 32.0) 
+  (words 
+    ("<THING>") 
+    ("positive for" "suggestive of") 
+    ("<MEDICAL_THING>")) 
+  (relations 
+    (supports ?0 ?2)))
+
+(
+  (ruleid medical-thing-at-location-rule-1) 
+  (concept ?1) 
+  (words 
+    ("<MEDICAL_THING>") 
+    ("<MEDICAL_THING>")) 
+  (tests 
+    (and 
+      ("isUMLSLocation" ?0) 
+      ("isUMLSCondition" ?1))) 
+  (relations 
+    (located-at ?1 ?0)))
+
+(
+  (ruleid medical-thing-at-location-rule-2) 
+  (concept ?0) 
+  (ordered true) 
+  (words 
+    ("<MEDICAL_THING>") 
+    ("_PREP_") 
+    ("<MEDICAL_THING>")) 
+  (tests 
+    (and 
+      ("isUMLSCondition" ?0) 
+      ("isUMLSLocation" ?2))) 
+  (relations 
+    (located-at ?0 ?2)))
+
+(
+  (ruleid diagnostic-procedure-at-location-rule) 
+  (concept ?1) 
+  (words 
+    ("@medical-thing-at-location-rule@")) 
+  (specialization 
+    ("<THING>") 
+    ("<MEDICAL_TEST>" "<MEDICAL_MEASUREMENT>")) 
+  (test-at ?0 ?1))
+
+(
+  (ruleid test-reveals-condition-rule) 
+  (concept ?2) 
+  (ordered true) 
+  (window 32.0) 
+  (words 
+    ("<MEDICAL_TEST>" "<MEDICAL_MEASUREMENT>") 
+    (":DEMONSTRATE:") 
+    ("<MEDICAL_THING>")) 
+  (tests 
+    ("isUMLSCondition" ?2)) 
+  (relations 
+    (demonstrates ?0 ?2)))
+
+(
+  (ruleid test-at-location-rule) 
+  (concept ?0) 
+  (words 
+    ("<MEDICAL_TEST>" "<MEDICAL_MEASUREMENT>") 
+    ("<MEDICAL_LOCATION>")) 
+  (relations 
+    (location-of ?0 ?1)))
+
+(
+  (ruleid medical-functions-normal-rule) 
+  (concept ?0) 
+  (words 
+    ("<MEDICAL_FUNCTION>") 
+    ("normal" "unremarkable")) 
+  (properties 
+    (status "normal")))
+
+(
+  (ruleid medical-functions-abnormal-rule) 
+  (concept ?0) 
+  (words 
+    ("<MEDICAL_THING>") 
+    ("abnormal" "not normal")) 
+  (properties 
+    (status "abnormal")))
+
+(
+  (ruleid abdomen-soft-rule-1) 
+  (concept ":ABDOMEN_NONTENDER:") 
+  (words 
+    ("soft" "nontender")) 
+  (tests 
+    ("headerContainsString" ?0 "abdom")) 
+  (properties 
+    (directionality affirmed)))
+
+(
+  (ruleid planned-medical-study-rule) 
+  (concept ?1) 
+  (words 
+    ("<MEDICAL_CONDITION>") 
+    ("<MEDICAL_TEST>")) 
+  (tests 
+    ("headerContainsString" ?0 "plan")) 
+  (relations 
+    (planned-procedure-for ?0 ?1)))
+
+(
+  (ruleid admission-to-facility-rule) 
+  (concept ":ADMISSION:") 
+  (ordered true) 
+  (words 
+    (":ADMISSION:") 
+    (":FACILITY:")) 
+  (properties 
+    (facility ?1)))
+
+(
+  (ruleid admission-for-medical-thing-rule) 
+  (concept ?2) 
+  (ordered true) 
+  (words 
+    (":ADMISSION:" "<MEDICAL_PROCEDURE>") 
+    ("for" "of") 
+    ("<MEDICAL_THING>" ":EVALUATION:")) 
+  (relations 
+    (for ?0 ?2)))
+
+(
+  (ruleid numeric-lab-result-rule) 
+  (concept ":LAB-RESULT:") 
+  (ordered true) 
+  (words 
+    (":LAB:" "<MEDICAL_MEASUREMENT>") 
+    (":NUMBER:")) 
+  (tests 
+    ("headerContainsString" ?0 "lab")) 
+  (properties 
+    (lab ?0) 
+    (value ?1)))
+
+(
+  (ruleid state-of-medical-thing-rule) 
+  (concept ?0) 
+  (words 
+    ("<MEDICAL_THING>") 
+    ("<STATUS>")) 
+  (properties 
+    (state 
+      (concept ?1))))
+
+(
+  (ruleid event-caused-by-thing-rule-1) 
+  (concept ?0) 
+  (ordered true) 
+  (words 
+    ("<EVENT>" "<THING>") 
+    ("secondary to" "related to" "due to" "caused by" "as a result of" "resulting from" "due to") 
+    ("<EVENT>" "<THING>")) 
+  (properties 
+    (caused-by ?2)))
+
+(
+  (ruleid status-post-thing-rule) 
+  (concept ?0) 
+  (ordered true) 
+  (words 
+    ("<EVENT>" "<THING>") 
+    ("status post" "s/p") 
+    ("<EVENT>" "<THING>")) 
+  (relations 
+    (status-post ?0 ?2)))
+
+(
+  (ruleid history-modifier-event-rule) 
+  (debug true) 
+  (concept ?1) 
+  (ordered true) 
+  (words 
+    ("history of" "history" "past" "prior" "in the past" "previous") 
+    ("<MEDICAL_THING>")) 
+  (tests 
+    (not 
+      (ccsr ?1 "time"))) 
+  (properties 
+    (temporality historical)) 
+  (actions 
+    ("applyModifierProperties" ?rule ?1)))
+
+(
+  (ruleid likelihood-of-event-rule-1) 
+  (concept ?0) 
+  (words 
+    ("<EVENT>") 
+    ("unlikely" "not likely" "improbable" "not very likely")) 
+  (properties 
+    (directionality negated)))
+
+(
+  (ruleid acute-condition-rule) 
+  (concept ?1) 
+  (ordered true) 
+  (words 
+    (":ACUTE:") 
+    ("<MEDICAL_THING>")) 
+  (properties 
+    (temporality ":ACUTE:")))
+
+(
+  (ruleid acute-condition-rule) 
+  (concept ?1) 
+  (ordered true) 
+  (words 
+    (":CHRONIC:") 
+    ("<MEDICAL_THING>")) 
+  (properties 
+    (temporality ":CHRONIC:")))
+
+(
+  (ruleid person-with-disease-rule) 
+  (concept ?2) 
+  (ordered true) 
+  (words 
+    ("<PERSON>") 
+    ("with") 
+    ("<MEDICAL_THING>")) 
+  (relations 
+    (has-condition ?0 ?2)))
+
+;; pain bothers her
+((ruleid condition-bothers-patient-rule)(concept ?0)(ordered true)(words ("<MEDICAL_CONDITION>")("bother" "bothers" "bothering" "trouble" "troubles")("<PERSON>"))(relations (troublesome-to ?0 ?2)))
+
+((ruleid episode-of-symptom-rule)
+ (stype ?1)
+ (concept ?1)
+ (juxtaposed true)
+ (words ("episode of" "episodes of" "episodic") ("<MEDICAL_SYMPTOM>"))
+ (properties (temporality episodic)))
+ 
+((ruleid symptom-with-activity-level-rule)
+ (concept ?0)
+ (ordered true)
+ (words ("<MEDICAL_SYMPTOM>") (":AT_REST:" ":WITH_EXERTION:"))
+ (properties (activity-level (concept ?1))))
+
+((ruleid recurrent-medical-thing-rule)
+ (concept ?1)
+ (ordered true)
+ (words ("recurrent" "recurring") ("<MEDICAL_THING>"))
+ (properties (temporality recurring)))
+ 
+((ruleid evaluate-medical-thing-rule)
+ (concept ?1)
+ (ordered true)
+ (words ("to evaluate" "evaluate") ("<MEDICAL_SYMPTOM>"))
+ (properties (intervention-type evaluation)))
+ 
+ 
+;; "If her pain does not improve I will consider adding methotrexate to her therapy" -- needs work!
+((ruleid if-state-of-thing-then-action-rule)
+ (concept ?2)
+ (ordered true)
+ (words ("if")
+ 		("@state-of-medical-thing-rule@")
+ 		("<EVENT>" "<THING>"))
+ (properties (antecedent ?1) (consequent ?2)))
+
+((ruleid complaint-of-condition-rule) 
+ (concept ?1)
+ (ordered true)
+ (words ("complaint" "chief complaint") ("<THING>"))
+ (properties (complaint ?1)))
+ 
+)

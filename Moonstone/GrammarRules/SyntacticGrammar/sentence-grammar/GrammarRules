@@ -1,0 +1,123 @@
+'(
+grammarrule
+
+((ruleid simple-np-rule)
+ (debug true)
+ (ptype "#NP#")
+ (words ("#NOUN#")))
+ 
+((ruleid pronoun-noun-rule)
+ (debug true)
+ (ptype "#NOUN#")
+ (words ("#PRON#")))
+
+((ruleid simple-ap-rule)
+ (ptype "#AP#")
+ (words ("#ADJ#")))
+
+((ruleid compound-np-rule)
+ (ptype "#NP#")
+ (juxtaposed true)
+ (words ("#NOUN#") ("#NP#")))
+
+((ruleid compound-ap-rule)
+ (debug true)
+ (ptype "#AP#")
+ (juxtaposed true)
+ (words ("#ADJ#") ("#AP#")))
+
+((ruleid ap-np-rule)
+ (ptype "#NP#")
+ (juxtaposed true)
+ (words ("#AP#") ("#NP#")))
+
+((ruleid det-np-rule)
+ (ptype "#NP#")
+ (juxtaposed true)
+ (words ("#DET#") ("#NP#")))
+
+((ruleid simple-pp-rule)
+ (ptype "#PP#")
+ (juxtaposed true)
+ (words ("#PREP#") ("#NP#")))
+
+((ruleid np-pp-rule)
+ (ptype "#NP#")
+ (juxtaposed true)
+ (words ("#NP#") ("#PP#")))
+
+((ruleid be-aux-rule)
+ (ptype "#BE-AUX#")
+ (juxtaposed true)
+ (words ("be" "is" "am" "are" "aren\'t")))
+
+((ruleid do-aux-rule)
+ (ptype "#DO-AUX#")
+ (juxtaposed true)
+ (words ("do" "does" "don't" "doesn\'t")))
+
+((ruleid can-aux-rule)
+ (ptype "#CAN-AUX#")
+ (juxtaposed true)
+ (words ("can" "could" "can\'t" "couldn\'t" "cannot")))
+
+((ruleid have-aux-rule)
+ (ptype "#HAVE-AUX#")
+ (juxtaposed true)
+ (words ("have" "had" "has" "haven\'t" "hasn\'t" "hadn\'t")))
+
+((ruleid single-aux-infl-rule)
+ (ptype "#INFL#")
+ (words ("#BE-AUX#" "#DO-AUX#" "#CAN-AUX#" "#HAVE-AUX#")))
+
+((ruleid composite-infl-rule)
+ (ptype "#INFL#")
+ (juxtaposed true)
+ (words ("#INFL#") ("#INFL#"))
+ (properties (head ?0)))
+
+((ruleid intransitive-verb-phrase-rule-1)
+ (ptype "#VP#")
+ (words ("#VERB#"))
+ (properties (head ?0)))
+ 
+((ruleid intransitive-verb-phrase-rule-2)
+ (ptype "#VP#")
+ (juxtaposed true)
+ (words ("#VERB#") ("#PP#"))
+ (properties (head ?0)))
+
+((ruleid transitive-verb-phrase-rule)
+ (ptype "#VP#")
+ (juxtaposed true)
+ (words ("#VERB#") ("#NP#"))
+ (properties (head ?0)))
+ 
+ ;; "He throws the dog a bone"  "He goes to school"
+((ruleid np-vp-s-rule)
+ (ptype "#SENTENCE#")
+ (juxtaposed true)
+ (words ("#NP#") 
+ 		("@transitive-verb-phrase-rule@" 
+ 		"@intransitive-verb-phrase-rule-1@" 		
+ 		"@intransitive-verb-phrase-rule-2@"))
+ (properties (head ?1)))
+ 
+ ;; "He is a student", "He has pneumonia"
+((ruleid np-infl-np-s-rule)
+ (ptype "#SENTENCE#")
+ (juxtaposed true)
+ (words ("#NP#") ("#INFL#") ("#NP#"))
+ (properties (head ?0)))
+ 
+  ;; "He is at home"
+((ruleid np-infl-pp-s-rule)
+ (ptype "#SENTENCE#")
+ (juxtaposed true)
+ (words ("#NP#") ("#INFL#") ("#PP#"))
+ (properties (head ?0)))
+ 
+
+
+
+)

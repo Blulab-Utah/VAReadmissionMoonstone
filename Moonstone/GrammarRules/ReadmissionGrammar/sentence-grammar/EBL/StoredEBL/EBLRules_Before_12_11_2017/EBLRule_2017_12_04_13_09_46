@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-BOC-dative-event-rule-6-2016/06/24 20:29:33-8-2017/12/04 13:09:46") 
+  (specialized) 
+  (example-snippet "sent home with familysignificant other") 
+  (ordered true) 
+  (sourceid "BOC-dative-event-rule-6-2016/06/24 20:29:33") 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@send-word-rule@") 
+    ("@home-word-rule@") 
+    ("@preposition-word-rule@") 
+    ("@multi-family-member-word-rule@")) 
+  (removeproperties directionality))
+
+)

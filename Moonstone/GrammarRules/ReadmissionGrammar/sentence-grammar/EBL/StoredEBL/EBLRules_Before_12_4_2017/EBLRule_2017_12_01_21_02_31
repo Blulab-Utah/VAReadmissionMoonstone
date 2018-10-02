@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "BOC-person-event-complex-rule-3-2017/12/01 21:02:31") 
+  (specialized) 
+  (example-snippet "They live in North Spokane in a private home") 
+  (ordered true) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":THEY:") 
+    (":LIVE_AT:") 
+    ("_PREP_") 
+    (":HOME:")) 
+  (removeproperties directionality))
+
+)

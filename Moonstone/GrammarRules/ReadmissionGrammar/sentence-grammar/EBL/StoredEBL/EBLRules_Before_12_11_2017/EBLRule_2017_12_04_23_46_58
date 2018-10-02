@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-thing-is-state-rule-30-2017/12/04 23:46:58") 
+  (specialized) 
+  (example-snippet "She is quite concerned and supportive") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PERSON:") 
+    ("_IS_") 
+    (":CARING:")) 
+  (removeproperties directionality))
+
+)

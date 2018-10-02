@@ -1,0 +1,1461 @@
+'(
+wordrule
+
+
+((ruleid is-auxilliary-word-rule)
+ (macro "_IS_")
+ (words ("is" "was" "are" "were" "has been" "have been"))
+ (inhibit-interstitial true))
+ 
+((ruleid isnt-auxilliary-word-rule)
+ (macro "_ISNT_")
+ (words ("isn't" "wasn't" "aren\'t" "weren't" "hasn't been" "haven't been"))
+ (inhibit-interstitial true))
+
+((ruleid conjunct-word-rule)
+ (concept ":CONJ:")
+ (words ("and" "as well as" "&" "but" ":DISJ:"))
+  (inhibit-interstitial true))  ;; 10/29/2016:  This was blocking "patient is not homeless but can't pay rent"
+  
+ ((ruleid disjunct-word-rule)
+ (concept ":DISJ:")
+ (words ("or" "and/or" "and or"))
+  (inhibit-interstitial true))  ;; 10/29/2016:  This was blocking "patient is not homeless but can't pay rent"
+ 
+((ruleid have-word-rule)
+ (macro "_HAVE_")
+ (words ("have" "has" "had")))
+
+;;;;;;;;;;;;;;;;;;;;
+;; Living arrangement
+
+((ruleid rent-mortgage-word-rule)
+ (stype "<THING>")
+ (concept ":RENT_OR_MORTGAGE:")
+ (words ("mortgage" "rent")))
+ 
+((ruleid send-word-rule)
+ (stype "<EVENT>")
+ (concept ":SEND:")
+ (words ("sent by" "referred by" "sent")))
+ 
+((ruleid referral-word-rule)
+ (stype "<REFERRAL>")
+ (concept ":REFERRAL:")
+ (words ("refer" "referred" "referral")))
+
+((ruleid accompany-word-rule)
+ (stype "<EVENT>")
+ (concept ":ACCOMPANY:")
+ (words ("accompany" "accompanied" "accompanied by" "come with" "came with" "bring" "brought" "bring to" "brought to" "arrive with" "arrived with")))
+ 
+((ruleid teach-word-rule)
+ (stype "<EVENT_THING>")
+ (concept ":TEACH:")
+ (words (":TAUGHT:" "teach" "teaching" "educate" "education" "educated" "notify" "notified"
+		"instruct" "instruction" "discuss" "discussed")))
+		
+((ruleid discuss-word-rule)
+ (stype "<EVENT_THING>")
+ (concept ":DISCUSS:")
+ (words ("discuss" "discussed" "discussion")))
+		
+((ruleid taught-word-rule)
+ (stype "<EVENT>")
+ (concept ":TAUGHT:")
+ (words ("taught" "educated" "instructed")))
+ 
+((ruleid placement-rule)
+ (stype "<EVENT>")
+ (concept ":PLACEMENT:")
+ (words ("placement" "replacement" "place" "replace" "placed")))
+ 
+((ruleid homeless-shelter-rule-1)
+ (concept ":SHELTER:")
+ (words ("shelter" "homeless shelter")))
+ 
+((ruleid homeless-program-rule)
+ (stype "<EVENT_THING>")
+ (concept ":HOMELESS_PROGRAM:")
+ (words ("homeless prevention" "homeless prevention and rapid re-housing program" "hprp")))
+
+((ruleid assisted-living-facility-rule-1)
+ (concept ":ASSISTED_LIVING:")
+ (words ("assisted living facility" "assisted living" "assisted living home" "assisted living center"
+	"assisted living residence" "assisted living facility" "alf" "grace assisted living" "living center" 
+	"senior living" "senior living complex"  "personal care home" 
+	"senior citizern" "senior citizens" "senior citizens complex" "senior citizen's complex"
+	"senior citizens home" "independent living" "veteran's home" "veteran home" "veterans home")))
+	
+((ruleid assisted-living-facility-rule-2)
+ (concept ":ASSISTED_LIVING:")
+ (ordered true)
+ (words ("senior" "senior citizen" "senior citizen's" "assisted living" "independent living" "senior living" 
+			"veteran's") 
+		("complex" "apartment" "home" "center" )))
+	
+((ruleid senior-living-facility-rule-1)
+ (concept ":SENIOR_LIVING:")
+ (words ("retirement home" "senior living" "senior housing" "senior care" 
+	"senior care center" "senior living complex")))
+ 
+ ;; 3/15/2016 NOTE:  I REMOVED THIS EARLIER.  WHY?
+((ruleid benefit-assisted-living-rule-1)
+ (concept ":BENEFIT_LIVING_CENTER:")
+ (words ("catholic charities" "catholic charities housing" 
+			"catholic charity" "va community living center" 
+			"community living center" "clc" "christian care center" "christian care" )))
+
+((ruleid benefit-assisted-living-rule-2)
+ (concept ":BENEFIT_LIVING_CENTER:")
+ (words (":CHARITABLE_HOUSING:" "va community living center" 
+			"community living center" "clc")))
+			
+((ruleid benefit-assisted-living-rule-3)
+ (concept ":BENEFIT_LIVING_CENTER:")
+ (ordered true)
+ (words (":BENEFIT_LIVING_CENTER:") (":HOUSING:")))
+			
+((ruleid charitable-housing-rule)
+ (concept ":CHARITABLE_HOUSING:")
+ (words (":CHARITABLE_HOUSING:" ":CHARITY:") (":LIVING_SPACE:" "housing")))
+
+((ruleid charity-word-rule)
+ (stype "<THING>")
+ (concept ":CHARITY:")
+ (words ("charity" "charities" "charitable" )))
+
+((ruleid nursing-home-rule-1)
+ (concept ":NURSING_HOME:")
+ (words ("nursing home" "residential rehabilitation setting" "nsg home" "nh" "cnh"
+		"heritage woods" "heritage" "heritage assisted living" "heritage nursing home" "heritage home" "bethany" "respite stay")))
+		
+((ruleid family-stay-facility-rule)
+ (stype "<PLACE>")
+ (concept ":FAMILY_STAY_FACILITY:")
+ (words ("hospitality house")))
+ 
+((ruleid nursing-home-rule-2)
+ (concept ":NURSING_HOME:")
+ (juxtaposed true)
+ (words (":NURSING:") ("home")))
+ 
+((ruleid nursing-word-rule)
+ (concept ":NURSING:")
+ (words ("nursing" "nsg")))
+ 
+((ruleid group-home-rule)
+  (concept ":GROUP_HOME:")
+  (words ("group home")))
+  
+((ruleid home-word-rule)
+ (stype "<LIVING_SPACE>")
+ (concept ":HOME:")
+ (words ("home" "house" "single level home" "private home" 
+			"single family home" "family home" "family's home"
+			"residence" "private residence" "hud vash housing" "hud housing" "vash housing")))
+			
+((ruleid in-home-word-rule)
+ (stype "<PROPERTY>")
+ (concept ":IN_HOME:")
+ (words ("in home" "in-home")))
+ 
+((ruleid own-home-word-rule)
+ (stype "<LIVING_SPACE>")
+ (concept ":OWN_HOME:")
+ (words ("own home")))
+
+((ruleid admission-rule-1)
+ (concept ":ADMISSION:")
+ (words ("admit" "admitted" "readmit" "readmitted" ;; "return" "returned" 
+	"admission" "readmission" "hospitalization")))
+
+((ruleid return-word-rule)
+ (stype "<EVENT>")
+ (concept ":RETURN:")
+ (words ("return" "returned" "went back" "go back" "return/go")))
+ 
+((ruleid living-space-rule)
+ (stype "<LIVING_SPACE>")
+ (concept ":LIVING_SPACE:")
+ (words ("home" "apartment" "apt" "appt" ":OWN_HOME:" ":HOME:" "trailer" "trailer home" "trailor home" "double wide trailer" "trailer park" "trailer home park" "mobile home park" "mobile home")))
+			
+;; 5/15/2017:  Changed from LivingSpace to Place.  It's getting mixed up with home too often...
+((ruleid marginal-living-space-rule)
+ (stype "<PLACE>")
+ (concept ":MARGINAL_LIVING_SPACE:")
+ (words ("office space" "office"  "basement" "garage" 
+		;; "motor home"  -- 5/29/2017:  Motor homes aren't necessarily marginal.
+ 		"motel" "hotel" "camper" )))
+ 			
+((ruleid resting-place-rule)
+ (concept ":RESTING_PLACE:")
+ (words (":BEDSIDE:")))
+ 
+((ruleid bedside-word-rule)
+ (stype "<PLACE>")
+ (concept ":BEDSIDE:")
+ (words ("bedside" "bs")))
+
+((ruleid review-for-word-rule)
+ (concept ":REVIEW_FOR:")
+ (ordered true)
+ (words (":REVIEW:") ("for")))
+  
+((ruleid review-word-rule)
+ (concept ":REVIEW:")
+ (words ("review" "reviewed" "evaluate" "evaluated")))
+
+ 
+;; PEOPLE
+
+((ruleid desire-word-rule)
+ (concept ":DESIRE:")
+ (words ("desire" "desired" "want" "wanted" "wants" 
+		"like" "like to" "hope" "hopes" "hope to" "hopes to" "wish to" "wish to" "wishing to" "wanting to" "want to" "wants to" "wish" "wish to"
+		"receptive" "receptive to" "hope" "hopes" "hoping" "would rather")))
+		
+((ruleid request-word-rule)
+ (stype "<EVENT>")
+ (concept ":REQUEST:")
+ (words ("request" "requested")))
+		
+		
+((ruleid inquire-word-rule-1)
+ (concept ":INQUIRE:")
+ (words ("inquire" "inquires" "inquiring" "inquiring about" "interest in" 
+			"interested in")))
+			
+((ruleid inquire-word-rule-2)
+ (concept ":INQUIRE:")
+ (juxtaposed true)
+ (words ("inquire" "inquired" "inquiring" "look" "looked" "looking" "ask" "asked" "asking") 
+		("about" "at" "into" "for" "in")))
+		
+((ruleid consult-word-rule)
+ (concept ":CONSULT:")
+ (words ("consult" "consulting" "consulted")))
+ 
+((ruleid recommend-word-rule)
+ (concept ":RECOMMEND:")
+ (words ("recommend" "recommended" "recommending" "recommends")))
+			
+((ruleid encourage-word-rule)
+ (concept ":ENCOURAGE:")
+ (words ("encourage" "encouraged")))
+ 
+ ;; Removed from sentence-disqualifying words 12/4/2017
+((ruleid agreement-word-rule)
+ (concept ":AGREEMENT:")
+ (words ("agree" "agrees" "agreed" "agreement" "agreeable" "decision" "decide" "decided")))
+ 
+((ruleid patient-agreement-word-rule)
+ (concept ":PATIENT_AGREEMENT:")
+ (ordered true)
+ (words (":PATIENT:") (":AGREEMENT:" )))
+ 
+((ruleid family-agreement-word-rule)
+ (concept ":FAMILY_AGREEMENT:")
+ (ordered true)
+ (words (":FAMILY:") (":AGREEMENT:" )))
+ 
+ ((ruleid family-concern-word-rule)
+ (concept ":FAMILY_CONCERN:")
+ (ordered true)
+ (words (":FAMILY:") (":CONCERN:" )))
+ 
+((ruleid patient-concern-word-rule)
+ (concept ":PATIENT_CONCERN:")
+ (ordered true)
+ (words (":PATIENT:") (":CONCERN:" ":FEAR:" ":UPSET:")))
+ 
+
+((ruleid use-word-rule-1) 
+ (concept ":USE:")
+ (words ("use" "uses" "used" "using")))
+
+((ruleid interact-with-word-rule)
+ (concept ":INTERACT_WITH:")
+ (words ("talk with" "talks with" "talk to" "talks to" "talked with" "talked to" "talking with" "talking to"
+	"communicate with" "communicates with" "communicated with"
+	"speak with" "speaks with" "spoke with" "speak to" "speaks to" "spoke to" 
+	"spoken with" "spoken to"
+	"phone" "phones" "phoned" "call" "calls")))
+
+((ruleid communicate-about-word-rule)
+ (concept ":COMMUNICATE_ABOUT:")
+ (words ("talk about" "talked about" "discuss" "discussed" "inform" "informed")))
+
+((ruleid plan-word-rule)
+  (concept ":PLAN:")
+  (words ("plan" "plans" "planning" "planned" 
+  			"plan to" "plans to" "planning to" "planned to" 
+  			"anticipates" "anticipated" "anticipating"
+			"considering" "thinking about")))
+			
+((ruleid goal-word-rule)
+  (concept ":GOAL:")
+  (words ("goal" "goals")))
+  
+((ruleid possibility-word-rule)
+ (stype "<STATE>")
+ (concept ":POSSIBLE:")
+ (words ("possible" "possibility" "possibly")))
+ 
+((ruleid reside-word-rule)
+ (concept ":LIVE_AT:")
+ (words ("live" "lives" "living" ;; "stays" "staying" 
+ 			"reside" "resides" "residing" "situated" 			
+ 			"shares home" "living situation" "renting"
+ 			"living arrangement" "living arrangements"
+			"occupy" "occupies")))
+			
+((ruleid reside-past-word-rule)
+ (concept ":LIVED_AT:")
+ (words ("lived" "was living" ;; "stayed" "was staying" 
+ 			"resided" "was residing" "was situated" 			
+ 			"shared home" "occupied")))
+			
+;; 10/28/2016:  "stay" seems to connote transience; "stay" vs. "reside" or "live"
+((ruleid stay-at-word-rule)
+ (concept ":STAY_AT:")
+ (words ("stays" "staying" "stayed" "was staying")))
+ 
+((ruleid alone-word-rule)
+ (stype "<STATE>")
+ (concept ":ALONE:")
+ (words ("alone" "by himself" "by herself" "self" "on his own")))
+ 
+((ruleid preposition-word-rule)
+ (macro "_PREP_")
+ (words ("w/" "w" "to" "with" "at" "with/at" "in" "on" "under" "for" "alongside" 
+			"through" "@" "next to" "next door to"))
+ (inhibit-interstitial true))
+ 
+((ruleid locational-preposition-word-rule)
+ (macro "_AT_")
+ (words ("at" "in" "to"))
+ (inhibit-interstitial true))
+ 
+((ruleid at-distance-word-rule)
+ (concept ":DISTANCE:")
+ (words ("close" "near" "nearby" "close by" "mile" "miles")))
+ 
+;; 4/22/2016
+((ruleid close-to-word-rule)
+ (concept ":DISTANCE:")
+ (words ("close" "close to" "near" "nearby" "mile" "miles")))
+ 
+((ruleid moving-action-word-rule)
+ (concept ":MOVE_TO:")
+ (words ("move" "moved" "moving" "transfer" "transferred" "transferring" 
+	"relocate" "relocated" "relocating" "return" "returns" "returned" 
+	"returning" "go" "will go" "went" "return" "returned" "will return" "comes to" "came to")))
+	
+((ruleid moving-to-action-word-rule)
+ (concept ":MOVE_TO:")
+ (words (":MOVE_TO:") ("to")))
+	
+((ruleid moving-from-action-word-rule)
+ (concept ":MOVE_FROM:")
+ (words (":MOVE_TO:") ("from")))
+ 
+((ruleid affirm-word-rule)
+ (concept ":AFFIRMATIVE_COMMUNICATION:")
+ (words ("says" "said" "states" "stated" "indicate" "indicates" "indicated" 
+	"reports" "reported" "says that" "said that" 
+	"states that" "stated that" "indicates that" "indicated that" 
+	"reports that" "reported that" "complains of" 	
+	"complained of" "expressed" "expresses" "express" "advised" 
+	"concerned that" "called to report" "verbalized" "believes" "believes that")))
+	
+((ruleid deny-word-rule)
+ (concept ":NEGATIVE_COMMUNICATION:")
+ (words ("deny" "denies" "denied" "deny that" "denies that" "denied that")))
+
+((ruleid patient-and-family-conjunct-rule)
+ (stype "<PERSON>")
+ (concept ":PATIENT_AND_FAMILY:")
+ (words (":PATIENT:") ("and") (":FAMILY:")))
+ 
+((ruleid family-conjunction-rule)
+ (concept ":FAMILY:")
+ (ordered true)
+ (words (":FAMILY:") ("and") (":FAMILY:")))
+ 
+((ruleid family-definition-rule)
+ (concept ":FAMILY:" )
+ (words (":SPOUSE:" ":SINGLE_FAMILY_MEMBERS:" ":MULTI_FAMILY_MEMBERS:" ":LIVING_FAMILY_MEMBER:")))
+ 
+((ruleid single-family-member-word-rule)
+ (stype "<PERSON>")
+ (concept ":SINGLE_FAMILY_MEMBERS:")
+ (words (":SPOUSE:" ":NON_SPOUSE_SINGLE_FAMILY_MEMBERS:" ":INDETERMINATE_SINGLE_FAMILY_MEMBERS:")))
+ 
+((ruleid living-family-member-rule)
+ (stype "<PERSON>")
+ (concept ":LIVING_FAMILY_MEMBER:")
+ (ordered true) (juxtaposed true)
+ (words ("living" "surviving") (":SINGLE_FAMILY_MEMBERS:")))
+ 	
+((ruleid non-spouse-family-member-rule)
+ (stype "<PERSON>")
+ (concept ":NON_SPOUSE_SINGLE_FAMILY_MEMBERS:")
+ (words ("mother" "father" "son"  "daughter"  
+	"sibling"  "brother" "sister" "dtr" "mother's" "father's" "son's" "daughter's"
+	"sibling's" "brother's" "sister's" "relative" "relative's"  "child" "ex" "granddaughter" "grandson" "granddaughter's" "grandson's" "grandchildren" "living relative" "living relatives"
+	"nok" "next of kin" "godson" "nephew" "niece" "grandchild" "grand child" "grand-daughter" "grand-son"
+	"step son" "step daughter" "stepson" "step-son" "step-daughter" "family member" "daughter-in-law" "son-in-law" "sister/brother in law")))
+	
+((ruleid in-law-word-rule)
+ (stype ?0)
+ (concept ?0)
+ (ordered true)
+ (words (":SINGLE_FAMILY_MEMBERS:") ("in law" "in-law")))
+
+((ruleid bad-person-rule)
+ (stype "<PERSON>")
+ (concept ":BAD_PERSON:")
+ (words ("gang" "gang members")))
+
+((ruleid multi-family-member-word-rule)
+ (stype "<PERSON>")
+ (concept ":MULTI_FAMILY_MEMBERS:")
+ (words ("family" "family's" "family members" "fam" "friends/relatives" "children" "brothers" "sisters" "living relatives"
+		"sons" "daughters" "siblings" "relatives"  "family/friend" "family/caregiver" "family/significant other" "family/s.o.")))
+ 
+((ruleid spouse-word-rule)
+ (stype "<PERSON>")
+ (concept ":SPOUSE:")
+ (words ("wife" "wife's" "husband" "husband's" "spouse" "spouse's" 
+		"significant other" "significant other's" "so's" "spouse/significant other" "vet/spouse" "s.o." "family/s.o." "family/so")))
+	
+	
+
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;
+((ruleid general-person-word-rule)
+ (stype "<PERSON>")
+ (concept ":PERSON:")
+ (words ("person" "people")))
+ 
+;; Need better way to differentiate patient "he" from son, brother, etc.
+((ruleid patient-rule-1)
+ (stype "<PERSON>")
+ (concept ":PATIENT:")
+ (words (":SELF:" ":PATIENT_SUBJECT:" ":PATIENT_OBJECT:" "@patient-word-rule-1@")))
+
+((ruleid patient-word-rule-1)
+ (stype "<PERSON>")
+ (concept ":PATIENT:")
+ (words ("patient" "pt" "vet" "veteran" "this veteran" "the veteran")))	
+
+((ruleid general-patient-object-rule-1)
+ (stype "<PERSON>")
+ (concept ":PATIENT:")
+ (words (":PATIENT_OBJECT:" "@patient-word-rule-1@")))
+ 
+((ruleid patient-subject-word-rule)
+ (stype "<PERSON>")
+ (concept ":PATIENT_SUBJECT:")
+ (words ("he")))
+ 
+((ruleid patient-object-word-rule)
+ (stype "<PERSON>")
+ (concept ":PATIENT_OBJECT:")
+ (words ("him")))
+ 
+((ruleid patient-and-family-word-rule)
+ (stype "<PERSON>")
+ (concept ":PATIENT_AND_FAMILY:")
+ (juxtaposed true)
+ (words (":PATIENT:") ("and") (":FAMILY:")))
+		
+((ruleid self-word-rule)
+ (stype "<PERSON>")
+ (concept ":SELF:")
+ (words ("i" "you" "me")))
+ 
+((ruleid they-word-rule)
+ (stype "<PERSON>")
+ (concept ":THEY:")
+ (words ("they")))
+
+((ruleid third-person-possessive-rule)
+ (macro "_POSSESSIVE_")
+ (words ("his" "her" "their" "this veteran's" "the veteran's" "this patient's" 
+	"the patient's" "patient's" "his own" "her own" "their own" "vet's" "veteran's")))
+
+((ruleid friend-rule)
+ (concept ":FRIEND:")
+ (words ("girlfriend" "gf" "boyfriend" "boyfriend's" "girlfriend's" 
+		"bf" "friend" "friends" "friend's" "neighbor" "neighbors" 
+		"neighbor's" "neighborhood friends" "friend of the family" 
+		"friend/neighbor" "family/friend" "family/friends" "family / friend"
+		 "fiancee" "partner" "roommate" "room mate" "roommates" "room mates")))
+		
+((ruleid temporarily-living-arrangement-rule)
+ (stype "<EVENT_THING>")
+ (concept ":TEMPORARY_LIVING:")
+ (words ("motel" "hotel")))
+		
+((ruleid no-one-rule-1)
+ (stype "<PERSON>")
+ (concept ":NO-ONE:")
+ (words ("no one" "nobody")))
+ 		
+((ruleid need-word-rule-1)
+ (concept ":NEED:")
+ (words ("need" "needs" "needed" "require" "requires" "required" "requirements" 
+ 			"should" "must")))
+			
+((ruleid refuse-word-rule-1)
+ (stype "<EVENT>")
+ (concept ":REFUSE:")
+ (words ("refuse" "refused" "reject" "rejected")))
+ 			
+ ((ruleid probably-word-rule-1)
+  (concept ":LIKELY:")
+  (words ("probably" "likely")))
+ 
+;; 3/8/2016
+((ruleid lack-word-rule)
+ (concept ":LACK:")
+ (words ("lack" "lacks" "doesn't have")))
+
+((ruleid inability-word-rule-1)
+ (stype "<STATE>")
+ (concept ":INABILITY:")
+ (words ("unable" "difficult" "difficulty" "hard time" "can't" "cannot"  "trouble" "unable" "cannot" "can't" "struggle" "struggles" "struggling")))
+ 
+((ruleid ability-word-rule-1)
+ (stype "<STATE>")
+ (concept ":ABILITY:")
+ (words ("able" "ability")))
+ 
+((ruleid coming-to-an-end-rule-1)
+ (concept ":ENDING:")
+ (words ("coming to an end" "came to an end" "ending" "ended" "running out")))
+	 
+((ruleid ineligible-rule-1)
+ (stype "<STATE>")
+ (concept ":INELIGIBLE:")
+ (words ("not eligible" "lack eligibility" "lacks eligibility" "ineligible"
+		"does not meet eligibility" "does not qualify" "doesn't qualify" 
+		"did not qualify" "didn't qualify" "disqualify" "disqualifies" "disqualified")))
+		
+((ruleid eligibility-word-rule)
+ (stype "<STATE>")
+ (concept ":ELIGIBILITY:")
+ (words ("eligible" "eligibility" "qualify" "qualifies")))
+
+((ruleid start-stop-word-rule) 
+ (concept ":START_STOP:")
+ (words ("stop" "stopped" "stops" "stopping" "start" 
+			"started" "starts" "starting" "quit" "quits" "start on" 
+			"start back on" "started on" "started back on")))
+
+((ruleid secondary-to-word-rule)
+ (concept ":SECONDARY_TO:")
+ (words ("secondary to" "related to" "due to" "caused by" "as a result of" 					
+ 			"resulting from" "due to")))
+ 			
+((ruleid call-911-rule)
+ (concept ":CALL_FOR_HELP:")
+ (words ("called 911" "call 911" "dial 911" "dialed 911")))
+ 
+((ruleid contact-word-rule)
+ (stype "<EVENT>")
+ (concept ":CONTACT:")
+ (words (":CONTACTED:" "contact" "contacts" "reach" "call" 
+ 			"phone" "phones" "get in touch with" "gets in touch with" "getting in touch with")))
+			
+((ruleid contacted-word-rule)
+ (stype "<EVENT>")
+ (concept ":CONTACTED:")
+ (words ("contacted" "reached" "called" "phoned" "got in touch with")))
+ 
+((ruleid contact-person-rule)
+ (stype "<PERSON>")
+ (concept ":CONTACT_PERSON:")
+ (words ("contact person")))
+
+((ruleid vehicle-object-rule-1)
+ (concept ":VEHICLE:")
+ (words ("car" "van" "vehicle" ":PUBLIC_TRANSPORTATION:")))
+ 
+((ruleid public-transportation-word-rule)
+ (concept ":PUBLIC_TRANSPORTATION:")
+ (words ("bus" "taxi")))
+
+((ruleid street-object-rule-1)
+ (concept ":STREET:")
+ (words ("street" "streets")))
+
+ ;;;;;;;;;;;; 
+ ;; ADL
+ 
+((ruleid adl-anatomy-word-rule)
+ (concept ":ADL_ANATOMY:")
+ (words ("bowel" "bowels" "bladder" "b/b")))
+
+ 
+((ruleid physical-therapy-word-rule)
+ (concept ":PHYSICAL_THERAPY:")
+ (words ("physical therapy" "physical therapist" "in-home pt" "rehab services" 
+		"rehab stay" "in-home therapy"
+		;; Every occurrence of "pt" gets mistaken for physical therapy...
+		;; "pt"  
+ )))
+
+((ruleid occupational-therapy-word-rule)
+ (concept ":OCCUPATIONAL_THERAPY:")
+ (words ("occupational therapy" "occupational therapist" "ot")))
+
+((ruleid independent-word-rule)
+ (concept ":INDEPENDENT:")
+ (words ("independent")))
+
+ ;; Before 12/8/2015
+((ruleid fall-rule-1)
+ (stype "<EVENT_THING>")
+ ;; (concept ":ADL_FALLS:")
+ (concept ":FALL:")
+ (words ("fall" "fell" "falling" "falls" "fallen")))
+
+;; Before 12/9/2015
+;;((ruleid fall-rule-1)
+;; (stype "<EVENT>")
+;; (concept ":ADL_FALLS:")
+;; (words ("fall" "fell" "falling" "falls" "fallen")))
+
+((ruleid accident-rule-1)
+ (concept ":ACCIDENT:")
+ (words ("accident" "accidents")))
+
+((ruleid cane-walker-general-word-rule)
+ (concept ":ADL_CANE_WALKER:")
+ (words ("walker" "crutch" "crutches" "cane" "crutches/cane" "crutches/cane(s)/walker" 
+		"walker/cane" "w/c" "c/w" "quad cane")))
+		
+((ruleid wheelchair-general-word-rule)
+ (concept ":ADL_WHEELCHAIR:")
+ (words ("wheelchair" "wheel chair"  "scooter" )))
+ 
+((ruleid general-adl-rule)
+ (stype "<ADL_ACTIVITY>")
+ (concept ":ADL_ACTIVITY:")
+ (words (":WALKING:" ":AMBULATE:" ":BATHROOM_USE:" ":TOILETING:" ":DRESSING:"  
+			":HYGIENE:" ":EATING:" ":CHORES:" ":COOK:")))
+			
+((ruleid general-iadl-rule)
+ (stype "<IADL_ACTIVITY>")
+ (concept ":IADL_ACTIVITY:")
+ (words (":HOMEMAKING:" "iadl" "iadls")))
+		
+((ruleid adl-walking-rule)
+ (concept ":WALKING:")
+ (words ("walk" "walking" "walks" "walked" "gait"
+		":AMBULATE:"
+		;; "full weight bearing"
+		)))
+		
+((ruleid adl-ambulatory-rule) 
+ (stype "<ADL_ACTIVITY>")
+ (concept ":AMBULATE:")
+ (words ("ambulating" "ambulate" "ambulates" 
+		"ambulated" "ambulatory" "ambulalated" "ambulation")))
+		
+((ruleid continent-word-rule)
+ (concept ":CONTINENT:")
+ (words ("continent")))
+ 
+((ruleid bathroom-use-word-rule)
+ (concept ":BATHROOM_USE:")
+ (words ("void" "voiding" "bm" "commode" "bowel movement" "bowel movements")))
+
+;; "walking ability"
+((ruleid adl-activity-skills-rule-1)
+ (concept ":ADL_ACTIVITY:")
+ (words (":ADL_ACTIVITY:")
+	("skill" "skills" "ability" "abilities")))
+	
+((ruleid adl-activity-word-rule)
+ (concept ":ADL_ACTIVITY:")
+ (words ("adl" "adls" "adl's" "get oob" "get out of bed")))
+
+((ruleid adl-toileting-rule)
+ (concept ":TOILETING:")
+ (words ("toilet" "toileting")))
+
+((ruleid adl-dressing-rule)
+ (concept ":DRESSING:")
+ (words ("dress" "dressing" "getting dressed" "get dressed")))
+
+((ruleid adl-hygiene-rule)
+ (concept ":HYGIENE:")
+ (words ("groom" "grooming" "hygiene" "bath" "bathe" "bathing" "bathes" "take a bath" 
+			"shower" "showers"
+			"oral care" "dental")))
+
+((ruleid adl-eating-rule)
+ (concept ":EATING:")
+ (words ("eat" "eating" "eats" "feeding himself" "feeding herself" "feedings")))
+ 
+((ruleid meals-word-rule)
+ (concept ":FOOD:")
+ (words ("meals" "meal" "food" ":MEALS:")))
+
+((ruleid iadl-homemaking-rule-1)
+ (concept ":HOMEMAKING:")
+ (words ("homemaking")))
+
+((ruleid iadl-chores-rule-1)
+ (stype "<IADL_ACTIVITY>")
+ (concept ":CHORES:")
+ (words ("chore" "chores" "dishes" "washing" "washing clothes" "cleaning" "shopping" "cooking")))
+ 
+((ruleid cooking-word-rule-1)
+ (stype "<ADL_ACTIVITY>")
+ (concept ":COOK:")
+ (words ("cook" "cooks" "cook meals" "cooks meals" 
+ 			"prepare meals" "prepares meals")))
+ 			
+((ruleid prepare-word-rule)
+ (stype "<EVENT>")
+ (concept ":PREPARE:")
+ (words ("prepare" "prepares" "preparing")))
+  
+((ruleid iadl-meals-rule-1)
+ (concept ":MEALS:")
+ (words ("meal" "meals" "dinner")))
+
+((ruleid adl-facility-bed-rule)
+ (concept ":BED:")
+ (words ("bed")))
+
+((ruleid adl-facility-chair-rule)
+ (concept ":CHAIR:")
+ (words ("chair")))
+ 
+((ruleid couch-word-rule)
+ (stype "<THING>")
+ (concept ":COUCH:")
+ (words ("couch")))
+
+((ruleid adl-facility-toilet-rule)
+ (concept ":TOILET:")
+ (words ("urinal" "toilet" "commode" "bedside commode")))
+
+((ruleid adl-facility-bath-rule)
+ (concept ":BATH:")
+ (words ("bath" "shower")))
+
+((ruleid sleep-rule-1)
+ (concept ":SLEEP:")
+ (words ("sleep" "sleeps" "slept" "sleeping")))
+ 
+((ruleid adl-rooms-rule)
+ (concept ":ADL_FACILITY:")
+ (words ("bath room" "bathroom" ":BEDROOM:" "kitchen")))
+ 
+((ruleid adl-bedroom-rule)
+ (stype "<THING>")
+ (concept ":BEDROOM:")
+ (words ("bed room" "bedroom" "br")))
+
+((ruleid impairment-rule-1)
+ (concept ":IMPAIRMENT:")
+ (words ("impairment" "impaired" "weakness" "loss" "inability")))
+
+((ruleid unsteady-word-rule)
+ (concept ":IMPAIRMENT:")
+ (words ("unsteady")))
+ 
+((ruleid steady-word-rule)
+ (concept ":NO_IMPAIRMENT:")
+ (words ("steady")))
+
+;;;;;;;;;;;;;;;;;;;;n
+
+;; PLACES
+
+((ruleid medical-facility-rule-1)
+ (concept ":MEDICAL_FACILITY:")
+ (words ("hospital" ":VA:" "er" "ed" "emergency room" "va ec" "ec"
+ 			"discharge placement unit" "dpu" "clinic" "pt clinic" "pharmacy" "ward" "ward unit")))
+			
+((ruleid va-facility-rule)
+ ;; (stype "<FACILITY>")
+ (concept ":VA:")
+ (words ("va" "va facility")))
+ 			
+((ruleid combined-medical-facility-rule)
+ (concept ":MEDICAL_FACILITY:")
+ (juxtaposed true)
+ (words (":MEDICAL_FACILITY:") (":MEDICAL_FACILITY:")))
+ 
+((ruleid facility-word-rule)
+ (stype "<PLACE>")
+ (concept ":FACILITY:")
+ (words ("facility")))
+ 
+;;;;;;;;;;;;;;;;;;;
+;; MEDICAL CARE
+((ruleid medical-care-word-rule)
+ (stype "<EVENT_THING>")
+ (concept ":MEDICAL_CARE:")
+ (words ("home health" "urgent care")))
+ 
+ 
+;;;;;;;;;;;;;;;;;;;;
+;; COMMUNITY SERVICES
+ 
+((ruleid community-service-word-rules)
+ (concept ":COMMUNITY_SERVICE:")
+ (words (":MEALS-ON-WHEELS:" "handmaker" "homemaker services"
+			"community support" "community support systems"
+			;; "community services" 
+			;; "home health"  -- not a relevant form of community service.
+		)))
+		
+((ruleid meals-on-wheels-rule)
+ (stype "<SERVICE>")
+ (concept ":MEALS-ON-WHEELS:")
+ (words ("meals on wheels")))
+ 
+((ruleid help-from-church-group-rule)
+ (stype "<PERSON>")
+ (concept ":CHURCH:")
+ (words ("church group" "church" "priest" "bishop" "pastor" "pastor's wife")))
+ 		 
+
+;;;;;;;;;;;;;;;;;;;;;;
+;; SUBSTANCE USE
+
+((ruleid substance-action-rule) 
+ (concept ":USE_SUBSTANCE:")
+  (words 
+    ("drink" "drinks" "drinking" "drank" "drinker" 
+	"smoke" "smokes" "smoked" "smoking" 
+	"consumes" "consumption")))
+	
+((ruleid substance-event-rule-2) 
+  (concept ":SUBSTANCE_USE:")
+  (words 
+    ("alcohol use" "drug use")))
+
+((ruleid substance-rule)
+  (concept ":SUBSTANCE:")
+  (words ("substance")))
+
+((ruleid alcohol-rule)
+  (concept ":ALCOHOL:")
+  (words ("etoh" "ethyl alchohol" "ethanol" "alcohol" 
+	"alcoholic beverage" "alcoholic beverages" 
+	"ethyl" "wine" "beer" "vodka" "rum" "vodka or rum")))
+
+((ruleid alcohol-abuse-rule)
+  (concept ":ALCOHOL_ABUSE:")
+  (words ("alcohol abuse" "abuses alcohol" "alcoholic abuse" 
+	"alcoholism" "drinking binge" "alcohol cravings" "craving alcohol" 
+	"drinking habit" "drinking habits")))
+
+((ruleid tobacco-rule)
+  (concept ":TOBACCO:")
+  (words ("tobacco" "cigarettes" "cigarette")))
+  
+((ruleid prescription-medication-rule)
+  (concept ":PRESCRIPTION_MEDICATION:")
+  (words ("medications" "medication" "meds" 
+		"prescription medication" "prescription medications" 
+		"prescription drugs" )))
+		
+((ruleid specific-prescription-medication-rule)
+  (concept ":PRESCRIPTION_MEDICATION:")
+  (words ("ntg" "acetominophen" "vicodin" "ibuprofen" "aspirin" "lasik" "morphine" "levitra" 
+			"melatonin" "lasix" "sotalol")))
+
+((ruleid substance-quantity)
+ (words ("glass" "glasses" "cups" "glasses or cups" "bottle" "bottles" 
+ 			"pack" "packs"))
+ (concept ":SUBSTANCE_QUANTITY:")
+ (relations (quantity ?* ?0)))
+ 
+ ((ruleid drug-rule)
+  (concept ":DRUG:")
+  (words ("drug" "drugs" "cocaine" "heroin" "illegal drugs"  "etoh/illicits"
+		"involved with drugs" "involvement with drugs")))
+	
+((ruleid abuse-word-rule)
+  (concept ":ABUSE:")
+  (words ("abuse" "overdose")))
+
+((ruleid substance-abuse-rule-2)
+  (concept ":SUBSTANCE_ABUSE:")
+  (words ("<SUBSTANCE>") (":ABUSE:")))
+
+((ruleid substance-dependence-rule)
+  (concept ":DEPENDENCE:")
+  (words ("<SUBSTANCE>") 
+	 ("dependence" "abuse/dependence" "addictions" "addiction")))
+
+((ruleid substance-withdrawal-rule)
+  (concept ":WITHDRAWAL:")
+  (words ("withdrawal" "withdrawal seizures")))
+
+  ;; 8/1/2017 added "transferred" because of similar meaning - needs its own concept
+((ruleid discharge-word-rule)
+ (stype "<EVENT>")
+ (concept ":DISCHARGE:")
+ (words ("discharge" "discharged" "disposition" "dispo" "dispo-" " dispo- d/c" "d/c" "d c" "dc'd" "transfer" "transferred" "relocate" "relocated" "leave unit" "left with" "destination")))
+ 
+((ruleid discharge-from-word-rule)
+ (stype "<EVENT>")
+ (concept ":DISCHARGE_FROM:")
+ (juxtaposed true)
+ (words (":DISCHARGE:") ("from")))
+ 
+((ruleid discharge-to-word-rule)
+ (stype "<EVENT>")
+ (concept ":DISCHARGE_TO:")
+ (juxtaposed true)
+ (words (":DISCHARGE:") ("to")))
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Mental / Cognitive
+
+((ruleid failure-word-rule)
+ (concept ":FAIL:")
+ (words ("fail" "failure" "failing" "decline")))
+
+((ruleid fear-word-rule)
+ (concept ":FEAR:")
+ (words ("fear" "fears" "worry" "worries" "worrying")))
+ 
+((ruleid upset-word-rule)
+ (concept ":UPSET:")
+ (words ("upset")))
+
+((ruleid personality-disorder-rule)
+ (concept ":MENTAL_ILLNESS:")
+ (words ("antisocial personality disorder" "bipolar disorder" 
+	"borderline personality disorder" "narcissistic personality disorder"
+	"dual diagnosis" "paranoia" "psychosis" "schizophrenia")))
+
+((ruleid depression-rule)
+ (concept ":DEPRESSION:")
+ (words ("depression" "depressed" "depressive disorder" "major depressive disorder"
+		 "sadness" "social isolation" "depression/anxiety")))
+
+((ruleid minor-mental-health-issues-rule)
+ (concept ":MENTAL_DISCORD:")
+ (words ("anger" "anxiety" )))
+
+((ruleid cognitive-impairment-rule-1)
+ (concept ":COGNITIVE_IMPAIRMENT:")
+ (words ("confusion" "dementia" "confused" "delirium" "memory loss" "memory failure" "failure of memory"
+		"poor memory" "speech difficulty" "speech difficulties" 
+		;; "dizziness" -- not sure when 'dizziness' would indicate cognitive impairment..
+		"memory impairments" "impaired memory" "nonverbal" "non verbal" "not verbal" "cognitive decline"
+		"incompetent" "forgetfulness")))
+
+((ruleid dementia-word-rule)
+ (concept ":DEMENTIA:")
+ (words ("dementia" "alzheimers")))
+ 
+((ruleid poor-historian-word-rule)
+ (concept ":POOR_HISTORIAN:")
+ (words ("poor historian")))
+		
+((ruleid failure-of-memory-rule)
+ (concept ":COGNITIVE_IMPAIRMENT:")
+ (words (":FAIL:") (":COGNITIVE_ABILITY:")))
+ 
+ ((ruleid memory-word-rule)
+  (concept ":COGNITIVE_ABILITY:")
+  (words ("memory" "cognitive")))
+
+((ruleid negated-item-word-rule) 
+  (stype ?0)
+  (concept ?0)
+  (ordered true)
+  (words (?interpreted) ("none" "absent" "None/bedrest/nurse"))
+  (properties (directionality negated)))
+  
+((ruleid affirmed-item-word-rule) 
+  (concept ?0)
+  (words (?interpreted) ("yes" "true"))
+  (properties (directionality affirmed)))
+
+((ruleid risk-word-rule)
+ (stype "<EVENT_THING>")
+ (concept ":RISK:")
+ (words ("risk" "potential" "relative risk")))
+
+ ;; PROVIDERS
+((ruleid provider-word-rule)
+ (concept ":PROVIDER:")
+ (words ("therapist" "social worker" "sw" "nurse" "rn" "doctor" "md" "pcp" "physician" "nursing aid" 
+ 			"house team" "house team staff" "team" "staff" "va staff" 
+ 			"primary care giver" "primary caregiver" "home health aid" "escort" "care manager"
+			"home oxygen coordinator" "pharmacist" "primary care provider" "pcp")))
+ 
+((ruleid locationally-present-rule)
+ (stype "<PLACE>")
+ (concept ":HERE:")
+ (words ("here" "present")))
+ 
+((ruleid visit-event-word-rule)
+ (stype "<EVENT>")
+ (concept ":VISIT:")
+ (words ("visit" "visits" "visited" "visiting")))
+ 
+((ruleid visit-thing-word-rule)
+ (stype "<THING>")
+ (concept ":VISIT:")
+ (words ("visit" "visits")))
+ 
+ ;; SOCIAL STRESSOR RELATED WORD RULES
+ 
+((ruleid marriage-thing-word-rule)
+ (stype "<THING>")
+ (concept ":MARRIAGE:")
+ (words ("marriage")))
+  
+((ruleid marriage-state-word-rule)
+ (stype "<STATE>")
+ (concept ":MARRIAGE:")
+ (words ("married" "remarried" "divorced" "never married" "separated")))
+ 
+((ruleid marriage-event-word-rule)
+ (stype "<EVENT>")
+ (concept ":MARRIAGE:")
+ (words ("married" "remarried" "divorced" "never married" "separated")))
+ 
+ ((ruleid social-stressor-rule)
+ (stype "<THING>")
+ (concept ":SOCIAL_STRESSOR:")
+ (words ("stressor" "stressors" "social stressor" "social stressors")))
+
+((ruleid death-stressor-thing-rule)
+ (stype "<THING>")
+ (concept ":DEATH:")
+ (words ("death" "widow" "suicide")))
+	
+((ruleid death-stressor-event-rule)
+ (stype "<EVENT>")
+ (concept ":DEATH:")
+ (words ("died" "die" "widowed" "commit suicide" "committed suicide")))
+	
+((ruleid crisis-stressor-rule)
+ (stype "<THING>")
+ (concept ":CRISIS:")
+ (words ("crisis")))
+
+((ruleid domestic-violence-stressor-rule)
+ (stype "<THING>")
+ (concept ":DOMESTIC_VIOLENCE:")
+ (words ("domestic violence")))
+
+((ruleid unemployed-stressor-rule)
+ (stype "<STATE>")
+ (concept ":UNEMPLOYED:")
+ (words ("unemployed" "jobless")))
+
+((ruleid lgbt-stressor-rule)
+ (stype "<STATE>")
+ (concept ":LGBT:")
+ (words ("lgbt" "homosexual" "gay" "transsexual")))
+ 
+((ruleid knowledge-event-word-rule)
+ (stype "<EVENT>")
+ (concept ":KNOWLEDGE:")
+ (words ("know" "knew" "believe" "believed" "think" "thought")))
+ 
+((ruleid preparation-word-rule)
+ (stype "<STATE>")
+ (concept ":PREPARED:")
+ (words ("ready" "prepared")))
+ 
+((ruleid power-of-attorney-rule-1)
+ (stype "<THING>")
+ (concept ":POA:")
+ (words ("poa" "power of attorney")))
+ 
+((ruleid healthcare-proxy-rule-1)
+ (stype "<PERSON>")
+ (concept ":PROXY:")
+ (words ("healthcare proxy" "health care proxy" "proxy")))
+ 
+((ruleid power-of-attorney-rule-2)
+ (stype "<THING>")
+ (concept ":POA:")
+ (ordered true)
+ (words (":PATIENT:") (":POA:")))
+ 
+;; SOCIAL SUPPORT
+
+((ruleid family-support-is-provision-of-care-rule) 
+  (concept ":PROVISION_OF_CARE:") 
+  (words 
+    (":FAMILY_SUPPORT:")))
+	
+((ruleid family-support-thing-word-rule)
+ (stype "<SOCIAL_SUPPORT>") 
+ (concept ":FAMILY_SUPPORT:")
+ (states-target true) 
+ (contains-target true)
+ (words 
+    ("family support" "support from family" "supportive family" "family supportive" 
+	"good support from family" "support from family" "support from children")))
+
+((ruleid provide-rule-1) 
+  (stype "<EVENT>") 
+  (concept ":PROVIDE:") 
+  (words 
+    ("provide" "provides" "providing" "provided" "give" "gives" "giving" "gave" "given")))
+
+((ruleid care-rule-1) 
+  (stype "<EVENT_THING>") 
+  (concept ":CARE:") 
+  (words 
+    ("care" "cares" "cared" "cares for" "cared for" "caring for" "care process" 
+	"support" "supports" "supported" "supportive of" "supporting" "supportive"
+	"takes care of" "take care of" "take care" "takes care"
+	"patient care" "supportive with care" "care of" "c/o" "c/o-" "c o"
+	"checks on" "checks in on" "check on" "check in on")))
+
+((ruleid access-to-care-rule) 
+  (stype "<EVENT_THING>") 
+  (concept ":CARE_ACCESS:") 
+  (words ("access") ("care")))
+
+((ruleid help-rule-1) 
+  (stype "<EVENT_THING>") 
+  (concept ":HELP:") 
+  (words 
+    (":SUPPORT:" ":CARE:" "help" "helps" "helped" "helping" 
+    "assists" "assist" "assisted" "assisting" "assistance" "aid" "aided" "aiding"
+    "manage" "manages" "managing")))
+
+	;; 7/13/2016:  Added State stype.
+((ruleid caring-and-supportive-word-rule) 
+  (stype "<STATE>")
+  (concept ":CARING:") 
+  (words 
+    (":INVOLVED:" "caring" "supportive" "loving" "engaged" 
+    "helpful"  "attentive" "concerned")))
+
+((ruleid support-word-rule) 
+  (stype "<EVENT_THING>") 
+  (concept ":SUPPORT:") 
+  (words 
+    ;; ("support" "involved" "involvement" "engaged" "engagement" "source of support")
+	("support" "involvement" "engagement" "source of support")
+	))
+
+((ruleid caring-and-supportive-combination-word-rule) 
+  (stype "<STATE>")   ;; added 7/13/2016
+  (concept ":CARING:") 
+  (words (":CARING:") (":CARING:")))
+  
+((ruleid get-home-word-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":GO_HOME:")
+ (words ("go home" "get home" "get back home" "travel home")))
+
+((ruleid complex_event_transportation-verb-rule-1) 
+  (stype "<COMPLEX_EVENT>") 
+  (concept ":TRANSPORTATION:") 
+  (words ("bring him" "bring the patient" "brought him" "brought the patient" "brings him" 
+		"brings the patient" "take him" "takes him" "took him" "take the patient" "took the patient" 
+		"pick him up" "pick pt up" "pick patient up" "picked him up" "picked pt up" "picked patient up" 
+		"provide transportation" "provided transportation" 
+		"give a ride" "gave him a ride" "drive him home" "drove him home" "drives him" "drove him"
+		"drives patient" "drove patient"
+		"took him home" "take him home" "escorting him home" "escort him home"
+		":TRANSPORTATION::PATIENT_OBJECT:"
+		":TRANSPORTATION::PATIENT_OBJECT::MEDICAL_FACILITY:"
+		)))
+ 
+((ruleid complex_event_transportation-verb-rule-2) 
+  (stype "<COMPLEX_EVENT>") 
+  (concept ":TRANSPORTATION:") 
+  (ordered true)
+  (words (":TAKE:" ":TRANSPORTATION:") (":PATIENT:")))
+  
+ ;; 11/30/2017
+((ruleid complex_event_transportation-verb-rule-3) 
+  (stype "<COMPLEX_EVENT>") 
+  (concept ":TRANSPORTATION:") 
+  (ordered true)
+  (words (":TRANSPORTATION:") ("<PLACE>")))
+		
+((ruleid simple_event_transportation-verb-rule-1) 
+  (stype "<EVENT>") 
+  (concept ":TRANSPORTATION:") 
+  (words ("pick up" "picked up" "transport" "drive" "drove")))
+  
+((ruleid transportation-object-rule-1) 
+  (concept ":TRANSPORTATION:") 
+  (words 
+    ("transport" "transportation" "discharge transportation" 
+		":PUBLIC_TRANSPORTATION:" "ride" "ride home" "return ride" "return ride home")))
+	
+((ruleid take-word-rule)
+  (stype "<EVENT>")
+  (concept ":TAKE:")
+  (words ("take" "taking" "takes" "took" "taken")))
+  
+((ruleid caregiver-rule-1) 
+  (concept ":CAREGIVER:") 
+  (words 
+    ("caregiver" "care giver" "caregiver and support" "care giver and support" "patient's caregiver" "patient caregiver")))
+	
+((ruleid caregiver-rule-2) 
+  (concept ":CAREGIVER:") 
+  (ordered true)
+  (words 
+    ("primary") (":CAREGIVER:")))
+
+((ruleid document-author-word-rule) 
+  (stype "<PERSON>") 
+  (concept ":AUTHOR:") 
+  (words 
+    ("writer" "author")))
+
+((ruleid well-supported-word-rule) 
+  (concept ":WELL_SUPPORTED:") 
+  (states-target true)
+  (words 
+    ("well supported" "well-supported" "good support" "good system of support" "good support system"
+		"good family support"  "good family supports" "good social support" "good social support system"
+		"good social support systems")))
+		
+((ruleid good-word-rule)
+ (stype "<STATE>")
+ (concept ":GOOD:")
+ (words ("good")))
+
+((ruleid receives-word-rule) 
+  (stype "<EVENT>")
+  (concept ":RECEIVES:") 
+  (inhibit-interstitial true) 
+  (words 
+    ("receive" "receives" "receiving" "access to" 
+	;; "has" 
+	"get" "gets")))
+
+((ruleid check-up-on-word-rule)
+ (stype "<PROVIDE_CARE>")
+ (concept ":CHECK_UP_ON:")
+ (words ("check on" "check up on" "checked up on")))
+ 
+((ruleid support-systems-word-rule)
+ (stype "<PROVIDE_CARE>")
+ (concept ":SUPPORT_SYSTEM:")
+ (words ("support system" "support systems" "social support system" "social support systems")))
+ 
+((ruleid unwilling-word-rule)
+ (stype "<EMOTION>")
+ (concept ":UNWILLING:")
+ (words ("unwilling" "not willing")))
+ 
+((ruleid willing-word-rule)
+ (stype "<EMOTION>")
+ (concept ":WILLING:")
+ (words ("unwilling" "not willing")))
+  
+((ruleid checked-checkbox-word-rule)
+ (concept ":CHECKBOX_CHECKED:")
+ (words ("[x]" "(x)" "[x]" "(x)" "[ x ]" "[ x]" "[x ]" "(x )" "( x)"
+			"_x__yes")))
+ 
+((ruleid unchecked-checkbox-word-rule)
+ (concept ":CHECKBOX_UNCHECKED:")
+ (words ("[]" "()" "[   ]" "[ ]" "( )" 
+		;; Added 1/17/2017
+		"(x) none" "[x] none" "_x__no")))
+
+((ruleid concern-word-rule)
+ (concept ":CONCERN:")
+ (words ("concern" "concerns" "concerned" "fear" "fears" "worried" "worries" "worry")))
+ 
+((ruleid available-word-rule)
+ (stype "<STATE>")
+ (concept ":AVAILABLE:")
+ (words ("available")))
+ 
+((ruleid if-word-rule)
+ (concept ":IF:")
+ (words ("if" "whether")))
+ 
+((ruleid unsure-word-rule)
+ (concept ":UNSURE:")
+ (words ("unsure")))
+ 
+((ruleid literature-word-rule)
+ (stype "<THING>")
+ (concept ":LITERATURE:")
+ (words ("book" "pamphlet" "pamplet" "document" 
+			"patient and nursing home resident rights and responsibilities"
+			"patient information handbook")))
+			
+((ruleid information-word-rule)
+ (stype "<THING>")
+ (concept ":INFORMATION:")
+ (words ("information" ":LITERATURE:")))
+ 
+((ruleid discharge-information-word-rule)
+ (stype "<THING>")
+ (concept ":PATIENT-INFORMATION:")
+ (words ("discharge information")))
+ 
+((ruleid discharge-information-word-combined-rule)
+ (stype "<THING>")
+ (concept ":PATIENT-INFORMATION:")
+ (words (":PATIENT:" ":DISCHARGE:") ("information" "records" "report")))
+ 
+((ruleid screening-word-rule)
+ (stype "<THING>")
+ (concept ":SCREEN:")
+ (words ("screen" "screening" "screened")))
+ 
+((ruleid expected-word-rule)
+ (stype "<EVENT_THING>")
+ (concept ":EXPECTATION:")
+ (words ("expected" "expects" "expect" "expecting" "expectation")))
+ 
+((ruleid appropriate-word-rule)
+ (concept ":APPROPRIATE:")
+ (words ("appropriate" "appropriate for")))
+ 
+((ruleid watch-word-rule)
+ (concept ":WATCH:")
+ (words ("watch" "watch out for" "look after")))
+
+((ruleid examine-word-rule)
+ (concept ":EXAMINE:")
+ (words ("examine" "examined" "seen")))
+ 
+ ;; removed 2/7/2018.  Mistaking "__No" as UNDERLINE + BULLET
+((ruleidXXX bullet-word-rule)
+ (concept ":BULLET:")
+ (words ("o")))
+ 
+((ruleid rehabilitation-word-rule)
+ (concept ":REHABILITATION:")
+ (words ("rehab" "rehabilitation")))
+ 
+((ruleid benefit-word-rule)
+ (concept ":BENEFIT:")
+ (words ("benefit" "benefitted")))
+
+((ruleid treatment-word-rule)
+ (concept ":TREATMENT:")
+ (words ("treatment")))
+ 
+((ruleid involved-word-rule)
+ (concept ":INVOLVED:")
+ (words ("involved")))
+ 
+((ruleid cope-word-rule)
+ (concept ":COPE:")
+ (words ("cope" "coping")))
+ 
+((ruleid social-history-state-rule)
+ (stype ?1)
+ (concept ?1)
+ (ordered true)
+ (words (":SOCIAL_HISTORY:") ("<STATE>")))
+ 
+((ruleid social-history-word-rule)
+ (stype "<STATE>")
+ (concept ":SOCIAL_HISTORY:")
+ (words ("social history" "social hx")))
+ 
+((ruleid medical-care-support-type-word-rule)
+ (stype "<STATE>")
+ (concept ":MEDICAL_SUPPORT_TYPE:")
+ (words ("preventive" "palliative")))
+ 
+((ruleid problem-word-rule)
+ (stype "<EVENT_THING>")
+ (concept ":PROBLEM:")
+ (words ("problem" "problems" "major problem" "major problems" "problem with" "major problems with")))
+ 
+((ruleid diet-word-rule)
+ (concept ":DIET:")
+ (words ("diet")))
+ 
+((ruleid history-word-rule)
+ (stype "<THING>")
+ (concept ":HISTORY:")
+ (words ("history")))
+ 
+((ruleid stability-word-rule)
+ (concept ":STABLE:")
+ (words ("stable" "stably")))
+ 
+((ruleid instability-word-rule)
+ (concept ":UNSTABLE:")
+ (words ("unstable" "unstably")))
+
+((ruleid housing-word-rule)
+ (concept ":HOUSING:")
+ (words ("housing" "accommodations" "housing situation")))
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;; Invalidated rules
+ 
+ ;; 11/3/2016
+;; 8/12/2017 Usually not correct (e.g. can refer to SW)
+((ruleidXXX indeterminate-single-family-member-rule)
+ (stype "<PERSON>")
+ (concept ":INDETERMINATE_SINGLE_FAMILY_MEMBERS:")
+ (words ("she")))
+
+  ;; 6/16/2015:  Wrong...
+  ;; 11/30/2017:  Why was this wrong?  "She assists him with his needs"
+((ruleid third-person-subject-word-rule)
+  (concept ":PERSON:")
+  (words ("she")))
+  
+  // 12/11/2017
+((ruleid worsen-word-rule)
+ ;; (stype "<MODIFIER>")
+ (concept ":WORSEN:")
+ (words ("deteriorate" "deteriorating" "deterioration" "worsen" "worsening" "get worse" "getting worse")))
+ 
+((ruleid improve-word-rule)
+ ;; (stype "<MODIFIER>")
+ (concept ":IMPROVE:")
+ (words ("improve" "improving" "improvement" "getting better" "get better")))
+ 
+((ruleid function-word-rule)
+ (stype "<THING>")
+ (concept ":FUNCTION:")
+ (words ("function" "functioning")))
+
+((ruleid fight-word-rule)
+ (stype "<THING>")
+ (concept ":FIGHT:")
+ (words ("argument" "arguments" "altercation" "altercations" "fight" "fights")))
+ 
+ ((ruleid satisfied-word-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":SATISFACTION:")
+ (ordered true)
+ (words ("satisfied with" "grateful" "thankful" "satisfaction")))
+ 
+((ruleid tolerate-word-rule)
+ (stype "<EVENT>")
+ (concept ":TOLERATE:")
+ (ordered true)
+ (words ("tolerate" "tolerated")))
+ 
+ 
+ 
+ 
+ )

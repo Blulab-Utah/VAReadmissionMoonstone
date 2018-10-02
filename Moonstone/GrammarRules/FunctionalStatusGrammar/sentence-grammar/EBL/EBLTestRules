@@ -1,0 +1,21 @@
+'(
+wordrule
+(
+  (ruleid "BOC-negated-sentence-no-adl-impairment-complex-pattern-rule-0-2016/08/04 12:28:12") 
+  (specialized) 
+  (example-snippet "He does not need help with walking to the bathroom") 
+  (ordered true) 
+  (concept ":ADL_AMBULATES_WITHOUT_ASSISTANCE:") 
+  (stype "<SENTENCE>") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PATIENT:") 
+    (":NEED:") 
+    (":HELP:") 
+    (":WALKING:") 
+    ("_PREP_") 
+    (":ADL_FACILITY:"))
+ (removeproperties directionality))
+
+)

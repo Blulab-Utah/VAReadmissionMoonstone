@@ -1,0 +1,10 @@
+'(
+wordrule
+
+;; I treat walking differently from other ADLs...
+((ruleid walking-without-disability-implies-no-need-for-adl-assistance-rule)
+ (concept ":ADL_NO_ASSISTANCE_WITH_ADLS:")
+ (words ("x:ADL_AMBULATES_WITHOUT_ASSISTANCE:")))
+
+
+)

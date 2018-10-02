@@ -1,0 +1,91 @@
+'(
+wordrule
+
+((ruleid move-from-facility-rule)
+ (concept ":MOVE_FROM_LIVING_FACILITY:")
+ (ordered true)
+ (words (":MOVE_TO:" ":DISCHARGE:" ":ADMISSION:" ":PLACEMENT:" ":MOVE_TO:" ":RETURN:") 
+		("from") 
+		(":LIVING_FACILITY:"))
+ (tests (notneg ?0)))
+ 
+ ;; 1/15/2018
+ ((ruleid discharge-information-sent-to-facility-indicates-living-in-facility-rule)
+  (concept ":LIVES_IN_FACILITY:")
+  (ordered true)
+  (words (":PATIENT-INFORMATION:") ("sent" "faxed") (":LIVING_FACILITY:")))
+ 
+ ;; 1/10/2018:  Simple way to ensure that only discharges to a facility are interpreted as living there.
+((ruleid move-to-facility-rule)
+ (concept ":MOVE_TO_LIVING_FACILITY:")
+ (ordered true)
+ (words (":MOVE_TO:" ":DISCHARGE:" "DISCHARGE_TO:" ":LIVE_AT:" ":ADMISSION:" ":PLACEMENT:" ":RETURN:") 
+		(":LIVING_FACILITY:"))
+ 		(tests (notneg ?0)
+		(not (atct ?* " from "))))
+ 
+((ruleid patient-examined-in-alf-indicates-living-in-facility)
+ (concept ":LIVES_IN_FACILITY:")
+ (ordered true)
+ (words (":PATIENT:") (":EXAMINE:") (":LIVING_FACILITY:")))
+
+((ruleid patient-move-to-facility-connotes-living-in-facility)
+ (stype "<SENTENCE>")
+ (concept ":LIVES_IN_FACILITY:")
+ (ordered true)
+ (words (":PATIENT:") (":MOVE_TO_LIVING_FACILITY:"))
+ (tests (notneg ?1)))
+ 
+ ((ruleid complex-live-in-facility-rule)
+  (stype "<COMPLEX_EVENT>")
+  (concept ":LIVES_IN_FACILITY:")
+  (words (":PATIENT::PLACEMENT::FACILITY:"))
+  (tests (notneg ?0)))
+  
+;; 6/21/2016
+((ruleid nursing-home-assisted-living-means-nursing-home-complex-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":LIVE_IN_NURSING_HOME:")
+ (words (":LIVE_AT::NURSING_HOME::ASSISTED_LIVING:" ":LIVE_AT::NURSING_HOME:" 
+ 			":LIVING_ALONE::NURSING_HOME:" ":LIVE_AT::ALONE::NURSING_HOME:" 
+ 			":MOVE_TO::NURSING_HOME:"
+ 			":DISCHARGE::PATIENT::NURSING_HOME:"
+			":DISCHARGE::NURSING_HOME:"
+			":LIVING_ALONE::NURSING_HOME::LIVING_SPACE:"
+			":PATIENT::LIVING_ALONE::NURSING_HOME::LIVING_SPACE:"
+			":LIVE_AT::ALONE::NURSING_HOME:"
+			":LIVE_AT::ALONE::NURSING_HOME::LIVING_SPACE:"
+ 			))
+ (tests (notneg ?0)))
+ 
+((ruleidXXX discharge-from-nursing-home-means-not-living-in-nursing-home-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":LIVE_IN_NURSING_HOME:")
+ (words (":DISCHARGE_FROM::NURSING_HOME:"))
+ (tests (notneg ?0))
+ (properties (directionality negated)))
+ 
+((ruleid live-at-assisted-living-complex-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":LIVE_IN_ASSISTED_LIVING:")
+ (words (
+		":LIVE_AT::ASSISTED_LIVING:" 
+		":LIVING_ALONE::ASSISTED_LIVING:"
+ 		":LIVE_AT::ALONE::ASSISTED_LIVING:"
+		":MOVE_TO::ASSISTED_LIVING:"
+		
+		":PATIENT:LIVE_AT::ASSISTED_LIVING:" 
+		":PATIENT:LIVING_ALONE::ASSISTED_LIVING:"
+ 		":PATIENT:LIVE_AT::ALONE::ASSISTED_LIVING:"
+		":PATIENT:MOVE_TO::ASSISTED_LIVING:"
+		))
+ (tests (notneg ?0)))
+
+((ruleid general-living-facility-rule)
+ (concept ":LIVING_FACILITY:")
+ (words (":GROUP_HOME:" ":NURSING_HOME:" ":ASSISTED_LIVING:" ":COMMUNITY_LIVING:")))
+  
+ )
+ 
+ 
+  

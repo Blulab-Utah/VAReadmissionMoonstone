@@ -1,0 +1,94 @@
+'(
+wordrule
+
+((ruleid time-unit-before-event-thing-rule)
+ (stype "<TIME_EXPRESSION>")
+ (concept ?0)
+ (words ("<TIME_DURATION>") ("prior to" "before") ("<EVENT_THING>")))
+
+((ruleid date-range-rule-1)
+ (stype "<DATE>")
+ (concept ?0)
+ (ordered true)
+ (words ("<DATE>") ("to" "through" "until") ("<DATE>")))
+
+((ruleid compoisite-time-expression-rule)
+ (stype "<TIME_EXPRESSION>")
+ (concept ?0)
+ (words ("<TIME_EXPRESSION>") ("<TIME_EXPRESSION>")))
+ 
+((ruleid time-duration-expression-rule)
+ (stype "<TIME_EXPRESSION>")
+ (concept ?0)
+ (words ("<TIME_DURATION>" "<DATE>")))
+ 
+((ruleid single-time-modifier-can-be-time-expression-rule)
+ (stype "<TIME_EXPRESSION>")
+ (concept ?0)
+ (words ("<TIME_MODIFIER>")))
+  
+((ruleid specific-time-combination-rule-1)
+ (concept ":SPECIFIC_TIME:")
+ (words (":NUMBER:") (":SPECIFIC_TIME:")))
+  
+;; e.g. "five years"
+((ruleid time-number-rule)
+ (concept ?1)
+ (juxtaposed true)
+ (words ("<NUMBER>") ("<TIME_DURATION>")))
+
+((ruleid modified-time-duration-rule)
+ (stype "<TIME_DURATION>")
+ (concept ?1)
+ (words ("<TIME_MODIFIER>") ("<TIME_DURATION>")))
+
+;; "patient currently drinks alcohol"
+((ruleid modified-time-expression-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?1)
+ (ordered true)
+ (words ("<TIME_MODIFIER>") ("<EVENT>" "<COMPLEX_EVENT>"))
+ (relations (time-modifier ?* ?0) (event ?* ?1)))
+
+((ruleid per-time-unit-rule-1)
+ (concept ":PER_TIME_UNIT:")
+ (words ("per") (":TIME_UNIT:")))
+ 
+ ;;;;;;;;;;;;;;;;;;;;
+;; Word rules
+
+((ruleid specific-time-rule-1)
+ (stype "<TIME_EXPRESSION>")
+  (concept ":SPECIFIC_TIME:")
+  (words ("today" "tomorrow" "yesterday" "4-5pm" "after work" )))
+
+;; "weekly", "per year"
+((ruleid time-unit-rule) 
+  (concept ":TIME_UNIT:")
+  (words 
+    ("years" "year" "day" "days" "night" "nights"
+	"week" "weeks" "month" "months" "hour" "hours")))
+
+;; 6/11/2015
+((ruleid temporal-regularity-rule) 
+  (stype "<TIME_EXPRESSION>")
+  (concept ":REGULARLY:")
+  (words 
+    ("monthly" "every month" "daily" "every day" "nightly" "every night" 
+	"weekly" "every week" "hourly" "every hour" "regularly" "frequently" 
+	"regularly"))
+  (properties (frequency regular)))
+
+
+((ruleid time-modifier-rule) 
+  (stype "<TIME_MODIFIER>")
+  (concept ":GENERAL_TIME:")
+  (words 
+    ("since" "ago" "until" "per" "lasting until" "last" "lasting" 
+	"lasting up to" "until" "when" "current" "currently" "occasionally" 
+	"frequently" "infrequently" "occasionally" "regularly" "continually"
+	"later than" "up to" "recently" "at this time")))
+
+
+
+)

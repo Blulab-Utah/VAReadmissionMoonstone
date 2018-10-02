@@ -1,0 +1,47 @@
+'(
+wordrules
+(
+  (ruleid person-at-place-at-time-rule) 
+  (complex-concept) 
+  (words 
+    ("<PERSON>") 
+    ("<PLACE>") 
+    ("<TIME_EXPRESSION>" ":CURRENTLY:")) 
+  (properties 
+    (person ?0) 
+    (place ?1) 
+    (time ?2)))
+
+(
+  (ruleid person-provide-thing-to-patient-rule) 
+  (concept ":POSSIBLE_SUPPORT:")
+  (ordered true)
+  (words 
+    (":FAMILY:" ":FRIEND:")
+    (":PROVIDE:") 
+    ("<THING>") 
+    (":PATIENT:")) 
+  (tests 
+    (notneg ?1)))
+
+(
+  (ruleid dispense-event-word-rule) 
+  (concept ":PROVIDE:") 
+  (words 
+    ("dispense" "dispenses" "maintain" "maintains")))
+
+(
+  (ruleid "ineligibility-for-community-services-rule") 
+  (example-snippet "disqualified from meals on wheels") 
+  (ordered true) 
+  (concept ":ACCESS_TO_COMMUNITY_SERVICES:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    (":INELIGIBLE:") 
+    (":ACCESS_TO_COMMUNITY_SERVICES:")) 
+  (properties 
+    (directionality negated)))
+	
+
+)

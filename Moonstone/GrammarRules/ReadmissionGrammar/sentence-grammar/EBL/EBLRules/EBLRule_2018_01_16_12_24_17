@@ -1,0 +1,18 @@
+'(
+wordrule
+(
+  (ruleid "BOC-person-at-place-at-time-rule-0-2018/01/16 12:24:17") 
+  (specialized) 
+  (example-snippet "Pt will need CLC on monday") 
+  (ordered true) 
+  (concept ":LIVE_IN_ASSISTED_LIVING:") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PATIENT:") 
+    (":NEED:") 
+    (":BENEFIT_LIVING_CENTER:") 
+    (":SPECIFIC_TIME:")) 
+  (removeproperties directionality))
+
+)

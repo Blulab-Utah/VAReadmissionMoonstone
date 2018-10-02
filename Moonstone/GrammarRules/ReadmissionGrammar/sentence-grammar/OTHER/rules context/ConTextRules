@@ -1,0 +1,75 @@
+'(
+tagrule
+ 
+ ;;;;;;;
+ ;; 11/6/2016 TEST
+ 
+((ruleid pre-negation-context-rule-FILE)
+  (concept ?1)
+  (ordered true)
+  (window 8)
+  (words ;; (?filestring "never" "no" "not" "without" "w/o" "can't" "never") 
+		 (":PRE-NEGATION-WORD:")
+  		 (?interpreted))
+
+  ;; 3/12/2016:  Need action for phrases like "family not here".
+  ;; (actions ("applyModifierProperties" ?rule ?1))
+  
+  (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=forward"))
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_"))
+  (properties (directionality negated))
+  (tests 
+			
+		    (notneg ?1)
+			(not ("containsNewlineBetweenAnnotations" ?0 ?1))
+		   (not ("firstWordBeginsWithUppercase" ?1))  ;; 2/6/2016 klooge
+		 ;; DOESN'T WORK; e.g. in "not  Get support", parser simply ignores "Get"
+	))
+	
+((ruleid pre-negation-word-rule)
+ (concept ":PRE-NEGATION-WORD:")
+ (words (?filestring "never" "no" "not" "without" "w/o" "can't" "never" "very limited"))
+ (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=forward")))
+ 
+	
+((ruleid question-answer-negation-rule)
+  (concept ?0)
+  (ordered true)
+  (words (?interpreted) ("no" "false" "unknown" "none"
+  ;; "0" -- Taking this out for now, 1/4/2018
+  )) 
+  
+  ;; 7/15/2016
+  (actions ("applyModifierProperties" ?rule ?0))
+  
+  (properties (directionality negated))
+  (tests ("usesCombinedHeaderSentence" ?sentence)
+		 (< ("getSentenceWordTokenLength" ?*) 8)))
+	
+((ruleid post-affirmation-context-rule) 
+  (concept ?0)
+  (ordered true)
+  (words (?interpreted) ("yes" "true" ":CHECKBOX_CHECKED:")) 
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_")) 
+  (properties 
+    ("directionality" "affirmed")))
+	
+((ruleid checklist-affirmation-context-rule) 
+  (concept ?1)
+  (juxtaposed true)
+  (words ("(x)" "[x]" ":CHECKBOX_CHECKED:") (?interpreted)) 
+  (properties 
+    ("directionality" "affirmed")))
+	
+((ruleid checklist-negation-context-rule) 
+  (concept ?1)
+  (juxtaposed true)
+  (words ("()" "[]" ":CHECKBOX_UNCHECKED:") (?interpreted)) 
+  (properties 
+    ("directionality" "negated")))
+
+)

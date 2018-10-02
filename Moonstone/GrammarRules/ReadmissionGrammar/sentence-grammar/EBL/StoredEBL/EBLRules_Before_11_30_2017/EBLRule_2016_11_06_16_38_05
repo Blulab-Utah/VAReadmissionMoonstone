@@ -1,0 +1,83 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-0-2016/11/06 16:38:05") 
+  (specialized) 
+  (example-snippet "He lives in his daughters house") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":STABLE_HOUSING:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-live-at-marginal-living-space-rule-1-2016/11/06 16:38:05@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-live-at-marginal-living-space-rule-1-2016/11/06 16:38:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "lives in his daughters house") 
+  (ordered true) 
+  (sourceid "live-at-marginal-living-space-rule") 
+  (concept ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/11/06 16:38:05@")))
+
+(
+  (ruleid "AUTO-simple-pp-rule-2-2016/11/06 16:38:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in his daughters house") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-3-2016/11/06 16:38:05@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-3-2016/11/06 16:38:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his daughters house") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@AUTO-someone-elses-home-rule-4-2016/11/06 16:38:05@")) 
+  (properties 
+    (person ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-someone-elses-home-rule-4-2016/11/06 16:38:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "daughters house") 
+  (ordered true) 
+  (sourceid "someone-elses-home-rule") 
+  (concept ":NON-PATIENT-HOME:") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@possessive-person-rule@") 
+    ("@home-word-rule@")))
+
+)

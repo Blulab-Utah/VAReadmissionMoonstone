@@ -1,0 +1,358 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-living-location-types-rule-0-2016/06/24 20:13:16") 
+  (specialized) 
+  (example-snippet "admitted from home") 
+  (sourceid "living-location-types-rule") 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-general-patient-location-rule-1-2016/06/24 20:13:16@")))
+
+(
+  (ruleid "AUTO-general-patient-location-rule-1-2016/06/24 20:13:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "admitted from home") 
+  (ordered true) 
+  (sourceid "general-patient-location-rule") 
+  (concept "?1") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@admission-word-rule@") 
+    ("@AUTO-living-location-types-rule-2-2016/06/24 20:13:16@")))
+
+(
+  (ruleid "AUTO-living-location-types-rule-2-2016/06/24 20:13:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "from home") 
+  (sourceid "living-location-types-rule") 
+  (concept "?0") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-simple-pp-rule-3-2016/06/24 20:13:16@")))
+
+(
+  (ruleid "AUTO-simple-pp-rule-3-2016/06/24 20:13:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "from home") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@living-space-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "BOC-person-event-rule-4-2016/06/24 20:26:20") 
+  (specialized) 
+  (example-snippet "daughter wanting to take veteran back home") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":SINGLE_FAMILY_MEMBERS:") 
+    (":TAKE:") 
+    (":PATIENT:") 
+    (":HOME:")))
+
+(
+  (ruleid "BOC-person-event-rule-5-2016/06/24 20:28:13") 
+  (specialized) 
+  (example-snippet "Family will provide transportation home") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":MULTI_FAMILY_MEMBERS:") 
+    (":TRANSPORTATION:") 
+    (":LIVING_SPACE:")))
+
+(
+  (ruleid "BOC-dative-event-rule-6-2016/06/24 20:29:33") 
+  (specialized) 
+  (example-snippet "Sent home with family") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":SEND:") 
+    (":HOME:") 
+    ("_PREP_") 
+    (":MULTI_FAMILY_MEMBERS:")))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-7-2016/06/24 20:30:38") 
+  (specialized) 
+  (example-snippet "sent with patients  daughter home") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@send-word-rule@") 
+    ("@AUTO-simple-pp-rule-8-2016/06/24 20:30:38@") 
+    ("@home-word-rule@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-8-2016/06/24 20:30:38") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with patients  daughter") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-family-definition-rule-8-2016/06/07 01:01:30@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-11-2016/06/24 20:32:55") 
+  (specialized) 
+  (example-snippet "Patient does have significant other involved in their care") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-person-have-thing-rule-12-2016/06/24 20:32:55@") 
+    ("@AUTO-event-thing-rule-3-2016/06/06 15:01:30@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-person-have-thing-rule-12-2016/06/24 20:32:55") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Patient does have significant other") 
+  (ordered true) 
+  (sourceid "person-have-thing-rule") 
+  (concept "?2") 
+  (stype "<PERSON>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("have") 
+    ("@family-definition-rule@")))
+
+(
+  (ruleid "AUTO-person-event-rule-16-2016/06/24 20:35:24") 
+  (specialized) 
+  (example-snippet "Wife will transport patient home") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@spouse-word-rule@") 
+    ("@AUTO-ditransitive-event-rule-17-2016/06/24 20:35:24@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-17-2016/06/24 20:35:24") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "transport patient home") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@simple_event_transportation-verb-rule-1@") 
+    ("@patient-rule-1@") 
+    ("@living-space-rule@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))))
+
+(
+  (ruleid "AUTO-event-prep-thing-rule-18-2016/06/24 20:36:33") 
+  (specialized) 
+  (example-snippet "Family at bedside with patient") 
+  (ordered true) 
+  (sourceid "event-prep-thing-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-person-at-place-rule-19-2016/06/24 20:36:33@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/16 16:07:59@")) 
+  (properties 
+    (event ?0) 
+    (object ?2)))
+
+(
+  (ruleid "AUTO-person-at-place-rule-19-2016/06/24 20:36:33") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Family at bedside") 
+  (ordered true) 
+  (sourceid "person-at-place-rule") 
+  (concept ":PERSON_AT_PLACE:") 
+  (stype "<STATE>") 
+  (window 16.0) 
+  (words 
+    ("@multi-family-member-word-rule@") 
+    ("at") 
+    ("@bedside-word-rule@")) 
+  (properties 
+    (person ?0) 
+    (place ?1)))
+
+(
+  (ruleid "AUTO-person-have-thing-rule-21-2016/06/24 20:37:23") 
+  (specialized) 
+  (example-snippet "veteran will have a ride home from his brother") 
+  (ordered true) 
+  (sourceid "person-have-thing-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("have") 
+    ("@AUTO-travel-with-family-or-friends-suggests-social-support-rule-22-2016/06/24 20:37:23@")))
+
+(
+  (ruleid "AUTO-travel-with-family-or-friends-suggests-social-support-rule-22-2016/06/24 20:37:23") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "ride home from his brother") 
+  (ordered true) 
+  (sourceid "travel-with-family-or-friends-suggests-social-support-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@transportation-rule-2@") 
+    ("@AUTO-simple-pp-rule-4-2016/06/08 22:07:09@")))
+
+(
+  (ruleid "AUTO-person-event-rule-25-2016/06/24 20:37:41") 
+  (specialized) 
+  (example-snippet "son to take  Veteran") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@single-family-member-word-rule@") 
+    ("@AUTO-event-thing-rule-26-2016/06/24 20:37:41@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-26-2016/06/24 20:37:41") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "take  Veteran") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@take-word-rule@") 
+    ("@patient-rule-1@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-27-2016/06/24 20:38:18") 
+  (specialized) 
+  (example-snippet "His wife drove him to the ER") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-possessive-thing-rule-3-2016/06/05 15:37:47@") 
+    ("@AUTO-ditransitive-event-rule-29-2016/06/24 20:38:18@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-29-2016/06/24 20:38:18") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "drove him to the ER") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@simple_event_transportation-verb-rule-1@") 
+    ("@patient-rule-1@") 
+    ("@AUTO-simple-pp-rule-30-2016/06/24 20:38:18@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-30-2016/06/24 20:38:18") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "to the ER") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<FACILITY>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@medical-facility-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

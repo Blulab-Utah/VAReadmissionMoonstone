@@ -1,0 +1,168 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-5-2016/06/05 21:41:29") 
+  (specialized) 
+  (example-snippet "friends will help him with meals") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@friend-rule@") 
+    ("@AUTO-ditransitive-event-rule-6-2016/06/05 21:41:29@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-6-2016/06/05 21:41:29") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "help him with meals") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@patient-rule-1@") 
+    ("@AUTO-simple-pp-rule-7-2016/06/05 21:41:29@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-7-2016/06/05 21:41:29") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with meals") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<EVENT_THING>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@meals-word-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-8-2016/06/05 21:46:44") 
+  (specialized) 
+  (example-snippet "neighbor to come help him") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@friend-rule@") 
+    ("@AUTO-come-and-event-rule-9-2016/06/05 21:46:44@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-come-and-event-rule-9-2016/06/05 21:46:44") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "come help him") 
+  (ordered true) 
+  (sourceid "come-and-event-rule") 
+  (concept "?1") 
+  (stype "<EVENT>") 
+  (window 16.0) 
+  (words 
+    ("come") 
+    ("@AUTO-event-thing-rule-10-2016/06/05 21:46:44@")))
+
+(
+  (ruleid "AUTO-event-thing-rule-10-2016/06/05 21:46:44") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "help him") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@patient-rule-1@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-general-provide-care-rule-11-2016/06/05 21:55:53") 
+  (specialized) 
+  (example-snippet "Assistance from family") 
+  (sourceid "general-provide-care-rule") 
+  (concept ":PROVISION_OF_CARE:") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-event-prep-thing-rule-12-2016/06/05 21:55:53@")))
+
+(
+  (ruleid "AUTO-event-prep-thing-rule-12-2016/06/05 21:55:53") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Assistance from family") 
+  (ordered true) 
+  (sourceid "event-prep-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@AUTO-simple-pp-rule-13-2016/06/05 21:55:53@")) 
+  (properties 
+    (event ?0) 
+    (object ?2)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-13-2016/06/05 21:55:53") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "from family") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@multi-family-member-word-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-dative-event-rule-14-2016/06/05 22:00:41") 
+  (specialized) 
+  (example-snippet "Support systems Assistance from family") 
+  (ordered true) 
+  (sourceid "dative-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@support-systems-word-rule@") 
+    ("@help-rule-1@") 
+    ("@AUTO-simple-pp-rule-13-2016/06/05 21:55:53@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object 
+      (object ?2))))
+
+)

@@ -1,0 +1,21 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-at-place-rule-16-2017/12/11 23:35:02") 
+  (specialized) 
+  (example-snippet "family at bedside") 
+  (ordered true) 
+  (sourceid "person-at-place-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<STATE>") 
+  (window 16.0) 
+  (words 
+    ("@multi-family-member-word-rule@") 
+    ("at") 
+    ("@bedside-word-rule@")) 
+  (properties 
+    (person ?0) 
+    (place ?1)) 
+  (removeproperties directionality))
+
+)

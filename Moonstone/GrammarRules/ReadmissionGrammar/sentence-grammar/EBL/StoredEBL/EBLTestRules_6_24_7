@@ -1,0 +1,104 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-patient-located-in-nursing-home-rule-23-2016/06/24 23:47:47") 
+  (specialized) 
+  (example-snippet "pt is being discharged to NH") 
+  (ordered true) 
+  (sourceid "patient-located-in-nursing-home-rule") 
+  (concept ":LIVE_IN_NURSING_HOME:") 
+  (stype "<SENTENCE>") 
+  (window 16.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-living-location-types-rule-24-2016/06/24 23:47:47@")) 
+  (tests 
+    (notneg ?1) 
+    (hc ?1 ":NURSING_HOME:")))
+
+(
+  (ruleid "AUTO-living-location-types-rule-24-2016/06/24 23:47:47") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "is being discharged to NH") 
+  (sourceid "living-location-types-rule") 
+  (concept "?0") 
+  (stype "<FACILITY>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-passive-event-rule-25-2016/06/24 23:47:47@")))
+
+(
+  (ruleid "AUTO-passive-event-rule-25-2016/06/24 23:47:47") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "is being discharged to NH") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-general-patient-location-rule-26-2016/06/24 23:47:47@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-general-patient-location-rule-26-2016/06/24 23:47:47") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "discharged to NH") 
+  (ordered true) 
+  (sourceid "general-patient-location-rule") 
+  (concept "?1") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@discharge-word-rule@") 
+    ("@AUTO-living-location-types-rule-27-2016/06/24 23:47:47@")))
+
+(
+  (ruleid "AUTO-living-location-types-rule-27-2016/06/24 23:47:47") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "to NH") 
+  (sourceid "living-location-types-rule") 
+  (concept "?0") 
+  (stype "<FACILITY>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-simple-pp-rule-28-2016/06/24 23:47:47@")))
+
+(
+  (ruleid "AUTO-simple-pp-rule-28-2016/06/24 23:47:47") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "to NH") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<FACILITY>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@nursing-home-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "BOC-post-affirmation-context-rule-29-2016/06/24 23:54:27") 
+  (specialized) 
+  (example-snippet "family willing to be involved in your treatment Yes") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":FAMILY:") 
+    (":INVOLVED:") 
+    (":TREATMENT:")))
+
+)

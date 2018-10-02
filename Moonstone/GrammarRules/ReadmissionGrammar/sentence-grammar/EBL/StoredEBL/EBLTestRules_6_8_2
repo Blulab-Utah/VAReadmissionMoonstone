@@ -1,0 +1,87 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-0-2016/06/08 22:07:09") 
+  (specialized) 
+  (example-snippet "patient lives with assistance from his son") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-event-thing-rule-1-2016/06/08 22:07:09@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-1-2016/06/08 22:07:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "lives with assistance from his son") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/08 22:07:09@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-2-2016/06/08 22:07:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with assistance from his son") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-person-providing-care-rule-3-2016/06/08 22:07:09@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-person-providing-care-rule-3-2016/06/08 22:07:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "assistance from his son") 
+  (sourceid "person-providing-care-rule") 
+  (concept ":PROVISION_OF_CARE:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-simple-pp-rule-4-2016/06/08 22:07:09@") 
+    ("@general-provide-care-rule@")) 
+  (tests 
+    (notneg ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-4-2016/06/08 22:07:09") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "from his son") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-3-2016/06/05 15:37:47@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

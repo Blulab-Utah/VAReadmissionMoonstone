@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "BOC-ditransitive-event-rule-1-2018/01/15 16:00:54") 
+  (specialized) 
+  (example-snippet "discharge back to The Laurels Personal Care Home via wheelchair") 
+  (ordered true) 
+  (concept ":LIVE_IN_ASSISTED_LIVING:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":DISCHARGE:") 
+    ("_PREP_") 
+    (":ASSISTED_LIVING:") 
+    (":ADL_WHEELCHAIR:")) 
+  (removeproperties directionality))
+
+)

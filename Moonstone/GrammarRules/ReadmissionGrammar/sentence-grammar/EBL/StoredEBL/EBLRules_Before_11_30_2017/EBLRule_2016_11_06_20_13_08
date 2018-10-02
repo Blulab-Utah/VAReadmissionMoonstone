@@ -1,0 +1,153 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-0-2016/11/06 20:13:08") 
+  (specialized) 
+  (example-snippet "He lives alone in his own room in his sons house") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":STABLE_HOUSING:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-event-thing-rule-1-2016/11/06 20:13:08@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-1-2016/11/06 20:13:08") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "lives alone in his own room in his sons house") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@tentative671@") 
+    ("@AUTO-double-pp-rule-3-2016/11/06 20:13:08@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-tentative671-2-2016/11/06 20:13:08") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "lives alone") 
+  (sourceid "tentative671") 
+  (concept ":LIVING_ALONE:") 
+  (stype "<HOUSING_STATUS>") 
+  (window 16.0) 
+  (words 
+    ("lives") 
+    ("alone")) 
+  (properties 
+    ("Template" "narrative")))
+
+(
+  (ruleid "AUTO-double-pp-rule-3-2016/11/06 20:13:08") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in his own room in his sons house") 
+  (ordered true) 
+  (sourceid "double-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-simple-pp-rule-4-2016/11/06 20:13:08@") 
+    ("@AUTO-simple-pp-rule-2-2016/11/06 16:38:05@")) 
+  (properties 
+    (source 
+      (object ?0)) 
+    (destination 
+      (object ?1))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-4-2016/11/06 20:13:08") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in his own room") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-5-2016/11/06 20:13:08@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-5-2016/11/06 20:13:08") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his own room") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<PLACE>") 
+  (window 4.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@room-place-word-rule@")) 
+  (properties 
+    (thing ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-6-2016/11/06 20:13:08") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in his sons house") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-3-2016/11/06 16:38:05@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-7-2016/11/06 20:13:08") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his sons house") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 4.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@AUTO-someone-elses-home-rule-4-2016/11/06 16:38:05@")) 
+  (properties 
+    (thing ?1)))
+
+(
+  (ruleid "AUTO-someone-elses-home-rule-8-2016/11/06 20:13:08") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "sons house") 
+  (ordered true) 
+  (sourceid "someone-elses-home-rule") 
+  (concept ":NON-PATIENT-HOME:") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@possessive-person-rule@") 
+    ("@home-word-rule@")))
+
+)

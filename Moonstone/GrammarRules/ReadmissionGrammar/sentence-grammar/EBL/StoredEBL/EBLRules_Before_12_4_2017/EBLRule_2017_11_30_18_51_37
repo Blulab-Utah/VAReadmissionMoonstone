@@ -1,0 +1,20 @@
+'(
+wordrule
+(
+  (ruleid "BOC-person-event-complex-rule-8-2017/11/30 18:51:37") 
+  (specialized) 
+  (example-snippet "She assists him in all of his personal hygiene") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PERSON:") 
+    (":HELP:") 
+    (":PATIENT:") 
+    ("_PREP_") 
+    (":ADL_ACTIVITY:")) 
+  (removeproperties directionality))
+
+)

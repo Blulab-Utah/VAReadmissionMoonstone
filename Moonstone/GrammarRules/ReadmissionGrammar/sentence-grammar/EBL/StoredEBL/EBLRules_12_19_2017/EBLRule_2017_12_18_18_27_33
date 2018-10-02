@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-discharge-home-with-family-member-indicates-support-rule-0-2017/12/18 18:27:33") 
+  (specialized) 
+  (example-snippet "DISCHARGE TO HIS SISTER S HOUSE") 
+  (ordered true) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":DISCHARGE:") 
+    (":FAMILY:") 
+    (":LIVING_SPACE:")))
+
+)

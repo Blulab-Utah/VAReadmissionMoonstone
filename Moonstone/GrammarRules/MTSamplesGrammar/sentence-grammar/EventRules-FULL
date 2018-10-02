@@ -1,0 +1,129 @@
+'(
+wordrule
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; 12/19/2015:  Treat all verbs as events.  For EBL only.
+((ruleid verb-event-word-rule)
+ (stype "<EVENT>")
+ (concept ?0)
+ (words ("#VERB#")))
+
+;; 9/11/2015:  Extending Event rules to cover intransitive, transitive and distransitive
+
+;; intransitive, with and without destination.
+;; transitive
+;; ditransitive
+
+;; event thing
+;; event prep thing
+;; event thing thing
+;; event thing prep thing
+
+;; e.g. "Give his son a book"
+((ruleid ditransitive-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("<THING>") ("<THING>"))
+ (properties (event ?0) (direct_object ?1) (indirect_object ?2)))
+
+;; e.g. "Gave a book to his son"
+((ruleid dative-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("<THING>") ("@simple-pp-rule@"))
+ (properties (event ?0) (direct_object ?1) (indirect_object (object ?3))))
+ 
+((ruleid event-prep-thing-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("_PP_"))
+ (properties (event ?0) (object ?2)))
+ 
+((ruleid event-thing-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("<THING>"))
+ (properties (event ?0) (object ?1)))
+ 
+((ruleid simple-pp-rule)
+ (concept ?1)
+ (macro "_PP_")
+ (ordered true)
+ (words ("_PREP_") ("<THING>"))
+ (properties (object ?1))
+ (tests ("isInterpreted" ?1)))
+ 
+((ruleid double-pp-rule)
+ (concept ?1)
+ (macro "_PP_")
+ (ordered true)
+ (words ("@simple-pp-rule@") ("@simple-pp-rule@"))
+ (properties  
+ 	(source (object ?0)) 
+ 	(destination (object ?1))))
+ 
+((ruleid person-event-rule) 
+ (stype "<SENTENCE>")
+ (concept ?1)
+ (ordered true)
+ (window 32) 
+ (words ("<PERSON>") 
+ 		("<COMPLEX_EVENT>" "<SENTENCE>")) 
+ (properties (subject ?0) (event ?1)))
+
+((ruleid event-time-rule) 
+  (stype "<COMPLEX_EVENT>") 
+  (concept ?0)
+  (window 32) 
+  (words 
+    ("<COMPLEX_EVENT>") 
+    ("<TIME_EXPRESSION>")) 
+  (properties 
+    (event ?0) 
+    (time ?1)))
+    
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+((ruleid patient-communication-event-affirmed)
+ (stype "<SENTENCE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("says" "said" "states" "stated" "indicates" "indicated" 
+	"reports" "reported" "says that" "said that" 
+	"states that" "stated that" "indicates that" "indicated that" 
+	"reports that" "reported that" "complain" "complains" "complained" 
+	"notes" "noted")
+	("<THING>" "<COMPLEX_EVENT>" "<SENTENCE>"))
+ (properties (communication true)))
+
+((ruleid communication-event-negated)
+ (stype "<SENTENCE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("deny" "denies" "denied" "deny that" "denies that" "denied that")
+        ("<THING>" "<COMPLEX_EVENT>" "<SENTENCE>"))
+ (properties (communication true) (directionality negated)))
+ 
+((ruleid increase-decrease-in-condition-rule)
+ (concept ?1)
+ (words ("increase" "increased" "decrease" "decreased") 
+  		("<MEDICAL_CONDITION>"))
+ (properties (change-in-amount ?1)))
+
+
+  		 
+
+
+)

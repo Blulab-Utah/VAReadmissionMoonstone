@@ -1,0 +1,36 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-17-2017/12/11 23:42:12") 
+  (specialized) 
+  (example-snippet "daughter came to visit") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@family-definition-rule@") 
+    ("@AUTO-event-thing-rule-18-2017/12/11 23:42:12@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-event-thing-rule-18-2017/12/11 23:42:12") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "came to visit") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@moving-action-word-rule@") 
+    ("@visit-thing-word-rule@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+)

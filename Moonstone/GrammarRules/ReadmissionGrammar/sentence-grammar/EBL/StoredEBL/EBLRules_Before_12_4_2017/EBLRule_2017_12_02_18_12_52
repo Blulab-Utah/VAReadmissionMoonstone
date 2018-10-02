@@ -1,0 +1,36 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-0-2017/12/02 18:12:52") 
+  (specialized) 
+  (example-snippet "spouse had contacted the National Caregiver Support line") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@family-definition-rule@") 
+    ("@AUTO-event-thing-rule-1-2017/12/02 18:12:52@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-event-thing-rule-1-2017/12/02 18:12:52") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "contacted the National Caregiver Support line") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@contact-word-rule@") 
+    ("@support-help-line-rule@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+)

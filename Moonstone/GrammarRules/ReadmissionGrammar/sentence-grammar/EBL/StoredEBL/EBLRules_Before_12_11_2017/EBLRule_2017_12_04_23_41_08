@@ -1,0 +1,18 @@
+'(
+wordrule
+(
+  (ruleid "BOC-person-event-complex-rule-29-2017/12/04 23:41:08") 
+  (specialized) 
+  (example-snippet "Patient left withFamily") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PATIENT:") 
+    (":DISCHARGE:") 
+    (":FAMILY:")) 
+  (removeproperties directionality))
+
+)

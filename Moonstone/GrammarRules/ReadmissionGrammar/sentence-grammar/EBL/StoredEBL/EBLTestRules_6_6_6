@@ -1,0 +1,82 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-0-2016/06/07 00:16:36") 
+  (specialized) 
+  (example-snippet "family involved in patient care") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@multi-family-member-word-rule@") 
+    ("@AUTO-state-prep-event-rule-1-2016/06/07 00:16:36@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-state-prep-event-rule-1-2016/06/07 00:16:36") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "involved in patient care") 
+  (ordered true) 
+  (sourceid "state-prep-event-rule") 
+  (concept "?0") 
+  (stype "<STATE>") 
+  (window 32.0) 
+  (words 
+    ("@caring-and-supportive-word-rule@") 
+    ("in") 
+    ("@AUTO-person-event-rule-2-2016/06/07 00:16:36@")))
+
+(
+  (ruleid "AUTO-person-event-rule-2-2016/06/07 00:16:36") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "patient care") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept "?1") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@care-rule-1@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-3-2016/06/07 00:23:12") 
+  (specialized) 
+  (example-snippet "daughter and son are involved and supportive") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-family-conjunction-rule-4-2016/06/07 00:23:12@") 
+    ("@AUTO-general-thing-thing-conjunct-rule-4-2016/06/06 18:57:31@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-family-conjunction-rule-4-2016/06/07 00:23:12") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "daughter and son") 
+  (ordered true) 
+  (sourceid "family-conjunction-rule") 
+  (concept ":FAMILY:") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@family-definition-rule@") 
+    ("and") 
+    ("@family-definition-rule@")))
+
+)

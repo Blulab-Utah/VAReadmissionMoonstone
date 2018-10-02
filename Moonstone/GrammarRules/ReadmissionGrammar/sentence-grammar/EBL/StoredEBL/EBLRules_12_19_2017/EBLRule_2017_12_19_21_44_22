@@ -1,0 +1,52 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-4-2017/12/19 21:44:22") 
+  (specialized) 
+  (example-snippet "She brought him to the VA EC") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@third-person-subject-word-rule@") 
+    ("@AUTO-complex_event_transportation-verb-rule-3-5-2017/12/19 21:44:22@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-complex_event_transportation-verb-rule-3-5-2017/12/19 21:44:22") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "brought him to the VA EC") 
+  (ordered true) 
+  (sourceid "complex_event_transportation-verb-rule-3") 
+  (concept ":TRANSPORTATION:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@complex_event_transportation-verb-rule-1@") 
+    ("@AUTO-simple-pp-rule-30-2016/06/24 20:38:18@")))
+
+(
+  (ruleid "AUTO-simple-pp-rule-6-2017/12/19 21:44:22") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "to the VA EC") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<FACILITY>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@medical-facility-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

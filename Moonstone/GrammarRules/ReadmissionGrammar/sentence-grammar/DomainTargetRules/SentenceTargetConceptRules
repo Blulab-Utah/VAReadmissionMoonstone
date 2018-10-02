@@ -1,0 +1,42 @@
+'(
+wordrule
+
+			
+((ruleid sentence-target-concept-list-rule)
+ (concept ?0)
+  (words (":HOMELESS:" ":NOT_HOMELESS:" 
+ 
+			":LIVES_IN_FACILITY:"
+			":SINGLE_ROOM_OCCUPANCY:"
+ 
+			":HAVE_SUPPORT:" ":LACK_SUPPORT:" 
+			":ACCESS_TO_COMMUNITY_SERVICES:"
+
+			":UNABLE_TO_LIVE_ALONE:"
+			":LIVING_ALONE:" ":NOT_LIVING_ALONE:" 
+			":HAVE_SUPPORT:" ":LACK_SUPPORT:" 
+	
+			;; 6/2/2016:  To prefer these in decision list
+			":POSSIBLE_SUPPORT:" ":POSSIBLE_LACK_SUPPORT:" 
+			":FAMILY_SUPPORT:" ;; 1/16/2018
+			
+			;; 5/29/2017
+			":POSSIBLY_HOMELESS:" ":HOMELESSNESS:"
+			
+			":SINGLE_ROOM_OCCUPANCY:"
+			":STABLE_HOUSING:" ":UNSTABLE_HOUSING:"
+			":MARGINALLY_HOUSED:" ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:"
+			":LIVE_AT_HOME:" ":LIVE_IN_GROUP_HOME:" ":LIVE_IN_ASSISTED_LIVING:" 
+			":LIVE_IN_NURSING_HOME:" 
+			":LIVES_IN_FACILITY:"
+			":DOES_NOT_LIVE_AT_HOME:"
+			
+			":SPOUSE_AT_NURSING_HOME:"
+			
+		":ACCESS_TO_COMMUNITY_SERVICES:" ":COMMUNITY_SERVICE:"))
+ (tests (notneg ?0))
+ (actions ("applyModifierProperties" ?rule ?0))
+ (properties (contains-target true)))
+
+  
+)

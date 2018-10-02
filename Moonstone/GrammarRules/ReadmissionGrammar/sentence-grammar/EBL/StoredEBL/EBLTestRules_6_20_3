@@ -1,0 +1,51 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-event-thing-rule-7-2016/06/20 10:49:16") 
+  (specialized) 
+  (example-snippet "currently livingLiving Alone") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept ":LIVES_ALONE:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-modified-time-expression-rule-8-2016/06/20 10:49:16@") 
+    ("@tentative720@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-modified-time-expression-rule-8-2016/06/20 10:49:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "currently living") 
+  (ordered true) 
+  (sourceid "modified-time-expression-rule") 
+  (concept "?1") 
+  (stype "<PERSON_AT_PLACE>") 
+  (window 16.0) 
+  (words 
+    ("@time-modifier-rule@") 
+    ("@reside-word-rule@")) 
+  (relations 
+    (time-modifier ?* "?0") 
+    (event ?* "?1")))
+
+(
+  (ruleid "BOC-person-event-rule-10-2016/06/20 11:06:09") 
+  (specialized) 
+  (example-snippet "girlfriend who visits him daily") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":FRIEND:" ":FAMILY:") 
+    (":VISIT:" ":HELP:") 
+    (":PATIENT:") 
+    (":REGULARLY:" ":GENERAL_TIME:")))
+
+)

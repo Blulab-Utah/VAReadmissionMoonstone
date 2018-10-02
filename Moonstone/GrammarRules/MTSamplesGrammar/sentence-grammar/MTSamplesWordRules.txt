@@ -1,0 +1,87 @@
+'(
+wordrule
+
+
+
+
+((ruleid travel-word-rule)
+ (stype "<EVENT>")
+ (concept ":MOVE:")
+ (words ("travel" "traveled" "transfer" "transferred" 
+ 		"move" "moved" "go" "went" "come" "came" "return" "returned" 
+ 		"arrive" "arrived")))
+
+((ruleid hospital-facility-word-rule)
+ (concept ":FACILITY:")
+ (words ("er" "hospital" "icu" "micu" "inpatient rehabilitation programs" "emergency department" "emergency room" "nursing home")))
+ 
+ ((ruleid admission-word-rule)
+  (concept ":ADMISSION:")
+  (words ("admission" "admit" "admitted")))
+  
+((ruleid evaluation-word-rule)
+  (concept ":EVALUATION:")
+  (words ("evaluation" "test" "tested")))
+  
+((ruleid demonstrate-word-rule)
+ (concept ":DEMONSTRATE:")
+ (words ("reveals" "reveal" "shows" "show" "demonstrates" "demonstrate" 
+ 		"demonstration")))
+  
+((ruleid failure-rule)
+ (concept ":FAILURE:")
+ (words ("fail" "failure" "failed"))) 
+
+((ruleid lab-word-rule)
+ (concept ":LAB:")
+ (words ("cbc" "wbc" "h&h" "platelets" "bmp" "sodium" "potassium" "chloride" 
+ 		"bicarbonate" "bun" "creatinine" "glucose" "calcium" "magnesium" 
+ 		"phosphorus" "pt" "inr" "lfts" "alt" "ast" "direct bilirubin" 
+ 		"total bilirubin" "protein" "albumin" "hemoglobin" 
+ 		"alkaline phosphatase"))
+ (tests ("headerContainsString" ?0 "lab")))
+ 
+;;;; TEST ;;;;
+((ruleid state-words-rule)
+ (concept ":STATE:")
+ (words (":NORMAL:" ":ABNORMAL:" ":IMPROVE:" ":WORSEN:" ":NOCHANGE:")))
+ 
+((ruleid normal-word-rule)
+ (concept ":NORMAL:")
+ (words ("normal" "within normal limits")))
+ 
+((ruleid abnormal-word-rule)
+ (concept ":ABNORMAL:")
+ (words ("abnormal" "abnormally")))
+ 
+((ruleid improve-word-rule)
+ (concept ":IMPROVE:")
+ (words ("improve" "improvement" "improved" "improving")))
+ 
+((ruleid worsen-word-rule)
+ (concept ":WORSEN:")
+ (words ("worse" "worsen" "worsening" "get worse" "getting worse")))
+ 
+((ruleid no-change-word-rule)
+ (concept ":NOCHANGE:")
+ (words ("no change" "unchanged" "no difference" "same" "same as before")))
+ 
+((ruleid preposition-word-rule)
+ (macro "_PREP_")
+ (words ("from" "to" "in" "at" "on" "over" "under" "along" "alongside")))
+ 			
+((ruleid call-911-rule)
+ (concept ":CALL_FOR_HELP:")
+ (words ("called 911" "call 911" "dial 911" "dialed 911")))
+ 
+ ((ruleid acute-word-rule)
+  (concept ":ACUTE:")
+  (words ("acute")))
+  
+((ruleid test-word-rule)
+ (stype "<MEDICAL_TEST>")
+ (concept ":EXAM:")
+ (words ("exam" "examination" "test")))
+ 
+
+ )

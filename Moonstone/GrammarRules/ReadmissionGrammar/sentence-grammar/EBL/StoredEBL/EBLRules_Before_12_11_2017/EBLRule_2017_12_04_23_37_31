@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "BOC-person-event-complex-rule-28-2017/12/04 23:37:31") 
+  (specialized) 
+  (example-snippet "She was discharged home") 
+  (ordered true) 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PERSON:") 
+    ("_IS_") 
+    (":DISCHARGE:") 
+    (":HOME:")) 
+  (removeproperties directionality))
+
+)

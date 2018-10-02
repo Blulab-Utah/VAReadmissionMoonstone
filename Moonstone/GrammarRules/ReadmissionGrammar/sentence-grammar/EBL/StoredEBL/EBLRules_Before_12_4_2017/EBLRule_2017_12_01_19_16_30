@@ -1,0 +1,18 @@
+'(
+wordrule
+(
+  (ruleid "BOC-patient-pp-rule-1-2017/12/01 19:16:30") 
+  (specialized) 
+  (example-snippet "She is on home O2") 
+  (ordered true) 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<SENTENCE>") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PERSON:") 
+	("_PREP_")
+    (":HOME_PROCEDURE:")) 
+  (removeproperties directionality))
+
+)

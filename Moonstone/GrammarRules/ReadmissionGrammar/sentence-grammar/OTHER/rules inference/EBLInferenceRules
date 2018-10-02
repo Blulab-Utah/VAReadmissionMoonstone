@@ -1,0 +1,96 @@
+'(
+inferencerule
+
+((ruleid patient-subject-event-rule)
+ (-> (and (subject ?annotation ?subject)
+		  (event ?annotation ?event)
+		  ("hc" ?subject ":PATIENT:"))
+	 (subject-patient-event ?annotation ?subject ?event)))
+	 
+((ruleid family-friend-subject-event-rule)
+ (-> (and (subject ?annotation ?subject)
+          (event ?annotation ?event)
+		  ("containsSomeConcepts" ?subject 
+			(":FRIEND:" ":FAMILY:" ":SINGLE_FAMILY_MEMBERS:"  
+			":MULTI_FAMILY_MEMBERS:" ":NON_SPOUSE_SINGLE_FAMILY_MEMBERS:")))
+	 (subject-family-friend-event ?annotation ?subject ?event)))
+	 
+((ruleid patient-family-helpful-interaction-indicates-social-support-inference-rule-1)
+ (-> (and (concept ?annotation ?type ?patient)
+		  ("containsSomeConcepts" ?annotation (":FRIEND:" ":FAMILY:"))
+		  ("hasConceptRecursive" ?annotation ":PATIENT:")
+		  ("containsSomeConcepts" ?annotation (":ADL_ACTIVITY:" 
+		  										":CHORE:" ":FOOD:"
+		 										":IADL_ACTIVITY:" 
+		 										":HELP:" ":CARE:" ":CARING:"
+		 										":PATIENT_NEED:"
+												":CONTACT:" ":PROVIDE:"
+		 										":PROVISION_OF_CARE:"
+		 										":TRANSPORTATION:" ":BEDSIDE:" 
+		 										":ACCOMPANY:" ":VISIT:" 
+		 										":POSSIBLE_SUPPORT:"))				
+		 ("isNotNegated" ?annotation))
+	 (inferred-target ?annotation ":POSSIBLE_SUPPORT:")))
+	 
+((ruleid patient-living-alone-general-inference-rule-1)
+ (-> (and (subject ?annotation ?subject)
+		  ("hc" ?subject ":PATIENT:")
+		  ("hasConceptRecursive" ?annotation ":LIVING_ALONE:")
+		  ("isNotNegated" ?annotation))
+	 (inferred-target ?annotation ":LIVING_ALONE:")))
+
+((ruleid  family-live-at-home-indicates-not-living-alone-inference-rule-1)
+ (-> (and (subject-family-friend-event ?annotation ?subject ?event)
+		  ("hasConceptRecursive" ?event ":LIVE_AT_HOME:")
+		  ("isNotNegated" ?event))
+	 (inferred-target ?annotation ":NOT_LIVING_ALONE:")))
+	 
+((ruleid patient-live-at-home-general-inference-rule-1)
+ (-> (and (subject-patient-event ?annotation ?subject ?event)
+		  ("containsSomeConcepts" ?event (":LIVE_AT_HOME:" ":RETURN_TO_OR_LIVE_AT_HOME:"))
+		  ("isNegative" ("containsSomeConcepts" ?event (":FAMILY:" ":FRIEND:"  ":SINGLE_FAMILY_MEMBERS:")))
+		  ("isNotNegated" ?event))
+	 (inferred-target ?annotation ":LIVE_AT_HOME:")))
+	 
+	 ;; Error:  "He lives alone at heritage woods in a third floor apartment" -> :LIVE_AT_HOME:
+((ruleid patient-live-at-home-general-inference-rule-2)
+ (-> (and (subject-patient-event ?annotation ?subject ?event)
+		  ("containsSomeConcepts" ?event (":DISCHARGE:" ":LIVE_AT:" ":RETURN:") ) 
+		  ("containsSomeConcepts" ?event (":HOME:" ":LIVING_SPACE:") ) 
+		  ("isNotNegated" ?annotation)
+		  ("isNegative" ("containsSomeConcepts" ?event (":FAMILY:" ":SINGLE_FAMILY_MEMBERS:" ":FRIEND:"))))
+	 (inferred-target ?annotation ":LIVE_AT_HOME:")))
+	 
+((ruleid patient-live-at-nursing-home-inference-rule-1)
+ (-> (and (subject-patient-event ?annotation ?subject ?event)
+		  ("containsSomeConcepts" ?event (":PLACEMENT:" ":DISCHARGE:" ":LIVE_AT:" ":RETURN:") ) 
+		  ("containsSomeConcepts" ?event (":NURSING_HOME:") ) 
+		  ("isNotNegated" ?annotation))
+	 (inferred-target ?annotation ":LIVE_IN_NURSING_HOME:")))
+	 
+((ruleid patient-live-in-assisted-living-inference-rule-1)
+ (-> (and (subject-patient-event ?annotation ?subject ?event)
+		  ("containsSomeConcepts" ?event (":PLACEMENT:" ":DISCHARGE:" ":LIVE_AT:" ":RETURN:" ":FOOD:" ":ROOM:") ) 
+		  ("containsSomeConcepts" ?event (":ASSISTED_LIVING:") ) 
+		  ("isNotNegated" ?annotation))
+	 (inferred-target ?annotation ":LIVE_IN_ASSISTED_LIVING:")))
+	 
+((ruleid patient-marginal-housing-inference-rule-1)
+ (-> (and (subject ?annotation ?subject)
+		  ("hc" ?subject ":PATIENT:")
+		  ("hasConceptRecursive" ?annotation 
+		  		":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:")
+		  ("isNotNegated" ?annotation))
+	 (inferred-target ?annotation ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:")))
+	 
+((ruleid patient-is-homeless-inference-rule-1)
+ (-> (and (concept ?annotation ?type ?patient)
+		  ("hasConceptRecursive" ?annotation ":PATIENT:")
+		  ("containsSomeConcepts" ?annotation 
+		  		(":HOMELESS:" ":POSSIBLY_HOMELESS:"))
+		  ("isNotNegated" ?annotation))
+	 (inferred-target ?annotation ":POSSIBLY_HOMELESS:")))
+	 
+	 
+	
+)

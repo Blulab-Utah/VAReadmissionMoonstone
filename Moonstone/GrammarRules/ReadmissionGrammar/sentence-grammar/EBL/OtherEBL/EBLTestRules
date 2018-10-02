@@ -1,0 +1,18 @@
+'(
+wordrule
+(
+  (ruleid "BOC-complex-rule-social-support-rule-3-2016/07/26 17:35:54") 
+  (specialized) 
+  (example-snippet "Discharged home w his daughter per wheelchair") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":DISCHARGE:") 
+    (":HOME:") 
+    ("_PREP_") 
+    (":FAMILY:")))
+
+)

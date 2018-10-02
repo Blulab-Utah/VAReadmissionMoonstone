@@ -1,0 +1,42 @@
+'(
+wordrule
+
+((ruleid document-target-concept-list-rule)
+ (concept ?0)
+ (words (":IMPAIRMENT:"
+			":ADL_DIFFICULTY_AMBULATING:"
+			":ADL_USES_CANE_WALKER_WHEELCHAIR:" 
+			":ADL_USES_WHEELCHAIR:" 
+			":ADL_NEEDS_ASSISTANCE_WITH_ADLS:" 
+			":ADL_NEEDS_ASSISTANCE_WITH_IADLS:" 
+			":ADL_IMPAIRMENT_EATING:"
+			":ADL_IMPAIRMENT_TOILETING:"
+			":ADL_IMPAIRMENT_BATHING:"
+			":ADL_IMPAIRMENT_ALL:"
+			":ADL_IMPAIRMENT_SOME:"
+			":ADL_IMPAIRMENT:"
+			":IADL_IMPAIRMENT:"
+			":ADL_IMPAIRMENT_TRANSFERRING:"
+			":IMPAIRMENT:"
+			
+			":NO_IMPAIRMENT:"
+			":ADL_AMBULATES_WITHOUT_ASSISTANCE:" 
+			":ADL_USES_NO_CANE_WALKER_WHEELCHAIR:" 
+			":ADL_USES_NO_CANE_WALKER:" 
+			":ADL_USES_NO_WHEELCHAIR:"
+			":ADL_NO_ASSISTANCE_WITH_ADLS:" 
+			":ADL_NO_ASSISTANCE_WITH_IADLS:"
+			":ADL_INDEPENDENT:"
+			
+			":UNSTEADY:"
+			":COGNITIVE_IMPAIRMENT:" 
+			":DEMENTIA:"
+			":POOR_HISTORIAN:"
+
+			))
+	(tests (notneg ?0))
+	(actions ("applyModifierProperties" ?rule ?0)) 
+ 	(properties (contains-target true)))
+
+
+)

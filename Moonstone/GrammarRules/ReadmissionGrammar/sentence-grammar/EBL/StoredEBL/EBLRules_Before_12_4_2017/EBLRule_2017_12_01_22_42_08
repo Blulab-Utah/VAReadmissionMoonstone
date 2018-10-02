@@ -1,0 +1,18 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-have-thing-rule-9-2017/12/01 22:42:08") 
+  (specialized) 
+  (example-snippet "patient has a full time caregiver") 
+  (ordered true) 
+  (sourceid "person-have-thing-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<PERSON>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("has") 
+    ("@caregiver-rule-1@")) 
+  (removeproperties directionality))
+
+)

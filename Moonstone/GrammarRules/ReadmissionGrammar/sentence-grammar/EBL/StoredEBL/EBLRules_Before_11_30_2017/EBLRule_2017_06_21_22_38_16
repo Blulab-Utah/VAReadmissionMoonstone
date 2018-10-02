@@ -1,0 +1,144 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-passive-sentence-rule-0-2017/06/21 22:38:16") 
+  (specialized) 
+  (example-snippet "He is presently residing with his caregiver in her home") 
+  (ordered true) 
+  (sourceid "passive-sentence-rule") 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-passive-event-rule-1-2017/06/21 22:38:16@")) 
+  (properties 
+    (subject ?0) 
+    (event 
+      (event ?1))) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-passive-event-rule-1-2017/06/21 22:38:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "is presently residing with his caregiver in her home") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-event-time-rule-2-2017/06/21 22:38:16@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-time-rule-2-2017/06/21 22:38:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "presently residing with his caregiver in her home") 
+  (sourceid "event-time-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-ditransitive-event-rule-3-2017/06/21 22:38:16@") 
+    ("@single-time-modifier-can-be-time-expression-rule@")) 
+  (properties 
+    (event ?0) 
+    (time ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-3-2017/06/21 22:38:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "residing with his caregiver in her home") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-4-2017/06/21 22:38:16@") 
+    ("@AUTO-simple-pp-rule-8-2016/06/24 23:30:44@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-4-2017/06/21 22:38:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with his caregiver") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-5-2017/06/21 22:38:16@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-5-2017/06/21 22:38:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his caregiver") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 8.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@caregiver-rule-1@")) 
+  (properties 
+    (thing ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-6-2017/06/21 22:38:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in her home") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-9-2016/06/24 23:30:44@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-7-2017/06/21 22:38:16") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "her home") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 8.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@living-space-rule@")) 
+  (properties 
+    (thing ?1)))
+
+)

@@ -1,0 +1,143 @@
+'(
+wordrule
+
+;; Types of ADL inabilities
+
+
+((ruleid adl-impairment-rule-1)
+ (concept ":ADL_IMPAIRMENT:")
+ (ordered true)
+ (words (":NEED_HELP:" ":INABILITY:" ":ADL_IMPAIRMENT:") 
+ 		(":ADL_ACTIVITY:" ":ADL_FACILITY" ":MOVE_TO_ADL_FACILITY:"))
+ (tests (notneg ?0) (notneg ?1)))
+ 
+((ruleid patient-use-adl-device-indicates-impairment-rule)
+ (ptype "#COMPLEX_EVENT#")
+ (concept ":USE_ADL_DEVICE:")
+ (ordered true)
+ (words (":NEED:" ":USE:") (":ADL_DEVICE:" ":USE_ADL_DEVICE:"))
+ (tests (notneg ?0) (notneg ?1)))
+
+;; General ADL Activities
+((ruleid general-adl-activity-rule)
+ (concept ":ADL_ACTIVITY:")
+ (words (":ADL_ACTIVITY:" ":WALKING:"))
+ (tests (notneg ?0)))
+ 
+;; AbsentNeed
+((ruleid absent-need-rule-1)
+ (concept ":ABSENT_NEED:")
+ (words (":NEED:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+ ;; AbsentInability
+((ruleid absent-difficulty-rule)
+ (concept ":ABSENT_INABILITY:")
+ (ordered true)
+ (words (":INABILITY:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+ ;; AbsentADLActivity
+((ruleid absent-adl-activity-rule-1)
+ (concept ":NO_ADL_ACTIVITY:")
+ (words (":ADL_ACTIVITY:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+ ;; AbsentADLActivity
+((ruleid absent-adl-activity-rule-2)
+ (concept ":NO_ADL_ACTIVITY:")
+ (ordered true)
+ (words (":LACK:" ":INABILITY:") (":ADL_ACTIVITY:"))
+ (tests (notneg ?0) (notneg ?1)))
+ 
+ ;; AbsentADLDevice
+((ruleid absent-adl-device-rule)
+ (concept ":NO_ADL_DEVICE:")
+ (ordered true)
+ (words (":ADL_DEVICE:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+((ruleid adl-device-general-rule)
+ (concept ":ADL_DEVICE:")
+ (words (":ADL_WHEELCHAIR:" ":ADL_CANE_WALKER:"))
+ (tests (notneg ?0)))
+ 
+ ;; AbsentHelp
+((ruleid absent-help-rule-1)
+ (concept ":ABSENT_HELP:")
+ (words (":HELP:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+
+ ;; AbsentHelp
+((ruleid absent-help-rule-2)
+ (concept ":ABSENT_HELP:")
+ (ordered true)
+ (words (":LACK:") (":HELP:"))
+ (tests (notneg ?0) (notneg ?1)))
+ 
+;; NeedHelp
+((ruleid need-help-rule)
+ (concept ":NEED_HELP:")
+ (ordered true)
+ (words (":NEED:") (":HELP:"))
+ (tests (notneg ?0) (notneg ?1)))
+ 
+;; NeedADLDevice
+((ruleid need-adl-device-rule)
+ (concept ":NEED_ADL_DEVICE:")
+ (ordered true)
+ (words (":NEED:") (":ADL_DEVICE:"))
+ (tests (notneg ?0) (notneg ?1)))
+
+;; Help with ADLActivity or ADLActivity with Help
+((ruleid help-with-adl-activity-rule)
+ (concept ":HELP_WITH_ADL_ACTIVITY:")
+ (words (":HELP:") (":ADL_ACTIVITY:"))
+ (tests (notneg ?0) (notneg ?1)))
+
+;; InabilityADLActivity
+((ruleid inability-with-adl-activity-rule-1)
+ (concept ":INABILITY_WITH_ADL_ACTIVITY:")
+ (ordered true)
+ (words (":INABILITY:" ":LACK:") (":ADL_ACTIVITY:"))
+ (tests (notneg ?0) (notneg ?1)))
+ 
+; InabilityADLActivity
+((ruleid inability-with-adl-activity-rule-2)
+ (concept ":INABILITY_WITH_ADL_ACTIVITY:")
+ (words (":ADL_ACTIVITY:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+;; InabilityADLFacility
+((ruleid inability-with-adl-facility-rule-1)
+ (concept ":INABILITY_WITH_ADL_FACILITY:")
+ (ordered true)
+ (words (":INABILITY:" ":LACK:") (":ADL_FACILITY:"))
+ (tests (notneg ?0) (notneg ?1)))
+ 
+; InabilityADLActivity
+((ruleid inability-with-adl-facility-rule-2)
+ (concept ":INABILITY_WITH_ADL_FACILITY:")
+ (words (":ADL_FACILITY:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+;; WalkADLFacility
+((ruleid move-to-adl-facility-rule)
+ (concept ":MOVE_TO_ADL_FACILITY:")
+ (ordered true)
+ (words (":MOVE_TO:" ":WALK:" ":WALKING:") (":ADL_FACILITY:"))
+ (tests (notneg ?0) (notneg ?1)))
+
+;; ADLActivityWithADLDevice
+((ruleid adl-activity-with-adl-device-rule)
+ (concept ":ADL_ACTIVITY_WITH_ADL_DEVICE:")
+ (words (":ADL_ACTIVITY:") (":ADL_DEVICE:"))
+ (tests (notneg ?0) (notneg ?1)))
+)

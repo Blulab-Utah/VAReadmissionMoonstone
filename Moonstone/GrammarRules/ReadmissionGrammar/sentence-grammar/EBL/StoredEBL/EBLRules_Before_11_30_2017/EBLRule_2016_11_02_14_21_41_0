@@ -1,0 +1,18 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-thing-is-state-rule-8-2016/11/02 14:21:41") 
+  (specialized) 
+  (example-snippet "Care giver is available") 
+  (ordered true) 
+  (sourceid "thing-is-state-rule") 
+  (concept ":HAVE_SUPPORT:") 
+  (window 16.0) 
+  (words 
+    ("@caregiver-rule-1@") 
+    ("@is-auxilliary-word-rule@") 
+    ("@available-word-rule@")) 
+  (tests 
+    (notneg ?2)))
+
+)

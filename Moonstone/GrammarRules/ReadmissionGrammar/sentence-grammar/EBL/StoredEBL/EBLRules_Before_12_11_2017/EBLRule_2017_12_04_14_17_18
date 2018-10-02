@@ -1,0 +1,20 @@
+'(
+wordrule
+(
+  (ruleid "BOC-ditransitive-event-rule-20-2017/12/04 14:17:18") 
+  (specialized) 
+  (example-snippet "TEACHING TO PT AND FAMILY RT WOUND CARE") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":TEACH:") 
+    ("_PREP_") 
+    (":PATIENT:") 
+    (":FAMILY:") 
+    (":MEDICAL_CARE:")) 
+  (removeproperties directionality))
+
+)

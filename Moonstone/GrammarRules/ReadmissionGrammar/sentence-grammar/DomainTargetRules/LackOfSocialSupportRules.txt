@@ -1,0 +1,116 @@
+'(
+wordrule
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LACK SUPPORT 
+ 
+
+;; 1/8/2018:  I am *AGAIN* taking out :POSSIBLE_SUPPORT:.  EHost annotators aren't marking 
+;; "no family present at this time" as "lack of support", so marked as FP.
+ ;; 11/30/2017 NOTE:  I AM RESTORING :POSSIBLE_SUPPORT: TO PATTERN ELEMENTS FOR SENTENCES LIKE "No family present at this time", which
+ ;; fishes out 'family present' from parsetree, where top node is "possible-support negated".
+;; e.g. "no family support" (also negated complex concepts)
+((ruleid negated-family-support-denotes-lack-of-support-rule)
+ (concept ":LACK_SUPPORT:")
+ (words (":FAMILY_SUPPORT:" 
+		;; ":POSSIBLE_SUPPORT:" 
+		":FAMILY::HERE::GENERAL_TIME:"
+		":FAMILY::CARING:" 
+		":SUPPORT_SYSTEM:"
+		;; ":PROVISION_OF_CARE:" -- 5/22/2017:  This causes all instances of "no help" to be interpreted as lack of support,
+		;;											e.g. "acupuncture didn't help", "patient needs no help to eat"
+		))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+((ruleid no-care-from-family-implies-lack-of-support-rule)
+ (concept ":POSSIBLE_LACK_SUPPORT:")
+ (words (":FAMILY:") 
+		(":CARE:" ":PROVISION_OF_CARE:" 
+		;; ":TRANSPORTATION:" -- Too many matches with e.g. "daughter does not drive"
+		":POSSIBLE_SUPPORT:"))
+ (tests (neg ?1))
+ (removeproperties directionality))
+
+
+ 
+;; e.g. "no caregiver"
+((ruleid no-caregiver-means-lacks-support-rule)
+ (concept ":LACK_SUPPORT:")
+ (words (":CAREGIVER:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+
+((ruleidX social-isolation-rule)
+ (concept ":LACK_SUPPORT:")
+ (states-target true)
+ (words ("social isolation" "socially isolated" "family not yet engaged" "family is not yet engaged")))
+ 
+ ((ruleid social-isolation-rule-2)
+ (concept ":LACK_SUPPORT:")
+ (states-target true)
+ (words (":FAMILY:") ("not engaged" "not yet engaged")))
+ 
+((ruleid single-phrase-lack-support-rule) 
+  (concept ":LACK_SUPPORT:") 
+  (states-target true)
+  (words 
+    ("no family present" "no family present at this time" "lack of support at home")))
+	
+;;;;;;;;;;;;;;;;;;;;;
+;; 6/28/2016
+
+((ruleid caregiver-status-no-caregiver-indicates-lack-support-rule) 
+  (concept ":LACK_SUPPORT:") 
+  (ordered true) 
+  (words 
+    ("caregiver" "care giver") 
+    ("status") 
+    (":POSSIBLE_LACK_SUPPORT:" ":LACK_SUPPORT:")))
+
+((ruleid no-one-to-provide-care-implies-lack-of-support-rule)
+ (concept ":POSSIBLE_LACK_SUPPORT:")
+ (words (":NO-ONE:" ":LACK:") 
+		(":CARE:" 
+			":PROVISION_OF_CARE:" 
+;;			":TRANSPORTATION:"  -- 6/2/2017:  Lacking a ride is not the same as being socially isolated.
+			":POSSIBLE_SUPPORT:"
+			))
+ (tests (notneg ?1)))
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; INVALID RULES
+
+;;;;; 6/2/2017 RULES REMOVED SINCE PHRASES, WHILE DENOTING LACK OF SUPPORT, DO NOT RISE TO THE LEVEL OF COMPLETE ABSENCE OF SUPPORT
+;; LIKE "SOCIALLY ISOLATED"
+((ruleidXXX family-not-here-denotes-lack-of-support-rule-1) 
+  (concept ":POSSIBLE_LACK_SUPPORT:") 
+  (ordered true)
+  (words 
+    (":FAMILY:" ":FRIEND:" ":CHURCH:") 
+    (":HERE:")) 
+  (tests 
+    (neg ?1))
+	(removeproperties directionality))
+ 
+ ((ruleidXXX lack-of-family-help-indicates-lack-of-support-rule) 
+  (concept ":POSSIBLE_LACK_SUPPORT:") 
+  (ordered true) 
+  (window 32.0) 
+  (words 
+    (":FAMILY:" ":FRIEND:" ":MULTI_FAMILY_MEMBERS:") 
+    (":HELP:" ":CARE:")) 
+  (tests (neg ?1)) 
+  (removeproperties directionality))
+  
+  ;; e.g. "He came by bus" -- 8/12/2017:  this does not indicate lack of support
+((ruleidXXX public-transport-indicates-lack-of-support-rule)
+ (concept ":POSSIBLE_LACK_SUPPORT:")
+ (ordered true)
+ (words (":PATIENT:") (":PUBLIC_TRANSPORTATION:"))
+ (tests (notneg ?1)))
+ 
+
+  
+)
+

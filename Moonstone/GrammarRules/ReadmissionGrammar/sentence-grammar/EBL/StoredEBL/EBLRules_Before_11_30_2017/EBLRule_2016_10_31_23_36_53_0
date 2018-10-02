@@ -1,0 +1,36 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-passive-sentence-rule-2-2016/10/31 23:36:53") 
+  (specialized) 
+  (example-snippet "family are his source of support") 
+  (ordered true) 
+  (sourceid "passive-sentence-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@family-definition-rule@") 
+    ("@AUTO-passive-event-rule-3-2016/10/31 23:36:53@")) 
+  (properties 
+    (subject ?0) 
+    (event 
+      (event ?1))))
+
+(
+  (ruleid "AUTO-passive-event-rule-3-2016/10/31 23:36:53") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "are his source of support") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-possessive-thing-rule-5-2016/06/06 15:01:30@")) 
+  (properties 
+    (event ?1)))
+
+)

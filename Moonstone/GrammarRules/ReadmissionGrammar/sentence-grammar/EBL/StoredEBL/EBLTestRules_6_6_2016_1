@@ -1,0 +1,65 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-2-2016/06/06 12:14:50") 
+  (specialized) 
+  (example-snippet "their children assist with transportation") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-family-definition-rule-3-2016/06/06 12:14:50@") 
+    ("@AUTO-event-prep-thing-rule-5-2016/06/06 12:14:50@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-family-definition-rule-3-2016/06/06 12:14:50") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "their children") 
+  (sourceid "family-definition-rule") 
+  (concept ":FAMILY:") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-possessive-thing-rule-4-2016/06/06 12:14:50@")))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-4-2016/06/06 12:14:50") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "their children") 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@multi-family-member-word-rule@")) 
+  (properties 
+    (person ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-event-prep-thing-rule-5-2016/06/06 12:14:50") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "assist with transportation") 
+  (ordered true) 
+  (sourceid "event-prep-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@AUTO-simple-pp-rule-10-2016/06/05 15:55:16@")) 
+  (properties 
+    (event ?0) 
+    (object ?2)))
+
+)

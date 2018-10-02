@@ -1,0 +1,38 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-0-2016/11/01 14:03:22") 
+  (specialized) 
+  (example-snippet "Pt to go home with his wife") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-dative-event-rule-1-2016/11/01 14:03:22@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-dative-event-rule-1-2016/11/01 14:03:22") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "go home with his wife") 
+  (ordered true) 
+  (sourceid "dative-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@moving-action-word-rule@") 
+    ("@home-word-rule@") 
+    ("@AUTO-simple-pp-rule-4-2016/06/08 22:07:09@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object 
+      (object ?2))))
+
+)

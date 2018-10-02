@@ -1,0 +1,90 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-5-2017/12/11 23:25:05") 
+  (specialized) 
+  (example-snippet "Pt was discharged to home with his grand daughter") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-discharge-home-with-family-member-indicates-support-rule-6-2017/12/11 23:25:05@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-discharge-home-with-family-member-indicates-support-rule-6-2017/12/11 23:25:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "was discharged to home with his grand daughter") 
+  (sourceid "discharge-home-with-family-member-indicates-support-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-passive-event-rule-7-2017/12/11 23:25:05@") 
+    ("@AUTO-simple-pp-rule-3-2016/06/24 20:13:16@") 
+    ("@AUTO-simple-pp-rule-4-2017/12/11 23:19:02@")) 
+  (tests 
+    (notneg ?0) 
+    (notneg ?1) 
+    (notneg ?2)))
+
+(
+  (ruleid "AUTO-passive-event-rule-7-2017/12/11 23:25:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "was discharged") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@discharge-word-rule@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-8-2017/12/11 23:25:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "to home") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@living-space-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-9-2017/12/11 23:25:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with his grand daughter") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@family-definition-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

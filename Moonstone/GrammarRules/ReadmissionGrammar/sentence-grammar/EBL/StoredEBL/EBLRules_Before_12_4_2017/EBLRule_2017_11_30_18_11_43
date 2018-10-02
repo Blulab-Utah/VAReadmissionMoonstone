@@ -1,0 +1,58 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-1-2017/11/30 18:11:43") 
+  (specialized) 
+  (example-snippet "she helps him do his shopping") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@third-person-subject-word-rule@") 
+    ("@AUTO-ditransitive-event-rule-2-2017/11/30 18:11:43@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-2-2017/11/30 18:11:43") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "helps him do his shopping") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@patient-object-word-rule@") 
+    ("@AUTO-possessive-thing-rule-3-2017/11/30 18:11:43@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-3-2017/11/30 18:11:43") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his shopping") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<ADL_ACTIVITY>") 
+  (window 8.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@general-adl-rule@")) 
+  (properties 
+    (thing ?1)))
+
+)

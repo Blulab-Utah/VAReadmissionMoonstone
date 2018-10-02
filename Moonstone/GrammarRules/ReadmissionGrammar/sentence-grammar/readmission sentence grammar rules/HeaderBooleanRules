@@ -1,0 +1,102 @@
+'(
+wordrule
+
+;; 9/9/2015:  "Who do you live with? wife" = not living alone
+((ruleid live-with-connotes-not-living-alone-header-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (words ("<PERSON>" ":FAMILY_WITH_PATIENT:" ":PERSON_WITH_PATIENT:"))
+ (tests ("headerContainsAllOf" ?0 ("live" "with"))
+		("headerCoversSingleSentence" ?0)))
+		
+((ruleid boolean-discharged-home-implies-lives-at-home-rule)
+ (concept ":LIVE_AT_HOME:")
+ (words (":LIVING_SPACE:" ":HOME:"))
+ (tests ("headerContainsString" ?0 "discharge")
+		("headerCoversSingleSentence" ?0)))
+
+ ;; 9/1/2015:  Needs work...
+((ruleid transportation-provided-by-family-header-rule)
+ (concept ":HAVE_SUPPORT:")
+ (words (":FAMILY:" ":FAMILY_WITH_PATIENT:" 
+			":PERSON_WITH_PATIENT:" ":SPOUSE:" "object=:FAMILY:"))
+ (tests ("headerContainsOneOf" ?0 ("transport" "accompan"))
+		("headerCoversSingleSentence" ?0)))
+
+((ruleid header-victim-of-abuse-or-neglect-rule)
+ (concept ":MENTAL_DISCORD:")
+ (words (":HEADER_TRUE:" ":HEADER_FALSE:"))
+ (tests ("headerContainsAllOf" ?0 ("victim" "abuse"))
+		("headerCoversSingleWord" ?0))
+ (properties (directionality (if (neg ?0) "affirmed" "negated"))))
+
+
+((ruleid header-level-of-consciousness-rule)
+ (concept ":COGNITIVE_IMPAIRMENT:")
+ (words ("alert" "oriented"))
+ (tests ("headerContainsAllOf" ?0 ("level" "consciousness"))
+		("headerCoversSingleSentence" ?0))
+ (properties (directionality "negated")))
+ 
+((ruleid header-oriented-mental-status-rule)
+ (concept ":COGNITIVE_IMPAIRMENT:")
+ (words (":HEADER_TRUE:" ":HEADER_FALSE:"))
+ (tests ("headerContainsString" ?0 "oriented") 
+		("headerCoversSingleWord" ?0))
+ (properties (directionality (if (neg ?0) "affirmed" "negated"))))
+			 
+((ruleid header-history-of-fall-rule)
+ (concept ":ADL_FALLS:")
+ (words (":HEADER_TRUE:" ":HEADER_FALSE:"))
+ (tests ("headerContainsAllOf" ?0 ("fall" "history"))
+	    ("headerCoversSingleWord" ?0))
+ (properties (directionality (if (neg ?0) "negated" "affirmed"))
+		     (temporality "historical")))
+ 
+ ;; What was this for again?
+((ruleid discharged-to-place-rule)
+ (concept ":LIVE_AT_HOME:")
+ (words (":HOME:"))
+ (tests ("headerContainsString" ?0 "discharge")
+		("annotationInFirstHeaderSentence" ?0)))
+ 
+ 
+((ruleid discharged-to-place-rule-3)
+ (concept ":LIVE_AT_HOME:")
+ (words (":HOME:"))
+ (tests ("headerContainsString" ?0 "disposition")
+		("annotationInFirstHeaderSentence" ?0)))
+
+((ruleid header-homeless-boolean-rule-1)
+ (concept ":HOMELESS:")
+ (words (":HEADER_TRUE:" ":HEADER_FALSE:"))
+ (tests ("headerContainsString" ?0 "homeless")
+		("headerCoversSingleWord" ?0))
+ (properties (directionality (if (neg ?0) "negated" "affirmed"))))
+ 
+
+ ((ruleid header-ald-aids-rule-3)
+ (concept ":ADL_IMPAIRMENT:")
+ (words (":ADL_DEVICE:"))
+ (tests ("headerContainsOneOf" ?0 ("aid" "aids" "aides"))))
+
+;; E.g. "Divorced? Yes."
+((ruleid single-header-word-boolean-affirmed-rule)
+ (concept ":HEADER_TRUE:")
+ (words ("yes"))
+ (tests ("headerCoversSingleWord" ?0)))
+
+;; E.g. "Divorced? No."
+;; Changed 4/1/2016
+((ruleid single-header-word-boolean-negated-rule)
+ (debug true)
+ (concept ":HEADER_FALSE:")
+ (words ("no" "false" "none"))
+ (tests ;; ("headerCoversSingleWord" ?0)
+			("headerContainsSingleSentenceWithSingleWord" ?0)
+ 
+ )
+ (properties (directionality negated)))
+
+
+
+)

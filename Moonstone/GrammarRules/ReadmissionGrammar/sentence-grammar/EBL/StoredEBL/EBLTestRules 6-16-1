@@ -1,0 +1,102 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-0-2016/06/16 16:07:59") 
+  (specialized) 
+  (example-snippet "godson continues to share home with patient") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@single-family-member-word-rule@") 
+    ("@AUTO-event-thing-rule-1-2016/06/16 16:07:59@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-1-2016/06/16 16:07:59") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "share home with patient") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/16 16:07:59@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-2-2016/06/16 16:07:59") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with patient") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("with") 
+    ("@general-patient-object-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-affirmed-item-word-rule-3-2016/06/16 16:46:15") 
+  (specialized) 
+  (example-snippet "Family accompany patient to wardunit Yes") 
+  (sourceid "affirmed-item-word-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-person-event-rule-4-2016/06/16 16:46:15@") 
+    ("yes")) 
+  (properties 
+    (directionality affirmed)))
+
+(
+  (ruleid "AUTO-person-event-rule-4-2016/06/16 16:46:15") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Family accompany patient") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept "?1") 
+  (stype "<SENTENCE>") 
+  (window 16) 
+  (words 
+    (":FAMILY:") 
+    ("@AUTO-event-thing-rule-5-2016/06/16 16:46:15@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-5-2016/06/16 16:46:15") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "accompany patient") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16) 
+  (words 
+    ("@accompany-word-rule@") 
+    ("@general-patient-object-rule-1@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+)

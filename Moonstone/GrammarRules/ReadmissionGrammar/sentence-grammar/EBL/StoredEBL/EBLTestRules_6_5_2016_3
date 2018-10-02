@@ -1,0 +1,109 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-25-2016/06/05 18:22:33") 
+  (specialized) 
+  (example-snippet "wife assisted him with ADLS") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept "?1") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@spouse-word-rule@") 
+    ("@AUTO-ditransitive-event-rule-26-2016/06/05 18:22:33@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-26-2016/06/05 18:22:33") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "assisted him with ADLS") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@patient-rule-1@") 
+    ("@AUTO-simple-pp-rule-27-2016/06/05 18:22:33@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-27-2016/06/05 18:22:33") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with ADLS") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<ADL_ACTIVITY>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@adl-activity-word-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-28-2016/06/05 18:23:01") 
+  (specialized) 
+  (example-snippet "wife assisted him with ADLS") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@spouse-word-rule@") 
+    ("@AUTO-ditransitive-event-rule-29-2016/06/05 18:23:01@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-29-2016/06/05 18:23:01") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "assisted him with ADLS") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@patient-rule-1@") 
+    ("@AUTO-simple-pp-rule-30-2016/06/05 18:23:01@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-30-2016/06/05 18:23:01") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with ADLS") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<ADL_ACTIVITY>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@adl-activity-word-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

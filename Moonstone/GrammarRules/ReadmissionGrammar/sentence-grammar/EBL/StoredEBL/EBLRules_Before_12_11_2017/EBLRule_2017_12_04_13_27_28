@@ -1,0 +1,96 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-not-living-alone-at-home-indicates-living-at-home-rule-9-2017/12/04 13:27:28") 
+  (specialized) 
+  (example-snippet "Pt DCd home with family member") 
+  (sourceid "not-living-alone-at-home-indicates-living-at-home-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<HOUSING_STATUS>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-living-alone-with-family-means-not-living-alone-rule-10-2017/12/04 13:27:28@")) 
+  (tests 
+    (notneg ?0) 
+    (or 
+      (hcr ?0 ":LIVING_SPACE:") 
+      (hcr ?0 ":HOME:"))) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-living-alone-with-family-means-not-living-alone-rule-10-2017/12/04 13:27:28") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Pt DCd home with family member") 
+  (sourceid "living-alone-with-family-means-not-living-alone-rule") 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<HOUSING_STATUS>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-person-event-complex-rule-11-2017/12/04 13:27:28@")) 
+  (tests 
+    (notneg ?0)))
+
+(
+  (ruleid "AUTO-person-event-complex-rule-11-2017/12/04 13:27:28") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Pt DCd home with family member") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-live-at-home-with-family-indicates-not-living-alone-rule-12-2017/12/04 13:27:28@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-live-at-home-with-family-indicates-not-living-alone-rule-12-2017/12/04 13:27:28") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "DCd home with family member") 
+  (ordered true) 
+  (sourceid "live-at-home-with-family-indicates-not-living-alone-rule") 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<HOUSING_STATUS>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-live-at-home-with-family-indicates-living-at-home-rule-2-13-2017/12/04 13:27:28@")) 
+  (tests 
+    (notneg ?0)))
+
+(
+  (ruleid "AUTO-live-at-home-with-family-indicates-living-at-home-rule-2-13-2017/12/04 13:27:28") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "DCd home with family member") 
+  (ordered true) 
+  (sourceid "live-at-home-with-family-indicates-living-at-home-rule-2") 
+  (concept ":LIVE_AT_HOME_WITH_FAMILY:") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-living-at-home-or-living-space-rule-14-2017/12/04 13:27:28@") 
+    ("with") 
+    ("@family-definition-rule@")) 
+  (tests 
+    (notneg ?0)))
+
+(
+  (ruleid "AUTO-living-at-home-or-living-space-rule-14-2017/12/04 13:27:28") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "DCd home") 
+  (ordered true) 
+  (sourceid "living-at-home-or-living-space-rule") 
+  (concept ":RETURN_TO_OR_LIVE_AT_HOME:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@discharge-word-rule@") 
+    ("@home-word-rule@")))
+
+)

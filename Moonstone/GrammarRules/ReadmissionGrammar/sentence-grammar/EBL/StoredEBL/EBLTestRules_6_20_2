@@ -1,0 +1,69 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-0-2016/06/20 00:27:39") 
+  (specialized) 
+  (example-snippet "friends available to help") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@friend-rule@") 
+    ("@AUTO-event-prep-thing-rule-1-2016/06/20 00:27:39@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-prep-thing-rule-1-2016/06/20 00:27:39") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "available to help") 
+  (ordered true) 
+  (sourceid "event-prep-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@available-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/03 19:44:13@")) 
+  (properties 
+    (event ?0) 
+    (object ?2)))
+
+(
+  (ruleid "AUTO-person-event-rule-3-2016/06/20 00:40:37") 
+  (specialized) 
+  (example-snippet "he lives with his wife") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-event-thing-rule-4-2016/06/20 00:40:37@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-4-2016/06/20 00:40:37") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "lives with his wife") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-4-2016/06/08 22:07:09@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+)

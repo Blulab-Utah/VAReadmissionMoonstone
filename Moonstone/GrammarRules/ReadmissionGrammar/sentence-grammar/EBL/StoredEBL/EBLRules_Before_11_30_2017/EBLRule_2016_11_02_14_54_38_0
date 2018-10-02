@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "BOC-dative-event-rule-0-2016/11/02 14:54:38") 
+  (specialized) 
+  (example-snippet "Living Situation 1st story home with his wife") 
+  (ordered true) 
+  (concept ":STABLE_HOUSING:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":LIVE_AT:") 
+    (":HOME:") 
+    ("_PREP_") 
+    ("_POSSESSIVE_") 
+    (":FAMILY:")))
+
+)

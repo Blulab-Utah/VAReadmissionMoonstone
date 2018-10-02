@@ -1,0 +1,13 @@
+'(
+wordrule
+
+((ruleid activity-for-procedure-rule)
+ (concept ?0)
+ (ordered true)
+ (words ("<HEALTH CARE ACTIVITY>") 
+	("<THERAPEUTIC OR PREVENTIVE PROCEDURE>"))
+ (relations (for ?0 ?1)))
+
+
+
+)

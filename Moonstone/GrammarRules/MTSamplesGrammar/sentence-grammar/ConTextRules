@@ -1,0 +1,30 @@
+'(
+tagrule
+
+((ruleid pre-negation-context-rule) 
+  (concept ?1)
+  (ordered true)
+  (window 32) 
+  (words (?filestring) (?interpreted)) 
+  (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=forward"))
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_")) 
+  (properties 
+    ("directionality" "negated")))
+
+
+((ruleid post-negation-context-rule) 
+  (concept ?0)
+  (ordered true)
+  (window 16.0) 
+  (words (?interpreted) (?filestring)) 
+  (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=backward"))
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_")) 
+  (properties 
+    ("directionality" "negated")))
+
+
+)

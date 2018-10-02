@@ -1,0 +1,405 @@
+'(
+wordrule
+
+(
+  (ruleidXXX tentative344) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (snippet " Lives alone No") 
+  (words 
+    ("lives") 
+    ("alone") 
+    ("no")) 
+  (properties 
+    ("Template" "Q&A")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative359) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " daughter POA") 
+  (ordered true)
+  (words 
+    (":FAMILY:") 
+    ("poa")) 
+  (properties 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative353) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Assistance from friends available") 
+  (words 
+    ("assistance") 
+    ("friends") 
+    ("available")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "Q&A")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative356) 
+  (concept ":ADL_USES_CANE_WALKER_WHEELCHAIR:") 
+  (snippet " walks with a cane") 
+  (words 
+    ("walks") 
+    ("cane")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Uses cane/walker/wheelchair") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative398) 
+  (concept ":ADL_NEEDS_ASSISTANCE_WITH_ADLS:") 
+  (snippet "transfer w/ assist") 
+  (words 
+    ("transfer") 
+    ("assist" "assistance" "help")) 
+  (properties 
+    ("ADL_TYPE" "Transferring") 
+    ("FUNCTIONALSTATUS" "Needs assistance with ADLs") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative360) 
+  (concept ":LIVING_ALONE:") 
+  (snippet " living by himself") 
+  (ordered true)
+  (words 
+    ("living") 
+    ("himself")) 
+  (properties 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative343) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Family support Yes") 
+  (words 
+    ("family") 
+    ("support") 
+    ("yes")) 
+  (properties 
+    ("Template" "Q&A")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative351) 
+  (concept "ADL_IADL_PHYSICAL_IMPAIRMENT:Does not need assistance with IADLs") 
+  (snippet " Prepares own meals") 
+  (words 
+    ("prepares") 
+    ("own") 
+    ("meals")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "Does not need assistance with IADLs") 
+    ("Template" "Q&A") 
+    ("IADL_TYPE" "Preparing_Meals")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative407) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Veteran is well supported") 
+  (words 
+    ("veteran") 
+    ("well") 
+    ("supported")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative385) 
+  (concept ":ADL_NEEDS_ASSISTANCE_WITH_ADLS:") 
+  (snippet "Stress related incontinence") 
+  (words 
+    ("stress") 
+    ("related") 
+    ("incontinence")) 
+  (properties 
+    ("ADL_TYPE" "Toileting") 
+    ("FUNCTIONALSTATUS" "Needs assistance with ADLs") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative369) 
+  (concept ":ADL_FALLS") 
+  (snippet "No new falls since 5/9/09") 
+  (words 
+    ("no") 
+    ("new") 
+    ("falls")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "History of falls/recent falls") 
+    ("IMPAIRMENT" "NOT_EXPLICIT") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative352) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Assistance from family members available") 
+  (words 
+    ("assistance") 
+    ("family") 
+    ("members") 
+    ("available")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "Q&A")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative358) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " wife at bedside") 
+  (words 
+    ("wife") 
+    ("bedside")) 
+  (properties 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative401) 
+  (concept ":ADL_NEEDS_PT:") 
+  (snippet " discharge to a NH facility for short-term rehab services") 
+  (words 
+    ("discharge") 
+    ("nh") 
+    ("facility") 
+    ("rehab") 
+    ("services")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "Needs physical therapy") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+  
+(
+  (ruleid tentative342) 
+  (concept ":ADL_USES_CANE_WALKER_WHEELCHAIR:") 
+  (snippet "Refused to ambulate with restorative care") 
+  (words 
+    ("refused") 
+    ("ambulate") 
+    ("restorative") 
+    ("care")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Uses cane/walker/wheelchair") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative379) 
+  (concept ":ADL_NEEDS_ASSISTANCE_WITH_IADLS:") 
+  (snippet "bars on toilet") 
+  (words 
+    ("bars") 
+    ("toilet")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "Needs assistance with IADLs") 
+    ("Template" "narrative") 
+    ("IADL_TYPE" "Home_Maintenance")) 
+  (permit-interstitial true))
+
+(
+  (ruleidXXX tentative361) 
+  (concept ":LIVING_ALONE:") 
+  (snippet " Lives alone") 
+  (words 
+    ("lives") 
+    ("alone")) 
+  (properties 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleidXXX tentative345) 
+  (concept ":NOT_HOMELESS:") 
+  (snippet " Homeless No") 
+  (words 
+    ("homeless") 
+    ("no")) 
+  (properties 
+    ("Template" "Q&A")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative348) 
+  (concept ":ASSISTED_LIVING:") 
+  (snippet " Heritage Woods would not readmit her father") 
+  (words 
+    ("heritage") 
+    ("woods") 
+    ("would") 
+    ("not") 
+    ("readmit") 
+    ("her") 
+    ("father")) 
+  (properties 
+    ("HOMELESSNESS" "assisted living") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative371) 
+  (concept ":LACK_SUPPORT:") 
+  (snippet "family is not yet engaged") 
+  (words 
+    ("family") 
+    ("not") 
+    ("yet") 
+    ("engaged")) 
+  (properties 
+    ("IMPAIRMENT" "NOT_EXPLICIT") 
+    ("SOCIALSUPPORT" "no social support") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleidXXX tentative443) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " wife is present") 
+  (ordered true)
+  (words 
+    ("wife") 
+    ("present")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  (permit-interstitial true)
+  (tests (notneg ?1)))
+  
+(
+  (ruleid tentative441) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (snippet "With whom do you live ... wife") 
+  (words 
+    ("whom") 
+    ("do") 
+    ("you") 
+    ("live") 
+    ("wife")) 
+  (properties 
+    ("LIVINGALONE" "does not live alone") 
+    ("Template" "Q&A")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative460) 
+  (concept ":ADL_AMBULATES_WITHOUT_ASSISTANCE:") 
+  (snippet " walking to bathroom with no difficulty") 
+  (words 
+    ("walking") 
+    ("bathroom") 
+    ("no") 
+    ("difficulty")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Ambulates without assistance/independently") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+
+(
+  (ruleid tentative457) 
+  (concept ":ADL_DIFFICULTY_AMBULATING:") 
+  (snippet "Pt. back to bed w/ assistance") 
+  (words 
+    ("back") 
+    ("bed") 
+    ("assistance")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Needs assistance/difficulty ambulating") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative450) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Wife was very attentive") 
+  (words 
+    ("wife") 
+    ("very") 
+    ("attentive")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative431) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Here with sons") 
+  (ordered true)
+  (words 
+    ("here") 
+	("with" "w" "w/")
+    (":FAMILY:")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative437) 
+  (concept ":ADL_AMBULATES_WITHOUT_ASSISTANCE:") 
+  (snippet "pt ambulate to bathroom no problems") 
+  (words 
+    ("pt") 
+    ("ambulate") 
+    ("bathroom") 
+    ("no") 
+    ("problems")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Ambulates without assistance/independently") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative442) 
+  (concept ":ADL_DIFFICULTY_AMBULATING:") 
+  (snippet "ambulated from the bed to the bedside commode with moderate assistance") 
+  (words 
+    ("ambulated") 
+    ("bed") 
+    ("bedside") 
+    ("commode") 
+    ("moderate") 
+    ("assistance")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Needs assistance/difficulty ambulating") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+(
+  (ruleid tentative453) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Family brought him to the emergency room") 
+  (words 
+    ("family") 
+    ("brought") 
+    ("him") 
+    ("emergency") 
+    ("room")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  (permit-interstitial true))
+
+
+)
+
+

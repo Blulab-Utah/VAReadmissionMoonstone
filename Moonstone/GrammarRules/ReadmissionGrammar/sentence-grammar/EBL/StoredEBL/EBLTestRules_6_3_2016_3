@@ -1,0 +1,100 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-there-is-thing-rule-0-2016/06/06 14:40:11") 
+  (specialized) 
+  (example-snippet "There is substantial family support") 
+  (ordered true) 
+  (sourceid "there-is-thing-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (ordered true)
+  (words 
+    ("there is") 
+    ("@family-support-is-family-support-rule@")))
+
+(
+  (ruleid "AUTO-person-have-thing-rule-1-2016/06/06 14:48:40") 
+  (specialized) 
+  (example-snippet "Patient has good family support") 
+  (sourceid "person-have-thing-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (ordered true)
+  (words 
+    ("@patient-rule-1@") 
+    ("has") 
+    ("@family-support-is-family-support-rule@" 
+    	":PROVISION_OF_CARE:" "SUPPORT:"))
+    (tests (notneg ?2)))
+
+(
+  (ruleid "AUTO-person-who-is-thing-or-event-rule-2-2016/06/06 15:01:30") 
+  (specialized) 
+  (example-snippet "wife who is involved in his care") 
+  (sourceid "person-who-is-thing-or-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (ordered true)
+  (words 
+    ("@spouse-word-rule@") 
+    ("who is") 
+    ("@AUTO-event-thing-rule-3-2016/06/06 15:01:30@")))
+
+(
+  (ruleid "AUTO-event-thing-rule-3-2016/06/06 15:01:30") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "involved in his care") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@support-word-rule@") 
+    ("@AUTO-simple-pp-rule-4-2016/06/06 15:01:30@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-4-2016/06/06 15:01:30") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in his care") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-5-2016/06/06 15:01:30@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-5-2016/06/06 15:01:30") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his care") 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (ordered true)
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@general-provide-care-rule@")) 
+  (properties 
+    (person ?0) 
+    (object ?1)))
+
+)

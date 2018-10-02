@@ -1,0 +1,57 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-0-2018/01/16 21:55:07") 
+  (specialized) 
+  (example-snippet "daughter who is living with pt") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@family-definition-rule@") 
+    ("@AUTO-event-prep-thing-rule-1-2018/01/16 21:55:07@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-event-prep-thing-rule-1-2018/01/16 21:55:07") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "living with pt") 
+  (ordered true) 
+  (sourceid "event-prep-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2018/01/16 21:55:07@")) 
+  (properties 
+    (event ?0) 
+    (object ?2)) 
+  (tests 
+    (notneg ?0) 
+    (notneg ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-2-2018/01/16 21:55:07") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with pt") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@patient-word-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "BOC-pre-negation-context-rule-file-0-2017/12/20 00:02:13") 
+  (specialized) 
+  (example-snippet "no family members currently present") 
+  (ordered true) 
+  (concept ":POSSIBLE_LACK_SUPPORT:") 
+  (stype "<ROOT>") 
+  (window 8.0) 
+  (bagofconcepts true) 
+  (words 
+    (":FAMILY:") 
+    (":GENERAL_TIME:") 
+    (":HERE:")) 
+  (tests (neg ?0))
+  (removeproperties directionality))
+
+)

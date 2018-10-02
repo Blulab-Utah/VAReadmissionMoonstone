@@ -1,0 +1,18 @@
+'(
+wordrule
+(
+  (ruleid "BOC-complex_event_transportation-verb-rule-2-6-2017/11/30 18:45:51") 
+  (specialized) 
+  (example-snippet "she took him home") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":FAMILY:" ":FRIEND:") 
+    (":TRANSPORTATION:" ":TRANSPORTATION::PATIENT:"))
+  (tests (notneg ?1))
+  (removeproperties directionality))
+
+)

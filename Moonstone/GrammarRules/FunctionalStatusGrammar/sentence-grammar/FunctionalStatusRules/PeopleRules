@@ -1,0 +1,101 @@
+'(
+wordrule
+
+;; 7/7/2016
+((ruleid person-is-state-rule)
+  (stype "<STATE>")
+  (concept ?2)
+  (ordered true)
+  (words ("<PERSON>") ("is" "are" "was" "were") ("<STATE>")))
+
+((ruleid person-at-place-rule)
+ (stype "<STATE>")
+ (concept ":PERSON_AT_PLACE:")
+ (ordered true)
+ (words ("<PERSON>") ("in" "at") ("<PLACE>"))
+ (properties (person ?0) (place ?1)))
+
+((ruleid possessive-person-rule)
+ (concept ?0)
+ (words ("boyfriend's" "girlfriend's" "bf's" "gf's" "friend's" "neighbor's"
+			"son's" "daughter's" "family's" "sister's" "brother's")))
+
+;;;; Restored from backup
+
+((ruleid patient-and-spouse-conjunct-rule)
+ (concept ?0)
+ (ordered true)
+ (words (":PATIENT:") ("and") (":SPOUSE:")))
+ 
+((ruleid patient-and-family-conjunct-rule)
+ (stype "<PERSON>")
+ (concept ":PATIENT_AND_FAMILY:")
+ (ordered true)
+ (words (":PATIENT:") ("and") (":FAMILY:")))
+ 
+;; 5/8/2015:  Added payment of debt as a resource, so that inability to pay debt
+;; is counted as lack of a resource.
+;;((ruleid resource-type-rule) 
+;; (concept ":RESOURCE:")
+;; (words (":TRANSPORTATION:" ":MONEY:" ":SPIRITUAL:" ":FOOD:"  ":MEDICAL:" 	
+ ;;			":HOSPITALIZATION:" )))
+
+ 
+((ruleid family-living-with-patient-specialization-rule)
+ (concept ":FAMILY_LIVE_WITH:")
+ (words ("@person-event-rule@"))
+ (specialization (":FAMILY:") 
+ 				 (":LIVE_AT_PLACE:" ":MOVE_TO_PLACE:" ":LIVE_AT:" ":MOVE_TO:"))
+ (tests (hcopvr ?0 "object" ":PATIENT:")
+ 		(notneg ?0)))
+
+((ruleid communication-event-rule)
+ (stype "<COMMUNICATION>")
+ (concept ?2)
+ (ordered true)
+ (window 32)
+ (words ("<PERSON>") (":COMMUNICATES:") ("<EVENT>"))
+ (properties (communication true)(person ?0) (event ?2) (voice active))
+ ;; Not a good solution.  The communication itself might be negated... 
+ (removeproperties directionality)) 
+
+((ruleid passive-communication-event-rule)
+ (stype "<COMMUNICATION>")
+ (concept ?2)
+ (ordered true)
+ (window 32)
+ (words ("<PERSON>") 
+	("was advised" "was told")
+	("<EVENT>"))
+ (properties (communication true) (person ?0) (event ?2) (voice passive)))
+
+((ruleid non-patient-person-rule-1)
+ (concept ":NON-PATIENT-PERSON:")
+ (words (":FRIEND:" ":FAMILY:")))
+ 
+((ruleid someone-word-rule)
+ (stype "<PERSON>")
+ (concept ":SOMEONE:")
+ (words ("someone")))
+
+((ruleid family-definition-rule)
+ (concept ":FAMILY:" )
+ (words (":SPOUSE:" ":SINGLE_FAMILY_MEMBERS:" ":MULTI_FAMILY_MEMBERS:")))
+
+ ;; "patient has good support"
+((ruleid person-have-thing-rule)
+ (window 32)
+ (concept ?2)
+ (ordered true)
+ (words ("<PERSON>") ("have" "had" "has") ("<THING>")))
+
+;; "wife who is involved in their support"
+((ruleidxxx person-who-is-thing-or-event-rule)
+ (stype "<PERSON>")
+ (concept ?0)
+ (ordered true)
+ (words ("<PERSON>") ("who is" "who are") ("<COMPLEX_EVENT>" "<THING>")))
+ 
+ 
+ 
+)

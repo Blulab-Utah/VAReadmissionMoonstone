@@ -1,0 +1,263 @@
+'(
+wordrule
+
+;;;;;;;;;
+;; Living alone
+
+;; 8/31/2016:  "He lives at home alone" should produce 2 concepts
+((ruleid living-at-home-alone-with-two-targets-rule)
+  (stype ?0)
+  (concept ":LIVING_ALONE:")
+  (ordered true)
+  (words (":LIVE_AT_HOME:") (":ALONE:"))
+  (tests (notneg ?0)))
+ 
+ 
+;; TEST, 6/23/2016 (expensive!)
+((ruleid test-complex-rule-with-live-alone-string-rule)
+ (specialized)
+ (concept ":LIVING_ALONE:")
+ (words (?interpreted))
+ (tests ("ruleHasComplexConcept" ?rule)
+ 	    ("conceptStartsWithString" ?0 ":LIVING_ALONE:") 
+ 	    (notneg ?0)))
+
+((ruleid complex-rule-living-alone-rule)
+ (specialized)
+ (concept ":LIVING_ALONE:" )
+ (words (":LIVE_AT::LIVING_SPACE::LIVING_ALONE:" 
+ 		":LIVE_AT::LIVING_ALONE:" ":LIVE_AT::PATIENT::LIVING_ALONE:"
+ 		":LIVE_AT::LIVING_ALONE::LIVING_SPACE:"
+ 		":LIVE_AT::LIVING_SPACE::ALONE:"
+ 		":LIVE_AT::ALONE::LIVING_SPACE:"
+ 		":LIVE_AT::ALONE::HOME:"
+ 		":LIVE_AT::ALONE:"
+ 		":LIVE_AT::ALONE::MARRIAGE:"
+ 		":LIVE_AT::ALONE::PATIENT:"
+		
+		":ALONE::OWN_HOME:"
+
+ 		":LIVE_AT::HOME::ALONE:"
+ 		":LIVE_AT::HOME::LIVING_ALONE:"
+ 		":LIVING_ALONE::LIVING_SPACE:" ":LIVING_ALONE::HOME:"
+ 		":MARRIAGE::LIVING_ALONE:"
+ 		":LIVING_ALONE::COGNITIVE_IMPAIRMENT:"
+ 		":LIVE_AT::ALONE::COGNITIVE_IMPAIRMENT:"
+ 		":LIVE_AT::LIVING_ALONE::MARRIAGE:"
+ 		":LIVE_AT::ALONE::STREET:"
+		
+		":PATIENT::LIVE_AT::LIVING_SPACE::LIVING_ALONE:" 
+ 		":PATIENT:LIVE_AT::LIVING_ALONE:" ":PATIENT:LIVE_AT::PATIENT::LIVING_ALONE:"
+ 		":PATIENT:LIVE_AT::LIVING_ALONE::LIVING_SPACE:"
+ 		":PATIENT:LIVE_AT::LIVING_SPACE::ALONE:"
+ 		":PATIENT:LIVE_AT::ALONE::LIVING_SPACE:"
+ 		":PATIENT:LIVE_AT::ALONE::HOME:"
+ 		":PATIENT:LIVE_AT::ALONE:"
+ 		":PATIENT:LIVE_AT::ALONE::MARRIAGE:"
+ 		":PATIENT:LIVE_AT::ALONE::PATIENT:"
+
+ 		":PATIENT:LIVE_AT::HOME::ALONE:"
+ 		":PATIENT:LIVE_AT::HOME::LIVING_ALONE:"
+ 		":PATIENT:LIVING_ALONE::LIVING_SPACE:" ":PATIENT:LIVING_ALONE::HOME:"
+ 		":PATIENT:MARRIAGE::LIVING_ALONE:"
+ 		":PATIENT:LIVING_ALONE::COGNITIVE_IMPAIRMENT:"
+ 		":PATIENT:LIVE_AT::ALONE::COGNITIVE_IMPAIRMENT:"
+ 		":PATIENT:LIVE_AT::LIVING_ALONE::MARRIAGE:"
+ 		":PATIENT:LIVE_AT::ALONE::STREET:"
+		
+		":PATIENT::LIVING_ALONE:"
+		
+		":SOCIAL_HISTORY::LIVING_ALONE:"
+		))
+ (tests (notneg ?0)))
+ 		
+ ;; e.g. "lives alone w/o adequate support"
+((ruleid complex-living-alone-support-rule)
+ (specialized)
+ (concept ":LIVING_ALONE:" )
+ (words (":LIVING_ALONE::SUPPORT:"
+ 		":LIVING_ALONE::CARE:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+ ;; e.g. "no one lives with this patient"
+((ruleid no-one-living-with-patient-connotes-living-alone-rule)
+ (concept ":LIVING_ALONE:")
+ (ordered true)
+ (words 
+	(":NO-ONE:") (":LIVE_AT:") (":PATIENT:")))
+	
+((ruleid living-alone-rule-1)
+ (concept ":LIVING_ALONE:")
+ (ordered true)
+ (states-target true)
+ (words (":LIVE_AT:") (":ALONE:"))
+ (tests (notneg ?0)))
+ 
+((ruleid header-lives-alone-boolean-rule)
+ (concept ":LIVING_ALONE:")
+ (words (":HEADER_TRUE:" ":HEADER_FALSE:"))
+ (states-target true)
+ (tests ("headerContainsString" ?0 "lives alone")
+		("headerCoversSingleWord" ?0))
+ (properties (directionality (if (neg ?0) "negated" "affirmed"))))
+ 
+ ;;;;;;;;;;;;;;;;;;;;;;
+ ;; NOT LIVING ALONE
+ 
+ ((ruleid not-returning-home-alone-means-not-living-alone-rule)
+  (concept ":NOT_LIVING_ALONE:")
+  (ordered true)
+  (words (":RETURN_TO_OR_LIVE_AT_HOME:") (":ALONE:"))
+  (tests (neg ?0))
+  (removeproperties directionality))
+ 
+  ;; 12/1/2017
+((ruleid spouse-request-home-service-indicates-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (ordered true)
+ (words (":SPOUSE:") (":REQUEST:") ("<MEDICAL_THING>")))
+ 
+ ;; 11/6/2016
+ ((ruleid not-living-alone-base-rule)
+  (stype ?0)
+  (concept ":NOT_LIVING_ALONE:")
+  (words (":LIVING_ALONE:"))
+  (tests (neg ?0))
+  (removeproperties directionality))
+ 
+ ;; 8/30/2016.  Fixing "son lives at home"-type sentences.
+((ruleid family-lives-at-patients-home-rule)
+ (stype "<SENTENCE>")
+ (concept ":NOT_LIVING_ALONE:")
+ (ordered true)
+ (words (":FAMILY:") 
+		(":RETURN_TO_OR_LIVE_AT_HOME:"
+		":LIVE_AT_HOME:"))
+ (tests (notneg ?1) (or (hcr ?1 ":LIVING_SPACE:") (hcr ?1 ":HOME:"))
+		(not (hcr ?1 ":LIVING_ALONE:"))))
+
+ 
+;; 7/15/2016
+((ruleid living-at-home-with-family-indicates-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (words (":LIVE_AT_HOME:"))
+ (tests (notneg ?0)
+		("propertyValueContainsStringRecursive" ?0 "object" ":FAMILY:")))
+
+		
+((ruleid lives-with-means-not-living-alone-rule-1)
+ (concept ":NOT_LIVING_ALONE:")
+ (words (":LIVE_WITH_PERSON:"))
+ (tests (notneg ?0)))
+ 
+ 
+ ;; 12/18/2017:  Took out living alone with person concepts...
+ ((ruleid living-alone-with-family-means-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (words (
+		":FAMILY::LIVE_AT::PATIENT:"
+		":NOT_LIVING_ALONE::FAMILY::CARE:"
+		":PATIENT_AND_FAMILY::RETURN_TO_OR_LIVE_AT_HOME:"
+ 		":LIVE_AT::FRIEND:" ":LIVE_AT::LIVING_SPACE::FAMILY:" 
+ 		;;":LIVE_AT::FAMILY:" 
+		;;":LIVE_AT::NON-PATIENT-PERSON:"
+		":LIVE_AT::LIVING_SPACE::PERSON:"
+ 		":LIVE_AT::LIVING_SPACE::FRIEND:" 
+ 		":LIVE_AT::HOME::SINGLE_FAMILY_MEMBERS:"
+ 		":LIVE_AT::FAMILY::ADL_FACILITY:"
+ 		":LIVE_AT::HOME::NOT_LIVING_ALONE:"
+ 		":LIVE_AT::PROVIDER:"  ;; e.g. "live with his wife who is provider"
+ 		":LIVE_AT::ADL_FACILITY::LIVING_SPACE:"  ;; "lives in two bedroom home"
+		
+ 		":PATIENT::LIVE_AT::FRIEND:" ":PATIENT::LIVE_AT::LIVING_SPACE::FAMILY:" 
+ 		":PATIENT::LIVE_AT::FAMILY:" ":PATIENT::LIVE_AT::NON-PATIENT-PERSON:"
+ 		":PATIENT::LIVE_AT::LIVING_SPACE::FRIEND:" 
+ 		":PATIENT::LIVE_AT::HOME::SINGLE_FAMILY_MEMBERS:"
+ 		":PATIENT::LIVE_AT::FAMILY::ADL_FACILITY:"
+ 		":PATIENT::LIVE_AT::HOME::NOT_LIVING_ALONE:"
+		":PATIENT::LIVE_AT::HOME::NOT_LIVING_ALONE:"
+ 		":PATIENT::LIVE_AT::PROVIDER:"  ;; e.g. "live with his wife who is provider"
+ 		":PATIENT::LIVE_AT::ADL_FACILITY::LIVING_SPACE:"  ;; "lives in two bedroom home"
+		
+		":PERSON::LIVE_AT::PATIENT:"  ;; "she has been living with this patient
+		
+		":FAMILY::LIVE_AT::PATIENT::LIVING_SPACE:"
+		":PATIENT::NOT_LIVING_ALONE:"
+ 		))
+ (tests (notneg ?0)))
+ 
+;; if the patient lives with someone else, he does not live alone
+((ruleid lives-with-someone-means-not-living-alone-rule-1)
+  (concept ":NOT_LIVING_ALONE:")
+  (ordered true)
+  (words (":LIVE_AT:" ":SLEEP:") 
+		("_PREP_") 
+		(":FAMILY:" ":FRIEND:"))
+ (tests (notneg ?0)))
+		
+;; e.g. "daughter lives with this patient"
+((ruleid person-living-with-patient-connotes-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (ordered true)
+ (words 
+	(":FRIEND:" ":FAMILY:")
+	(":LIVE_AT:") (":PATIENT:"))
+ (tests (notneg ?1) (not (atctv ?* ("near" "mile" "close")))))
+	
+((ruleid negated-living-alone-is-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (words (":LIVING_ALONE:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+((ruleid person-at-patients-home-indicates-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (words (":PERSON_AT_PATIENTS_HOME:"))
+ (notneg ?0))
+ 
+((ruleid patient-and-spouse-reside-together-indicates-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (ordered true)
+ (words ("@patient-and-spouse-conjunct-rule@") (":LIVE_AT:")))
+ 
+((ruleid patient-unable-to-live-alone-rule-1)
+ (stype "<HOUSING_STATUS>")
+ (concept ":UNABLE_TO_LIVE_ALONE:")
+ (ordered true)
+ (words (":INABILITY::LIVING_ALONE:"))
+ (tests (notneg ?0)))
+
+((ruleid patient-unable-to-live-alone-rule-2)
+ (stype "<HOUSING_STATUS>")
+ (concept ":UNABLE_TO_LIVE_ALONE:")
+ (ordered true)
+ (words (":ABILITY::LIVING_ALONE:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+((ruleid patient-unable-to-live-alone-rule-3)
+ (stype "<HOUSING_STATUS>")
+ (concept ":UNABLE_TO_LIVE_ALONE:")
+ (ordered true)
+ (words (":PATIENT:") (":UNABLE_TO_LIVE_ALONE:"))
+ (tests (notneg ?1)))
+ 
+((ruleid person-in-patients-home-connotes-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (ordered true)
+ (words (":NON-PATIENT-PERSON:")
+		("_PREP_") 
+		(":LIVING_SPACE:")))
+		
+((ruleid safe-word-rule)
+ (concept ":SAFE:")
+ (stype "<STATE>")
+ (words ("safe")))
+ 
+((ruleid unsafe-word-rule)
+ (concept ":UNSAFE:")
+ (stype "<STATE>")
+ (words ("unsafe")))
+ 
+)

@@ -1,0 +1,66 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-live-at-home-with-family-indicates-living-at-home-rule-2-15-2017/12/04 13:42:31") 
+  (specialized) 
+  (example-snippet "discharged home with his wife and family") 
+  (ordered true) 
+  (sourceid "live-at-home-with-family-indicates-living-at-home-rule-2") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-living-at-home-or-living-space-rule-14-2017/12/04 13:27:28@") 
+    ("with") 
+    ("@AUTO-family-conjunction-rule-15-2016/06/24 23:37:32@")) 
+  (tests 
+    (notneg ?0)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-living-at-home-or-living-space-rule-16-2017/12/04 13:42:31") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "discharged home") 
+  (ordered true) 
+  (sourceid "living-at-home-or-living-space-rule") 
+  (concept ":RETURN_TO_OR_LIVE_AT_HOME:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@discharge-word-rule@") 
+    ("@home-word-rule@")))
+
+(
+  (ruleid "AUTO-family-conjunction-rule-17-2017/12/04 13:42:31") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his wife and family") 
+  (ordered true) 
+  (sourceid "family-conjunction-rule") 
+  (concept ":FAMILY:") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-possessive-thing-rule-3-2016/06/05 15:37:47@") 
+    ("and") 
+    ("@family-definition-rule@")))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-18-2017/12/04 13:42:31") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his wife") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 8.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@family-definition-rule@")) 
+  (properties 
+    (thing ?1)))
+
+)

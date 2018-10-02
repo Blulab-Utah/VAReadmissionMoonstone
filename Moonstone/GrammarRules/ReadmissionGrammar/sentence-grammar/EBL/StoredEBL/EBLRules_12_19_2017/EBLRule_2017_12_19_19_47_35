@@ -1,0 +1,52 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-6-2017/12/19 19:47:35") 
+  (specialized) 
+  (example-snippet "She provided transportation for the veteran") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@third-person-subject-word-rule@") 
+    ("@AUTO-complex_event_transportation-verb-rule-2-7-2017/12/19 19:47:35@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-complex_event_transportation-verb-rule-2-7-2017/12/19 19:47:35") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "provided transportation for the veteran") 
+  (ordered true) 
+  (sourceid "complex_event_transportation-verb-rule-2") 
+  (concept ":TRANSPORTATION:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@complex_event_transportation-verb-rule-1@") 
+    ("@AUTO-simple-pp-rule-8-2017/12/19 19:47:35@")))
+
+(
+  (ruleid "AUTO-simple-pp-rule-8-2017/12/19 19:47:35") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "for the veteran") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@patient-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

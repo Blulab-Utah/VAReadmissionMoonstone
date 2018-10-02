@@ -1,0 +1,21 @@
+'(
+wordrule
+(
+  (ruleidXXX "BOC-person-event-complex-rule-6-2017/11/30 14:17:43") 
+  (specialized) 
+  (example-snippet "no family members currently present to assist") 
+  (ordered true) 
+  (concept ":LACK_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PRE-NEGATION-WORD:") 
+    (":FAMILY:") 
+    ;;(":GENERAL_TIME:") 
+   ;; (":HERE:") 
+   ;;  ("_PREP_") 
+    (":PROVISION_OF_CARE:")) 
+  (removeproperties directionality))
+
+)

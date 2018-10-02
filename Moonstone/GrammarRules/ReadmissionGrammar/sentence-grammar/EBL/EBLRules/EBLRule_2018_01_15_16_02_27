@@ -1,0 +1,21 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-at-place-rule-2-2018/01/15 16:02:27") 
+  (specialized) 
+  (example-snippet "He was also in the Nursing Home") 
+  (ordered true) 
+  (sourceid "person-at-place-rule") 
+  (concept ":LIVE_IN_NURSING_HOME:") 
+  (stype "<STATE>") 
+  (window 16.0) 
+  (words 
+    ("@patient-subject-word-rule@") 
+    ("in") 
+    ("@nursing-home-rule-1@")) 
+  (properties 
+    (person ?0) 
+    (place ?1)) 
+  (removeproperties directionality))
+
+)

@@ -1,0 +1,52 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-post-affirmation-context-rule-0-2016/07/14 19:29:26") 
+  (specialized) 
+  (example-snippet "FAMILY SUPPORT yes") 
+  (ordered true) 
+  (sourceid "post-affirmation-context-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@family-support-is-family-support-rule@") 
+    ("yes")) 
+  (properties 
+    ("directionality" "affirmed")))
+
+(
+  (ruleid "AUTO-event-prep-thing-rule-1-2016/07/14 19:38:03") 
+  (specialized) 
+  (example-snippet "Discharged with family") 
+  (ordered true) 
+  (sourceid "event-prep-thing-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@discharge-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/07/14 19:38:03@")) 
+  (properties 
+    (event ?0) 
+    (object ?2)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-2-2016/07/14 19:38:03") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with family") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@family-definition-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

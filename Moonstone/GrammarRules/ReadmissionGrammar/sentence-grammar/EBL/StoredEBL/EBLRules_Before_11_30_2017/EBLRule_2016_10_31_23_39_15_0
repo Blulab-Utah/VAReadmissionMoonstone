@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-passive-sentence-rule-5-2016/10/31 23:39:15") 
+  (specialized) 
+  (example-snippet "children and extended family members are his main source of support") 
+  (ordered true) 
+  (concept ":HAVE_SUPPORT:") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":FAMILY:") 
+    ("_IS_") 
+    (":SUPPORT:")))
+
+)

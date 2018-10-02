@@ -1,0 +1,18 @@
+'(
+wordrule
+(
+  (ruleid "BOC-thing-from-person-rule-27-2017/12/04 23:32:15") 
+  (specialized) 
+  (example-snippet "with help from daughter") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    ("_PREP_") 
+    (":PROVISION_OF_CARE:") 
+    (":NON_SPOUSE_SINGLE_FAMILY_MEMBERS:")) 
+  (removeproperties directionality))
+
+)

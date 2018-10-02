@@ -1,0 +1,166 @@
+'(
+wordrule
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; EVENT Rules
+
+;; 9/11/2015:  Extending Event rules to cover intransitive, transitive and distransitive
+
+;; intransitive, with and without destination.
+;; transitive
+;; ditransitive
+
+;; event thing
+;; event prep thing
+;; event thing thing
+;; event thing prep thing
+
+;; 6/20/2016:  Not true of all rules...
+;; (all-rule-properties (all-rules-abstract true))
+
+((ruleid state-prep-event-rule)
+ ;; (concept ?0)
+ (complex-concept)
+ (ordered true)
+ (window 32)
+ (words ("<STATE>") ("in" "at") ("<COMPLEX_EVENT>" "<SENTENCE>")))
+ 
+((ruleid sentence-sentence-conjunction-rule)
+ (stype ?0)
+ (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<SENTENCE>") (":CONJ:") ("<SENTENCE>"))
+ (tests ("sameConcept" ?0 ?2)))
+ 
+ ;; 7/28/2016: "He reads daily to improve his education"
+ ((ruleid sentence-in-order-to-achieve-event-rule)
+  (stype ?0)
+  ;; (concept ?0)
+  (complex-concept)
+  (ordered true)
+  (window 32)
+  (words ("<SENTENCE>") ("to" "in order to") ("<COMPLEX_EVENT>"))
+  (relations (enables ?0 ?2)))
+  
+
+;; e.g. "He was visited today by his brother"
+((ruleid passive-sentence-rule)
+ (stype "<PASSIVE_SENTENCE>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("<PERSON>") ("<PASSIVE_EVENT>"))
+ (properties (subject ?0) (event (event ?1))))
+
+;; e.g. "was visited today"
+((ruleid passive-event-rule)
+ (stype "<PASSIVE_EVENT>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("_IS_") ("<EVENT>" "<COMPLEX_EVENT>"))
+ (properties (event ?1)))
+ 
+ ;; e.g. "was visited today by his brother"
+((ruleid passive-event-with-actor-rule)
+ (stype "<PASSIVE_EVENT>")
+ (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<PASSIVE_EVENT>") ("by") ("<PERSON>"))
+ (properties (event (event ?0)) (actor ?2)))
+ 
+;; e.g. "Give his son a book"
+((ruleid ditransitive-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+;; (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("<THING>") ("<THING>"))
+ (properties (event ?0) (direct_object ?1) (indirect_object ?2))
+ (tests (not ("annotationHasType" ?2 "<PERSON>"))))
+
+;; e.g. "Gave a book to his son"
+((ruleid dative-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+;; (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("<THING>") ("@simple-pp-rule@"))
+ (properties (event ?0) (direct_object ?1) (indirect_object (object ?2))))
+ 
+((ruleid event-prep-thing-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+;; (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("@simple-pp-rule@"))
+ (properties (event ?0) (object ?2)))
+ 
+((ruleid event-thing-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+ ;; (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("<THING>"))
+ (properties (event ?0) (object ?1)))
+  
+((ruleid person-event-rule) 
+ (stype "<SENTENCE>")
+ ;; (concept ?1)
+ (complex-concept) ;; -- Statements are all about patient...
+ (ordered true)
+ (window 32) 
+ (words ("<PERSON>") ("<EVENT>" "<COMPLEX_EVENT>")) 
+ (properties (subject ?0) (event ?1)))
+
+((ruleid event-time-rule) 
+  (stype "<COMPLEX_EVENT>") 
+  (concept ?0)
+  (window 32) 
+  (words 
+    ("<EVENT>" "<COMPLEX_EVENT>") 
+    ("<TIME_EXPRESSION>")) 
+  (properties 
+    (event ?0) 
+    (time ?1)))
+
+((ruleid person-want-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?1)
+ (words (":DESIRE:" ":PLAN:") ("<THING>" "<COMPLEX_EVENT>"))
+ (properties (object ?1)))
+
+((ruleid patient-communication-event-affirmed)
+ (stype "<COMMUNICATION>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words (":AFFIRMATIVE_COMMUNICATION:") ("<SENTENCE>"))
+ (properties (communication true)))
+
+((ruleid communication-event-negated)
+ (stype "<COMMUNICATION>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words (":NEGATIVE_COMMUNICATION:") ("<SENTENCE>"))
+ (properties (communication true) (directionality negated)))
+ 
+;; "Patient advised this writer that he lives alone"
+((ruleid affirmation-to-person-of-event-rule)
+ (stype "<COMMUNICATION>")
+ (concept ?2)
+ (ordered true)
+ (window 32)
+ (words (":AFFIRMATIVE_COMMUNICATION:") 
+ 		("<PERSON>") 
+ 		("<SENTENCE>"))
+ (properties (communication true) (directionality affirmed)))
+
+)

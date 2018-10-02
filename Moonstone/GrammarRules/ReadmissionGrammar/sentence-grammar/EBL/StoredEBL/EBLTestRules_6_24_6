@@ -1,0 +1,232 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-6-2016/06/24 23:30:44") 
+  (specialized) 
+  (example-snippet "he is now living back in his home with neighbor assistance") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@male-word-rule@") 
+    ("@AUTO-dative-event-rule-7-2016/06/24 23:30:44@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-dative-event-rule-7-2016/06/24 23:30:44") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "living back in his home with neighbor assistance") 
+  (ordered true) 
+  (sourceid "dative-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-8-2016/06/24 23:30:44@") 
+    ("@AUTO-simple-pp-rule-10-2016/06/24 23:30:44@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object 
+      (object ?2))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-8-2016/06/24 23:30:44") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in his home") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-9-2016/06/24 23:30:44@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-9-2016/06/24 23:30:44") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his home") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@living-space-rule@")) 
+  (properties 
+    (person ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-10-2016/06/24 23:30:44") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with neighbor assistance") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-person-providing-care-rule-11-2016/06/24 23:30:44@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-person-providing-care-rule-11-2016/06/24 23:30:44") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "neighbor assistance") 
+  (sourceid "person-providing-care-rule") 
+  (concept ":PROVISION_OF_CARE:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@friend-rule@") 
+    ("@general-provide-care-rule@")) 
+  (tests 
+    (notneg ?1)))
+
+(
+  (ruleid "AUTO-passive-sentence-rule-12-2016/06/24 23:37:32") 
+  (specialized) 
+  (example-snippet "patient is cared for by both his wife and step daughter") 
+  (ordered true) 
+  (sourceid "passive-sentence-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-passive-event-rule-13-2016/06/24 23:37:32@")) 
+  (properties 
+    (subject ?0) 
+    (event 
+      (event ?1))))
+
+(
+  (ruleid "AUTO-passive-event-rule-13-2016/06/24 23:37:32") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "is cared for by both his wife and step daughter") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-event-thing-rule-14-2016/06/24 23:37:32@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-14-2016/06/24 23:37:32") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "cared for by both his wife and step daughter") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@care-rule-1@") 
+    ("@AUTO-family-conjunction-rule-15-2016/06/24 23:37:32@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-family-conjunction-rule-15-2016/06/24 23:37:32") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his wife and step daughter") 
+  (ordered true) 
+  (sourceid "family-conjunction-rule") 
+  (concept ":FAMILY:") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-possessive-thing-rule-3-2016/06/05 15:37:47@") 
+    ("and") 
+    ("@family-definition-rule@")))
+
+(
+  (ruleid "AUTO-person-event-rule-17-2016/06/24 23:40:23") 
+  (specialized) 
+  (example-snippet "Patient has someone to assist at home") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-event-thing-rule-18-2016/06/24 23:40:23@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-18-2016/06/24 23:40:23") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "someone to assist at home") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-general-provide-care-rule-19-2016/06/24 23:40:23@") 
+    ("@AUTO-simple-pp-rule-45-2016/06/24 20:49:43@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-general-provide-care-rule-19-2016/06/24 23:40:23") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "someone to assist") 
+  (sourceid "general-provide-care-rule") 
+  (concept ":PROVISION_OF_CARE:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-person-event-rule-20-2016/06/24 23:40:23@")))
+
+(
+  (ruleid "AUTO-person-event-rule-20-2016/06/24 23:40:23") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "someone to assist") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept "?1") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@someone-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/03 19:44:13@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+)

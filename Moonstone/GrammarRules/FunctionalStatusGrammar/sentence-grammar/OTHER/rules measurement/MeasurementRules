@@ -1,0 +1,16 @@
+'(measurementrule
+  
+((ruleid temperature-rule)
+ (stype "<SIGN OR SYMPTOM>")
+ (concept ":FEVER:")
+ (window 8) 
+ (ordered true)
+ (words ("temperature" "temp") ("<NUMBER>"))
+ (localvar (?num  ("getNumericValue" ?1)))
+ (tests (and (> ?num 90) (<= ?num 110)))
+ (properties 
+    ("directionality" 
+        (if (>= ?num 101) "present" "negated"))))
+
+ 
+)

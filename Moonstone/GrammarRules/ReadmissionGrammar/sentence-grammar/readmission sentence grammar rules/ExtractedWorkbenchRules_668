@@ -1,0 +1,687 @@
+'(
+wordrule
+
+;; 4/22/2016:  Removed all interstitial permissions
+(
+  (ruleid tentative685) 
+  (concept ":ADL_NO_ASSISTANCE_WITH_ADLS:") 
+  (snippet " independent with ADLs") 
+  (words 
+    ("independent") 
+    ("adls")) 
+  (properties 
+    ("ADL_TYPE" "Independent") 
+    ("FUNCTIONALSTATUS" "Does not need assistance with ADLs/independent") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative680) 
+  (concept ":ADL_DIFFICULTY_AMBULATING:") 
+  (snippet " Assisted patient to bathroom") 
+  (words 
+    ("assisted") 
+    ("patient") 
+    ("bathroom")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Needs assistance/difficulty ambulating") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative648) 
+  (concept ":ADL_FALLS:") 
+  (snippet "high risk falls") 
+  (words 
+    ("high") 
+    ("risk") 
+    ("falls")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "History of falls/recent falls") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative649) 
+  (concept ":ADL_AMBULATES_WITHOUT_ASSISTANCE:") 
+  (snippet " Gait steady") 
+  (words 
+    ("gait") 
+    ("steady")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Ambulates without assistance/independently") 
+    ("Template" "narrative")) 
+  )
+
+;;;;;;;;;;;;;;
+
+(
+  (ruleid tentative733) 
+  (concept ":ADL_USES_CANE_WALKER_WHEELCHAIR:") 
+  (snippet "Ambulatory using cane ... with assistance") 
+  (words 
+    ("ambulatory") 
+    ("using") 
+    ("cane") 
+    ("assistance")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Uses cane/walker/wheelchair") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleidXXX tentative646) 
+  (concept ":POSSIBLE_LACK_SUPPORT:") 
+  (snippet "caregiver NO") 
+  (words 
+    ("caregiver" "care giver") 
+    ("no")) 
+  (properties 
+    ("SOCIALSUPPORT" "no social support") 
+    ("Template" "Q&A")))
+
+(
+  (ruleidXXXX tentative646) 
+  (concept ":POSSIBLE_LACK_SUPPORT:") 
+  (snippet "caregiver NO") 
+  (words 
+    ("caregiver") 
+    ("no")) 
+  (properties 
+    ("SOCIALSUPPORT" "no social support") 
+    ("Template" "Q&A")) 
+  )
+
+(
+  (ruleid tentative694) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Wife was very attentive") 
+  (words 
+    ("wife") 
+    ("very") 
+    ("attentive")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  )
+  
+(
+  (ruleid tentative616) 
+  (concept ":ADL_AMBULATES_WITHOUT_ASSISTANCE:") 
+  (snippet " steady gait") 
+  (words 
+    ("steady") 
+    ("gait")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "Ambulates without assistance/independently") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative704) 
+  (concept ":ADL_UNCLEAR:") 
+  (snippet "gait unremarkable") 
+  (words 
+    ("gait") 
+    ("unremarkable")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "no mention/unclear") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative644) 
+  (concept ":ADL_NO_FALLS:") 
+  (snippet "No falls") 
+  (words 
+    ("no") 
+    ("falls")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "No history of falls") 
+    ("Template" "narrative")) 
+  )
+  
+(
+  (ruleid tentative752) 
+  (concept ":ADL_IMPAIRMENT:") 
+  (snippet "incontinent of urine") 
+  (words 
+    ("incontinent") 
+    ("urine")) 
+  (properties 
+    ("ADL_TYPE" "Toileting") 
+    ("FUNCTIONALSTATUS" "Needs assistance with some ADLs") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative750) 
+  (concept ":ADL_FALLS:") 
+  (snippet "No new falls since 5/9/09") 
+  (words 
+    ("no") 
+    ("new") 
+    ("falls")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "History of falls/recent falls") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative745) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet "talks to all his children almost daily") 
+  (words 
+    ("talks") 
+    ("all") 
+    ("his") 
+    ("children") 
+    ("almost") 
+    ("daily")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative721) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet "Has help with chores") 
+  (words 
+    ("has") 
+    ("help") 
+    ("chores")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative700) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (snippet "With whom do you live ... wife") 
+  (words 
+    ("whom") 
+    ("do") 
+    ("you") 
+    ("live") 
+    ("wife")) 
+  (properties 
+    ("LIVINGALONE" "does not live alone") 
+    ("Template" "Q&A")) 
+  )
+
+(
+  (ruleid tentative673) 
+  (concept ":POOR_HISTORIAN:") 
+  (snippet " poor historian") 
+  (words 
+    ("poor") 
+    ("historian")) 
+  (properties 
+    ("Template" "narrative") 
+    ("COGNITIVEIMPAIRMENT" "poor historian")) 
+  )
+
+(
+  (ruleid tentative671) 
+  (concept ":LIVING_ALONE:") 
+  (snippet " Lives alone") 
+  (words 
+    ("lives") 
+    ("alone")) 
+  (properties 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative749) 
+  (concept ":POSSIBLE_LACK_SUPPORT:") 
+  (snippet "family is not yet engaged") 
+  (words 
+    ("family") 
+    ("not") 
+    ("yet") 
+    ("engaged")) 
+  (properties 
+    ("SOCIALSUPPORT" "no social support") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative735) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Family support Yes") 
+  (words 
+    ("family") 
+    ("support") 
+    ("yes")) 
+  (properties 
+    ("Template" "Q&A")) 
+  )
+
+(
+  (ruleid tentative668) 
+  (concept ":ADL_NO_FALLS:") 
+  (snippet " Fall incident since last visit no") 
+  (words 
+    ("fall") 
+    ("incident") 
+    ("last") 
+    ("visit") 
+    ("no")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "No history of falls") 
+    ("Template" "Q&A")) 
+  )
+
+(
+  (ruleid tentative705) 
+  (concept ":ASSISTED_LIVING:") 
+  (snippet " Heritage Woods would not readmit her father") 
+  (words 
+    ("heritage") 
+    ("woods") 
+    ("would") 
+    ("not") 
+    ("readmit") 
+    ("her") 
+    ("father")) 
+  (properties 
+    ("HOMELESSNESS" "assisted living") 
+    ("Template" "narrative")) 
+  )
+
+;;;;;;;;;;;;;;
+
+(
+  (ruleid tentative689) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Veteran is well supported") 
+  (words 
+    ("veteran") 
+    ("well") 
+    ("supported")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative688) 
+  (concept ":POSSIBLE_LACK_SUPPORT:") 
+  (snippet "Two attempts to reach the patient's wife were made; she was not in the SICU waiting room either time") 
+  (words 
+    ("two") 
+    ("attempts") 
+    ("reach") 
+    ("wife") 
+    ("she") 
+    ("not") 
+    ("sicu") 
+    ("waiting") 
+    ("room") 
+    ("either") 
+    ("time")) 
+  (properties 
+    ("SOCIALSUPPORT" "no social support") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative725) 
+  (concept ":ADL_IMPAIRMENT:") 
+  (snippet " assisted to a sitting position") 
+  (words 
+    ("assisted") 
+    ("sitting") 
+    ("position")) 
+  (properties 
+    ("ADL_TYPE" "Transferring") 
+    ("FUNCTIONALSTATUS" "Needs assistance with some ADLs") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative751) 
+  (concept ":ADL_DIFFICULTY_AMBULATING:") 
+  (snippet "Pt. back to bed w/ assistance") 
+  (words 
+    ("back") 
+    ("bed") 
+    ("assistance")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Needs assistance/difficulty ambulating") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative669) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " daughter POA") 
+  (ordered true)
+  (words 
+    (":FAMILY:") 
+    ("poa")) 
+  (properties 
+    ("Template" "narrative")) 
+  )
+  
+(
+  (ruleid tentative663) 
+  (concept ":ADL_NO_FALLS:") 
+  (snippet " denied falls during that time") 
+  (words 
+    ("denied") 
+    ("falls") 
+    ("that") 
+    ("time")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "No history of falls") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative731) 
+  (concept ":ADL_DIFFICULTY_AMBULATING:") 
+  (snippet " pt. require assistance") 
+  (words 
+    ("require") 
+    ("assistance")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Needs assistance/difficulty ambulating") 
+    ("Template" "narrative")) 
+  )
+  
+(
+  (ruleid tentative633) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (snippet " Lives with/at: Wife at home") 
+  (words 
+    ("lives") 
+    ("wife") 
+    ("home")) 
+  (properties 
+    ("LIVINGALONE" "does not live alone") 
+    ("HOMELESSNESS" "lives at home") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative661) 
+  (concept ":ADL_USES_NO_CANE_WALKER_WHEELCHAIR:") 
+  (snippet "Antalgic gait") 
+  (words 
+    ("antalgic") 
+    ("gait")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Does not use cane/walker/wheelchair") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative651) 
+  (concept ":ADL_AMBULATES_WITHOUT_ASSISTANCE:") 
+  (snippet "pt ambulate to bathroom no problems") 
+  (words 
+    ("pt") 
+    ("ambulate") 
+    ("bathroom") 
+    ("no") 
+    ("problems")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Ambulates without assistance/independently") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative632) 
+  (concept ":ADL_AMBULATES_WITHOUT_ASSISTANCE:") 
+  (snippet " ambulates to bathroom") 
+  (words 
+    ("ambulates") 
+    ("bathroom")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Ambulates without assistance/independently") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative697) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Family brought him to the emergency room") 
+  (words 
+    ("family") 
+    ("brought") 
+    ("him") 
+    ("emergency") 
+    ("room")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  )
+  
+(
+  (ruleid tentative631) 
+  (concept ":NURSING_HOME:") 
+  (snippet "residential rehabilitation setting") 
+  (words 
+    ("residential") 
+    ("rehabilitation") 
+    ("setting")) 
+  (properties 
+    ("HOMELESSNESS" "nursing home") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative726) 
+  (concept ":ADL_NO_ASSISTANCE_WITH_ADLS:") 
+  (snippet " IND ADLS") 
+  (words 
+    ("ind") 
+    ("adls")) 
+  (properties 
+    ("ADL_TYPE" "Independent") 
+    ("FUNCTIONALSTATUS" "Does not need assistance with ADLs/independent") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative753) 
+  (concept ":ADL_FALLS:") 
+  (snippet "recent fall") 
+  (words 
+    ("recent") 
+    ("fall")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "History of falls/recent falls") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative757) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Assistance from friends available") 
+  (words 
+    ("assistance") 
+    ("friends") 
+    ("available")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "Q&A")) 
+  )
+
+(
+  (ruleid tentative736) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (snippet " Lives alone No") 
+  (words 
+    ("lives") 
+    ("alone") 
+    ("no")) 
+  (properties 
+    ("Template" "Q&A")) 
+  )
+
+(
+  (ruleid tentative747) 
+  (concept ":ASSISTED_LIVING:") 
+  (snippet "Assisted Living home") 
+  (words 
+    ("assisted") 
+    ("living") 
+    ("home")) 
+  (properties 
+    ("HOMELESSNESS" "assisted living") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative678) 
+  (concept ":ADL_USES_CANE_WALKER_WHEELCHAIR:") 
+  (snippet " walks with a cane") 
+  (words 
+    ("walks") 
+    ("cane")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Uses cane/walker/wheelchair") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative687) 
+  (concept ":ADL_NO_FALLS:") 
+  (snippet "falls No") 
+  (words 
+    ("falls") 
+    ("no")) 
+  (properties 
+    ("FUNCTIONALSTATUS" "No history of falls") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative636) 
+  (concept ":ADL_AMBULATES_WITHOUT_ASSISTANCE:") 
+  (snippet "Up ad lib independently") 
+  (words 
+    ("ad") 
+    ("lib") 
+    ("independently")) 
+  (properties 
+    ("ADL_TYPE" "Independent") 
+    ("FUNCTIONALSTATUS" "Ambulates without assistance/independently") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative756) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Assistance from family members available") 
+  (words 
+    ("assistance") 
+    ("family") 
+    ("members") 
+    ("available")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "Q&A")) 
+  )
+
+(
+  (ruleid tentative728) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (snippet " Pt and family were educated") 
+  (ordered true)
+  (words 
+    ("pt" "patient") 
+	("and")
+    ("family") 
+    ("educated")) 
+  (properties 
+    ("SOCIALSUPPORT" "has social support") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative652) 
+  (concept ":ADL_AMBULATES_WITHOUT_ASSISTANCE:") 
+  (snippet " ambulating with steady gait") 
+  (words 
+    ("ambulating") 
+    ("steady") 
+    ("gait")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Ambulates without assistance/independently") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative621) 
+  (concept ":ADL_IMPAIRMENT:") 
+  (snippet " Assist with adls prn") 
+  (words 
+    ("assist") 
+    ("adls") 
+    ("prn")) 
+  (properties 
+    ("ADL_TYPE" "Some") 
+    ("FUNCTIONALSTATUS" "Needs assistance with some ADLs") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative645) 
+  (concept ":ADL_NO_ASSISTANCE_WITH_ADLS:") 
+  (snippet "No problems with b/b") 
+  (words 
+    ("no") 
+    ("problems")) 
+  (properties 
+    ("ADL_TYPE" "Bathing") 
+    ("FUNCTIONALSTATUS" "Does not need assistance with ADLs/independent") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleid tentative630) 
+  (concept ":ADL_DIFFICULTY_AMBULATING:") 
+  (snippet "ambulated from the bed to the bedside commode with moderate assistance") 
+  (words 
+    ("ambulated") 
+    ("bed") 
+    ("bedside") 
+    ("commode") 
+    ("moderate") 
+    ("assistance")) 
+  (properties 
+    ("ADL_TYPE" "Walking") 
+    ("FUNCTIONALSTATUS" "Needs assistance/difficulty ambulating") 
+    ("Template" "narrative")) 
+  )
+
+(
+  (ruleidXXX tentative720) 
+  (concept ":LIVING_ALONE:") 
+  (snippet "Living alone") 
+  (words 
+    ("living") 
+    ("alone")) 
+  (properties 
+    ("LIVINGALONE" "living alone") 
+    ("Template" "narrative")) 
+  )
+
+
+)

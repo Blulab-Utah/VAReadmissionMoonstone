@@ -1,0 +1,16 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-there-is-thing-rule-3-2016/06/06 13:20:47") 
+  (specialized) 
+  (example-snippet "there is support for this veteran") 
+  (ordered true) 
+  (sourceid "there-is-thing-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("there is") 
+    ("@care-or-support-for-patient-rule@")))
+
+)

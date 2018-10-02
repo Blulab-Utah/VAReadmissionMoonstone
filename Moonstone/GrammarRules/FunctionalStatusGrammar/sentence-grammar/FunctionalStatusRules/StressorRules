@@ -1,0 +1,20 @@
+'(
+wordrule
+
+((ruleid general-social-stressor-rule)
+ (stype ?0)
+ (concept ?0)
+ (concept ":POSSIBLE_SOCIAL_STRESSOR:")
+ (words (":DEATH:" ":CRISIS:" ":DOMESTIC_VIOLENCE:" 
+		":DIVORCE:" ":UNEMPLOYED:" ":LGBT:")))
+
+((ruleid struggle-phrase-rule)
+  (stype "<EVENT_THING>")
+  (concept ":STRUGGLE:")
+  (ordered true)
+  (words ("struggle" "struggled" "struggling" "trouble" "troubled"
+  			"difficult" "difficulty" "sad" "saddened")
+  		 ("with" "about" "by")))
+
+
+)

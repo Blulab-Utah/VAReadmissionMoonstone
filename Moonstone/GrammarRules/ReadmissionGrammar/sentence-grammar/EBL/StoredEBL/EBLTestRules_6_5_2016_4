@@ -1,0 +1,85 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-event-thing-rule-0-2016/06/05 21:11:35") 
+  (specialized) 
+  (example-snippet "check up on him") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept ":PROVISION_OF_CARE:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@check-up-on-word-rule@") 
+    ("@patient-rule-1@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-1-2016/06/05 21:12:24") 
+  (specialized) 
+  (example-snippet "neighbors will check up on him") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@friend-rule@") 
+    ("@AUTO-event-thing-rule-2-2016/06/05 21:12:24@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-2-2016/06/05 21:12:24") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "check up on him") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@check-up-on-word-rule@") 
+    ("@patient-rule-1@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-3-2016/06/05 21:14:27") 
+  (specialized) 
+  (example-snippet "neighbors will check up on him") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@friend-rule@") 
+    ("@AUTO-event-thing-rule-4-2016/06/05 21:14:27@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-4-2016/06/05 21:14:27") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "check up on him") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@check-up-on-word-rule@") 
+    ("@patient-rule-1@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+)

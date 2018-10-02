@@ -1,0 +1,185 @@
+'(
+wordrule
+
+;;; RULES BEFORE 3/4/2016 REWRITE!!!!!!!
+
+((ruleid no-one-to-provide-care-implies-lack-of-support-rule-old)
+ (concept ":POSSIBLE_LACK_SUPPORT:")
+ (words (":NO-ONE:") (":CARE:" ":PROVIDE_CARE:" ":TRANSPORTATION:"))
+ (tests (notneg ?1)))
+ 
+((ruleid no-one-providing-support-implies-lack-of-support-rule-old)
+ (concept ":POSSIBLE_LACK_SUPPORT:")
+ (words (":NO-ONE:") (":POSSIBLE_SUPPORT:"))
+ (tests (notneg ?1)))
+ 
+((ruleid social-isolation-rule-old)
+ (concept ":POSSIBLE_LACK_SUPPORT:")
+ (states-target true)
+ (words ("social isolation" "socially isolated")))
+ 
+;; 3/4/2016, e.g. "returned with family"
+((ruleid travel-with-family-suggests-social-support-rule-old)
+ (concept ":POSSIBLE_SUPPORT:")
+ (ordered true)
+ (words (":TRANSPORTATION:" ":MOVE_TO:" ":ACCOMPANY:" 
+			"travel" "go" "went" "gone" "return" "returned") 
+		(":FAMILY:" ":PATIENT_AND_FAMILY:")))
+ 
+ ;; Removed 4/4/2016
+((ruleidXXX inability-or-lack-of-care-indicates-lack-of-support-rule)
+ (concept ":POSSIBLE_LACK_SUPPORT:")
+ (ordered true)
+ (words (":INABILITY:" ":LACK:") (":CARE:" ":PROVIDE_CARE:"))
+ (tests (notneg ?0) (notneg ?1)))
+ 
+;; e.g. "lives with son" (removed per Salomeh 3/4/2016)
+((XXXruleid living-with-someone-indicates-social-support-rule-1)
+ (concept ":POSSIBLE_SUPPORT:")
+ (ordered true)
+ (words (":LIVE_AT:" ":SLEEP:") (":FAMILY:" ":FRIEND:")))
+ 
+ ;; 2/9/2016; e.g. "lives with son"
+((XXXruleid living-with-someone-indicates-social-support-rule-2) 
+  (concept ":POSSIBLE_SUPPORT:")
+  (words ("@event-thing-rule@")) 
+  (subpattern (":LIVE_AT:" ":SLEEP:") 
+				(":FAMILY:" ":FRIEND:" ":SINGLE_FAMILY_MEMBERS:" 
+					":MULTI_FAMILY_MEMBERS:")))
+ 
+((ruleidXXX patient-not-well-supported-general-rule)
+ (concept ":POSSIBLE_LACK_SUPPORT:")
+ (ordered true)  ;; ADDED 2/10/2016
+ (words ("<PERSON>") (":HELP:" ":CARE:" ":PROVIDE_CARE:"))
+ (tests (neg ?1))
+ (removeproperties directionality))
+ 
+ 
+;; e.g. "caregiver status: no caregiver"
+((ruleid caregiver-status-no-caregiver-indicates-lack-support-rule-old)
+ (concept ":POSSIBLE_LACK_SUPPORT:")
+ (ordered true)
+ (words ("caregiver") ("status") (":POSSIBLE_LACK_SUPPORT:")))
+;;;;;;;;;;;;;;;;;;;;;;
+;; Concepts:  care, caregiver, provide, receive, need, help
+;; Types: has-care, lacks-care
+
+;; Disabled 4/4/2016
+((ruleidXXX lack-of-family-help-indicates-lack-of-support-rule)
+  (concept ":POSSIBLE_LACK_SUPPORT:")
+  (ordered true)
+  (window 32)
+  (words (":FAMILY:" ":FRIEND:" ":MULTI_FAMILY_MEMBERS:") (":HELP:" ":CARE:"))
+  (tests (neg ?1))
+  (removeproperties directionality))
+
+;; e.g. "wife at bedside"
+((ruleidXXX family-or-friends-at-bedside-indicates-support-rule)
+  (concept ":POSSIBLE_SUPPORT:")
+  (ordered true)
+  (words (":FAMILY:" ":FRIEND:" ":POSSIBLE_SUPPORT:" ":PROVISION_OF_CARE:") (":BEDSIDE:"))
+  (tests (notneg ?0)))
+  
+;; e.g. "family brought him to clinic"
+((ruleid family-provides-transport-to-medical-facility-indicates-support-old)
+  (concept ":POSSIBLE_SUPPORT:")
+  (words (":FAMILY:" ":FRIEND:") 
+		(":TRANSPORTATION:" ":ACCOMPANY:" ":SEND:") 
+		(":MEDICAL_FACILITY:" ":CAREGIVER:")))
+  
+;; e.g. "spoke with patient and his daughter"
+((ruleid interact-with-patient-and-family-indicates-support-rule-old)
+  (concept ":POSSIBLE_SUPPORT:")
+  (ordered true)
+  (words (":INTERACT_WITH:") (":PATIENT_AND_FAMILY:")))
+ 
+((ruleid family-going-home-indicates-they-came-with-veteran-rule-old)
+  (concept ":POSSIBLE_SUPPORT:")
+  (ordered true)
+  (words (":FAMILY:" ":PATIENT_AND_FAMILY:") ("go" "gone" "went") ("home")))
+
+;; e.g. "discharge home with daughter"
+((ruleid discharge-home-with-family-member-indicates-support-rule-old)
+  (concept ":POSSIBLE_SUPPORT:")
+  (words (":DISCHARGE:") (":LIVING_SPACE:") (":FAMILY:")))
+ 
+ ;; "spouse currently at his bedside"
+((ruleid family-with-patient-rule)
+ (concept ":FAMILY_WITH_PATIENT:")
+ (ordered true)
+ (words (":FAMILY:" ":MULTI_FAMILY_MEMBERS:" ":PATIENT_AND_FAMILY:") 
+		("_PREP_") 
+		(":LIVING_SPACE:" ":PATIENT:" ":RESTING_PLACE:")))
+  
+;; 1/14/2016
+;; e.g. "accompanied by his wife", "sent by family"
+((ruleid accompanied-by-indicates-social-support-rule-old)
+ (concept ":POSSIBLE_SUPPORT:")
+ (ordered true)
+ (words (":ACCOMPANY:" ":SEND:" ":TRANSPORTATION:") (":FAMILY:" ":PATIENT_AND_FAMILY:" ":FRIEND:")))
+
+((ruleid not-having-comparion-is-lacking-companion-rule)
+ (concept ":LACK_COMPANION:")
+ (window 16)
+ (words (":HAVE_COMPANION:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+
+((ruleid have-companion-rule-1)
+ (concept ":HAVE_COMPANION:")
+ (words (":LIVE_WITH_PERSON:" ":FAMILY_WITH_PATIENT:" ":PERSON_WITH_PATIENT:" ":FAMILY_LIVE_WITH:"))
+ (tests (not ("isNegated" ?0))))
+  
+ ;; e.g. "care for the patient"
+((ruleid care-for-the-patient-event-rule)
+ (concept ":PROVIDE_CARE:")
+ (words ("@event-thing-rule@"))
+ (specialization (":CARE:" ":PROVIDE_CARE") ("<PERSON>" ":PATIENT:")))
+ 
+;; "the care the patient needs"
+((ruleid care-the-patient-needs-rule)
+ (concept ":CARE:")
+ (window 16)
+ (ordered true)
+ (words (":CARE:") (":PATIENT:") (":NEED:")))
+ 
+;; e.g. "patient has no needs"
+((ruleid no-needs-rule-1)
+ (concept ":NO_NEEDS:")
+ (window 32)
+ (words (":NEED:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+
+;; TRANSPORTATION
+
+;; 2/1/2016 (some redundance here...)
+((ruleid providing-transportation-is-giving-support-rule-old)
+ (concept ":POSSIBLE_SUPPORT:")
+ (words (":NON-PATIENT-PERSON:") (":PROVIDE:") (":PATIENT:") (":TRANSPORTATION:")))
+ 
+
+((ruleid helping-is-providing-care-rule) 
+ (concept ":PROVIDE_CARE:")
+ (words ("@person-thing-rule@" "@person-event-rule@"))
+ (specialization (":NON-PATIENT-PERSON:") 
+ 				 (":TRANSPORTATION:" ":PROVIDE_CARE:" ":RESOURCE:" 
+ 				   ":ADL_ACTIVITY:" ":THERAPY:"))
+(tests (hcr ?0 ":PATIENT:")))
+ 
+  ;; "pick up the patient"
+((ruleid provide-transportation-to-patient-rule-2-old)
+ (concept ":TRANSPORTATION:")
+ (ordered true)
+ (words ("@transportation-verb-rule-1@") (":PATIENT:"))
+ (properties (object ?1)))
+
+((ruleid compound-transportation-rule-old)
+ (concept ":TRANSPORTATION:")
+ (words (":TRANSPORTATION:") (":TRANSPORTATION:")))
+ 
+
+
+ 
+	
+)

@@ -1,0 +1,10 @@
+'(
+wordrule
+
+;; e.g. "no problems with transportation"
+ ((ruleid pseudo-negation-rule)
+  (concept ?1)
+  (words ("no problem" "no problems") (?interpreted))
+  (properties (directionality affirmed)))
+
+)

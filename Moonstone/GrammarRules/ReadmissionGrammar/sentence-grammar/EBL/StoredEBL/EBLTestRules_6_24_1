@@ -1,0 +1,20 @@
+'(
+wordrule
+(
+  (ruleid "BOC-person-event-rule-0-2016/06/24 09:11:51") 
+  (specialized) 
+  (example-snippet "children visiting from out of state for support") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":MULTI_FAMILY_MEMBERS:") 
+    (":VISIT:") 
+    ("_PREP_") 
+    (":PROVISION_OF_CARE:")))
+
+
+
+)

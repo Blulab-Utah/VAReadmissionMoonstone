@@ -1,0 +1,416 @@
+'(
+wordrule
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Marginal housing
+((ruleid not-homeless-but-unable-to-pay-rent-connotes-marginal-housing-sentence-rule)
+ (concept ":MARGINALLY_HOUSED:")
+ (words (":NOT_HOMELESS:") (":UNABLE_PAY_RENT:"))
+ (tests (notneg ?1)))
+
+((ruleid live-in-non-living-space-is-marginal-living-rule)
+ (concept ":MARGINALLY_HOUSED:")
+ (ordered true)
+ (words (":LIVE_AT:" ":SLEEP:" ":STAY_AT:" ":LIVING_ALONE:") 
+		(":TEMPORARY_LIVING:" ":CHARITABLE_HOUSING:"
+		":CHARITY:" ":CHARITABLE_HOUSING:" 
+		":NON-PATIENT-NON-HOME-LIVING-SPACE:" ":MARGINAL_LIVING_SPACE:")))
+		
+((ruleid marginal-housing-phrase-word-rule) 
+ (concept ":MARGINALLY_HOUSED:")
+ (states-target true)
+ (words ("couch surfs" "couch surfing" "unstably housed" "housed unstably" "housing unstable" "housing is unstable" "housing situation unstable")))
+ 
+ ;; Three rules added 6/21/2017
+((ruleid stable-housing-phrase-rule)
+ (concept ":STABLE_HOUSING:")
+ (words (":STABLE:") (":HOUSING:")))
+ 
+((ruleid unstable-housing-phrase-rule)
+ (concept ":UNSTABLE_HOUSING:")
+ (words (":UNSTABLE:") (":HOUSING:")))
+ 
+ ((ruleid negated-stable-housing-phrase-rule)
+  (concept ":UNSTABLE_HOUSING:")
+  (words (":STABLE_HOUSING:"))
+  (tests (neg ?0))
+  (removeproperties directionality))
+ 
+ ;; 6/2/2017:  There are "staying with friends"-type sentences, but they never connote homelessness in the training documents.
+ ;; Sleeping / staying with friends connotes marginal housing.
+((ruleidXXX stay-with-friend-indicates-marginal-housing-rule-1)
+ (concept ":MARGINALLY_HOUSED:")
+ (ordered true)
+ (words (":SLEEP:" ":STAY_AT:" ":LIVE_AT:") 
+		(":FRIEND:")))
+		
+((ruleidXXXX stay-with-friend-indicates-marginal-housing-rule-2)
+ (concept ":MARGINALLY_HOUSED:")
+ (words (":SLEEP:" ":STAY_AT:" ":LIVE_AT:") 
+		(":FRIEND:")
+		(":MARGINAL_LIVING_SPACE:")))
+ 
+((ruleid marginal-housing-complex-concept-rule)
+ (concept ":MARGINALLY_HOUSED:")
+ (words (":PATIENT::MARGINALLY_HOUSED:"
+		":PATIENT::UNABLE_PAY_RENT:")))
+		
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Living at home
+
+((ruleid living-alone-at-home-with-two-targets-rule)
+  (stype ?0)
+  (concept ":LIVE_AT_HOME:")
+  (ordered true)
+  (words (":LIVING_ALONE:") (":HOME:"))
+  (tests (notneg ?0)))
+
+;; 7/15/2016:  "e.g. "lives at home with wife"
+((ruleidXXX not-living-alone-at-home-indicates-living-at-home-rule)
+ (concept ":LIVE_AT_HOME:")
+ (words (":NOT_LIVING_ALONE:"))
+ (tests (notneg ?0)
+		("propertyValueContainsStringRecursive" ?0 "object" ":LIVING_SPACE:")))
+		
+((ruleid not-living-alone-at-home-indicates-living-at-home-rule)
+ (concept ":LIVE_AT_HOME:")
+ (words (":NOT_LIVING_ALONE:"))
+ (tests (notneg ?0)
+		(or (hcr ?0 ":LIVING_SPACE:")
+			(hcr ?0 ":HOME:"))))
+		
+		
+;; 8/1/2017 TEST:  "lives alone in an apartment"
+((ruleid living-alone-at-living-space-connotes-living-at-home-rule)
+ (concept ":LIVE_AT_HOME:")
+ (specialized)
+ (ordered true)
+ (words (":LIVING_ALONE:") ("_PREP_") (":LIVING_SPACE:"))
+ (tests (notneg ?0) (notneg ?2)))
+ 
+ 
+((ruleid live-at-home-complex-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":LIVE_AT_HOME:")
+ (words (
+			":FAMILY::LIVE_AT::PATIENT:"  
+			":PATIENT::GO_HOME:"
+			":PATIENT::PREPARED::GO_HOME:"
+			":PREPARED::GO_HOME:"
+			
+			;; ":PATIENT::PLACEMENT::HOME_PROCEDURE:"
+			;; ":PATIENT::HOME_PROCEDURE:"
+			
+			":PATIENT::LIVE_AT::LIVING_SPACE::FRIEND:"  ;; 8/12/2017
+			":PATIENT::LIVE_AT::LIVING_SPACE::FAMILY:"
+			
+			":LIVE_AT::LIVING_SPACE:" 
+ 			":LIVE_AT::HOME:"
+ 			":LIVE_AT::FAMILY::HOME:"   
+ 			":DISCHARGE::PATIENT::HOME:"
+ 			":DISCHARGE::PATIENT::LIVE_AT_HOME:"
+			":DISCHARGE::HOME:"
+			
+			":PATIENT:LIVE_AT::LIVING_SPACE:" 
+ 			":PATIENT:LIVE_AT::HOME:"
+ 			":PATIENT:LIVE_AT::FAMILY::HOME:"   
+ 			":PATIENT:DISCHARGE::PATIENT::HOME:"
+ 			":PATIENT:DISCHARGE::PATIENT::LIVE_AT_HOME:"
+			
+			
+ 			))
+ (tests (notneg ?0)))
+ 
+((ruleid safe-to-go-home-rule)
+ (concept ":LIVE_AT_HOME:")
+ (ordered true)
+ (words (":PATIENT:")(":SAFE:") (":GO_HOME:"))
+ (removeproperties directionality))
+
+((ruleid patient-travel-home-rule)
+ (stype "<SENTENCE>")
+ (concept ":LIVE_AT_HOME:")
+ (ordered true)
+ (words (":PATIENT:") (":TRAVEL:" ":RETURN:") (":HOME:" ":LIVING_SPACE:")))
+ 
+((ruleid lives-with-spouse-means-not-living-alone-rule-1) 
+  (concept ":LIVE_AT_HOME:") 
+  (ordered true) 
+  (words (":NOT_LIVING_ALONE:") )
+  (tests (notneg ?0) (hcr ?0 ":SPOUSE:")
+		(not (hcr ?0 ":ASSISTED_LIVING:"))
+		(not (hcr ?0 ":NURSING_HOME:"))))
+ 
+((ruleid patient-located-at-home-rule)
+ (stype "<SENTENCE>")
+ (concept ":LIVE_AT_HOME:")
+ (ordered true)
+ (words (":PATIENT:" ":PATIENT_AND_FAMILY:") 
+		(":RETURN_TO_OR_LIVE_AT_HOME:"))
+ (tests (notneg ?1)))
+ 
+ ;; 5/29/2017
+ ((ruleid live-at-home-with-family-indicates-living-at-home-rule-1)
+  (concept ":LIVE_AT_HOME:")
+  (ordered true)
+  (words (":LIVE_AT_HOME_WITH_FAMILY:"))
+  (tests (notneg ?0)))
+  
+((ruleid live-at-home-with-family-indicates-not-living-alone-rule)
+  (concept ":NOT_LIVING_ALONE:")
+  (ordered true)
+  (words (":LIVE_AT_HOME_WITH_FAMILY:"))
+  (tests (notneg ?0)))
+  
+ // 12/4/2017
+ ((ruleidXXX discharge-home-with-family-indicates-support-rule)
+  (concept ":POSSIBLE_SUPPORT:")
+  (ordered true)
+  (words (":DISCHARGE:") (":HOME:") ("with") (":FAMILY:"))
+  (tests (notneg ?0)))
+ 
+ ;; Updated 6-14-2016
+((ruleid living-at-home-or-living-space-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":RETURN_TO_OR_LIVE_AT_HOME:")
+ (ordered true)
+ (words (":LIVE_AT:" ":DISCHARGE:" ":DISCHARGE_TO:" ":RETURN:" "back" ":STAY_AT:")
+		(":HOME:" ":LIVING_SPACE:")))
+
+((ruleid patient-lives-at-home-rule)
+ (stype "<SENTENCE>")
+ (concept ":LIVE_AT_HOME:")
+ (ordered true)
+ (words (":PATIENT:" ":PATIENT_AND_FAMILY:") 
+ 		("@general-patient-location-rule@" "@live-at-own-home-rule@"))
+ (tests (notneg ?1) (or (hcr ?1 ":LIVING_SPACE:") (hcr ?1 ":HOME:"))))
+ 
+((ruleid live-at-own-home-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":LIVE_AT_HOME:")
+ (ordered true)
+ (words (":LIVE_AT:") (":HOME:" ":LIVING_SPACE:" ":OWN_HOME:"))
+ (tests (notneg ?0)
+		(not (hcr ?1 ":FRIEND:"))
+		(not (hcr ?1 ":FAMILY:"))
+		(not (hcr ?1 ":NON-PATIENT-PERSON:"))))
+		
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Not homeless but other living situation
+
+((ruleid patient-not-homeless-but-other-rule)
+ (concept ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:")
+ (ordered true)
+ (words (":PATIENT:") (":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:"))
+ (tests (notneg ?1)))
+
+;; 8/12/2017:  Living with someone means living in stable situation
+((ruleid lives-with-friend-means-not-homeless-but-other-rule)
+  (concept ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:")
+  (words ("@lives-with-someone-means-not-living-alone-rule-1@" ))
+ (tests (notneg ?0) (hcr ?0 ":FRIEND:")))
+ 
+((ruleid live-at-someone-elses-living-space-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:")
+ (ordered true)
+ (words (":LIVING_ALONE:" ":LIVE_AT:" ":SLEEP:") 
+		(":NON-PATIENT-HOME:" 
+		;; ":NON_HOME_LIVING_SPACE:" Removed 5/15/2017
+		)))
+
+;; e.g. "lives with son"
+((ruleid living-with-someone-indicates-other-living-situation-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:")
+ (words ("@lives-with-someone-means-not-living-alone-rule-1@"))
+ (tests (notneg ?0)
+		(not (hcr ?0 ":WIFE:"))
+		(not (hcr ?0 ":SPOUSE:"))
+		(not (hcr ?0 ":HOME:"))))
+		
+((ruleid complex-concept-not-homeless-but-other-living-situation-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:")
+ (words (":LIVE_AT::FAMILY::FRIEND:"
+			":PATIENT::LIVE_AT::FAMILY:"
+			":LIVE_AT::FAMILY::MARGINAL_LIVING_SPACE:"
+			":LIVE_AT::MARGINAL_LIVING_SPACE::LIVING_SPACE:"
+ 			))
+ (tests (notneg ?0) (not (hcr ?0 ":SPOUSE:"))))
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Homelessness
+
+((ruleid history-of-homelessness-connotes-homelessness-rule)
+  (concept ":POSSIBLY_HOMELESS:")
+  (ordered true)
+  (words ("history of") (":HOMELESSNESS:" ":POSSIBLY_HOMELESS:")))
+  
+((ruleid header-housing-plus-homeless-reference-rule)
+  (concept ":POSSIBLY_HOMELESS:")
+  (words (":HOMELESSNESS:" ":POSSIBLY_HOMELESS:"))
+  (tests (notneg ?0) ("headerContainsString" ?0 "housing")))
+
+((ruleid homeless-complex-concept-rule)
+ (concept ":POSSIBLY_HOMELESS:")
+ (words ("healthcare for homeless veterans"
+			":PATIENT::POSSIBLY_HOMELESS:" 
+			":PATIENT::HOMELESS:"
+			":PATIENT::HOMELESSNESS:")))
+
+((ruleid shelter-denotes-homeless-event-rule)
+ (concept ":POSSIBLY_HOMELESS:")
+ (words (":LIVE_AT:" ":STAY_AT:" ":SLEEP:")
+		(":SHELTER:" 
+		;; ":STREET:"  -- 6/2/2017:  ;; There are no test references to living on the street, 
+									 ;; but there are statements such as "lives on same street"
+							
+		))
+ (tests (notneg ?0)))
+ 
+((ruleid patient-is-homeless-rule)
+ (concept ":POSSIBLY_HOMELESS:")
+ (words (":PATIENT:") (":HOMELESSNESS:" ":HOMELESS:" ":POSSIBLY_HOMELESS:"))
+ (tests (notneg ?1)))
+ 
+;; "now homeless", "housing situation is homeless":  Anything to have >1 word...
+((ruleid housing-situation-homeless-rule)
+ (concept ":POSSIBLY_HOMELESS:")
+ (words ("housing" "now") (":HOMELESS:" ":POSSIBLY_HOMELESS:" ":HOMELESSNESS:"))
+ (tests (notneg ?1)))
+
+ ;; 5/28/2017
+((ruleid homeless-word-rule)
+ (states-target true)
+ (concept ":HOMELESSNESS:")
+ (words ("homeless" "homelessness" "chronic homelessness")))
+ 
+ ;; 1/10/2018:  "patient homeless NO" (lacking punctuation)
+ ;; If I just add negated annotation, searching the phrase tree will produce both Homeless and NotHomeless
+ ;; (HACK)
+((ruleidXXX patient-homeless-negated-rule)
+ (concept ":NOT_HOMELESS:")
+ (juxtaposed true)
+ (words (":POSSIBLY_HOMELESS:") 
+		(":PRE-NEGATION-WORD:"))
+ (tests (notneg ?0))
+ (properties (directionality negated))
+ (actions ("applyModifierProperties" ?rule ?0)))
+ 
+((ruleid patient-homeless-negated-rule)
+ (concept ":NOT_HOMELESS:")
+ (juxtaposed true)
+ (words (":POSSIBLY_HOMELESS:") 
+		(":PRE-NEGATION-WORD:"))
+ (tests (notneg ?0)))
+ 
+((ruleid homeless-program-or-description-suggests-homelessness-rule)
+ (concept ":POSSIBLY_HOMELESS:")
+ (words (":HOMELESS_PERSON:" 
+		":HOMELESSNESS:"
+	;; ":HOMELESS_PROGRAM:"
+	))
+ (tests (notneg ?0)))
+ 
+;; 8/15/2016-- Problem with uppercase in "Patient is not Homeless"ve
+((ruleid not-homeless-word-rule)
+ (states-target true)
+ (concept ":NOT_HOMELESS:")
+ (words ("not homeless")))
+ 
+((ruleid homeless-person-word-rule)
+ (stype "<PERSON>")
+ (states-target true)
+ (concept ":HOMELESS_PERSON:")
+ (juxtaposed true)
+ (words ("homeless") (":PATIENT:" "male" "person" "female")))
+ 
+ ;; 10/31/2016
+((ruleid negated-homeless-rule)
+ (concept ":NOT_HOMELESS:")
+ (words (":HOMELESS:" ":POSSIBLY_HOMELESS:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Single occupancy room
+
+((ruleid single-occupancy-room-word-string-rule)
+ (stype "<EVENT_THING>")
+ (concept ":SINGLE_ROOM_OCCUPANCY:")
+ (words ("single room occupancy" "single room" "sro"
+			":LIVE_AT::SINGLE_ROOM_OCCUPANCY:"
+			":PATIENT::LIVE_AT::SINGLE_ROOM_OCCUPANCY:")))
+
+((ruleid single-occupancy-room-word-combination-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":SINGLE_ROOM_OCCUPANCY:")
+ (ordered true)
+ (states-target true)
+ (words (":LIVE_AT:") ("single") ("room")))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Living-related concepts
+
+((ruleid number-room-home-rule)
+ (example-snippet "2 bedroom home")
+ (concept ":HOME:")
+ (ordered true)
+ (words (":NUMBER:") (":ADL_FACILITY:" ":ROOM:" ":BEDROOM:") ("<LIVING_SPACE>" ":HOME:")))
+ 
+((ruleid someone-elses-home-rule)
+ (stype "<NON_PATIENT_LIVING_SPACE>")
+ (example-snippet "daughter's home")
+ (concept ":NON-PATIENT-HOME:")
+ (ordered true)
+ (words ("@possessive-person-rule@") (":LIVING_SPACE:" ":HOME:")))
+
+ // Changed from <LIVING_SPACE> to :LIVING_SPACE: 5/15/2017.  Don't want to pick up marginal living space.
+((ruleid nonpatient-persons-living-space-rule)
+ (stype "<NON_PATIENT_LIVING_SPACE>")
+ (concept ":NON-PATIENT-HOME:")
+ (words (":NON-PATIENT-PERSON:") ("<LIVING_SPACE>"))
+ (tests (not (hcr ?0 ":SPOUSE:"))))
+ 
+ ((ruleid nonpatient-marginal-living-space-rule)
+ (stype "<NON_PATIENT_LIVING_SPACE>")
+ (concept ":NON-PATIENT-NON-HOME-LIVING-SPACE:")
+ (words (":NON-PATIENT-PERSON:") (":NON_HOME_LIVING_SPACE:")))
+ 
+  ;; 8/2/2016:  Trying out as complex concept
+((ruleidXXX general-patient-location-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+ (ordered true)
+ (words (":DISCHARGE:" ":DISCHARGE_TO:" ":ADMISSION:" ":PLACEMENT:" ":LIVE_AT:" ":MOVE_TO:" ":RETURN:") 
+		("@living-location-types-rule@")))
+ 
+((ruleidXXX living-location-types-rule)
+ (concept ?0)
+ (words (":COMMUNITY_LIVING:" ":GROUP_HOME:" ":NURSING_HOME:" ":ASSISTED_LIVING:" 
+			":LIVING_SPACE:" ":NON_HOME_LIVING_SPACE:" ":HOME:")))
+ 
+((ruleid community-living-conglomerate-rule)
+ (concept ":COMMUNITY_LIVING:")
+ (words (":BENEFIT_LIVING_CENTER:" ":SENIOR_LIVING:")))
+
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; CAPTURE RULES
+
+((ruleid negated-living-at-home-indicates-does-not-live-at-home-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":DOES_NOT_LIVE_AT_HOME:")
+ (words (":LIVE_AT_HOME:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+;; 8/11/2017:  Capturing facility placement- talking about placement doesn't indicate living in the facility
+((ruleid facility-placement-rule)
+ (concept ":FACILITY_PLACEMENT:")
+ (words (":COMMUNITY_LIVING:" ":GROUP_HOME:" ":NURSING_HOME:" ":ASSISTED_LIVING:") ("placement")))
+ 
+ 
+)

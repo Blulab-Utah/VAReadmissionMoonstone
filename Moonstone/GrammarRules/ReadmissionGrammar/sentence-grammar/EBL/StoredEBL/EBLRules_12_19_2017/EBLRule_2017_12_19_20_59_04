@@ -1,0 +1,37 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-passive-sentence-rule-2-2017/12/19 20:59:04") 
+  (specialized) 
+  (example-snippet "Wife was visiting") 
+  (ordered true) 
+  (sourceid "passive-sentence-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@family-definition-rule@") 
+    ("@AUTO-passive-event-rule-3-2017/12/19 20:59:04@")) 
+  (properties 
+    (subject ?0) 
+    (event 
+      (event ?1))) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-passive-event-rule-3-2017/12/19 20:59:04") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "was visiting") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@visit-event-word-rule@")) 
+  (properties 
+    (event ?1)))
+
+)

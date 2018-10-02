@@ -1,0 +1,49 @@
+'(
+wordrule
+
+;; 9/10/2015
+((ruleid property-thing-rule)
+ (concept ?0)
+ (words ("<PROPERTY>") ("<THING>"))
+ (relations (property-of ?0 ?1)))
+ 
+((ruleid person-thing-rule-1)
+ (concept ?1)
+ (ordered true)
+ (words ("<PERSON>") ("<THING>"))
+ (properties (subject ?0) (object ?1))
+ (relations (pertains-to ?1 ?0)))
+
+((ruleid possessive-thing-rule)
+ (stype (type ?1))
+ (concept ?1)
+ (juxtaposed true)
+ (window 4)
+ (words ("_POSSESSIVE_") ("<THING>"))
+ (properties (thing ?1)))
+
+;; e.g. "one bottle of beer"
+((ruleid number-thing-rule)
+ (concept ?1)
+ (ordered true)
+ (juxtaposed true)
+ (ordered true)
+ (words (":NUMBER:") ("<THING>"))
+ (tests ("hasNoPunctuation" ?*))
+ (properties (number ?0) (thing ?1)))
+
+((ruleid number-digit-rule)
+ (stype "<NUMBER>")
+ (concept ":NUMBER:")
+ (words ("#NUMBER#"))
+ (properties (number ?0)))
+
+((ruleid number-words-rule) 
+  (words 
+    ("one" "two" "three" "four" "five" "six" 
+	"seven" "eight" "nine" "ten")) 
+  (concept ":NUMBER:")
+  (properties (number ?0))) 
+
+ 
+)

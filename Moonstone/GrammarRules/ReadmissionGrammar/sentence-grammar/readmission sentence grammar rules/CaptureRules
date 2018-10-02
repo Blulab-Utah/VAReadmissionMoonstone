@@ -1,0 +1,359 @@
+'(
+wordrule
+ 
+((ruleid start-on-home-procedure-rule)
+ (concept ":START_HOME_PROCEDURE:")
+ (words (":START_STOP:") (":HOME_PROCEDURE:")))
+ 
+((ruleid quality-of-life-word-rule)
+ (concept ":QUALITY:")
+ (words ("better off"))
+ (tests (notneg ?0)))
+ 
+((ruleid family-marginally-housed-capture-rule)
+ (stype "<SENTENCE>")
+ (concept ":FAMILY-MARGINALY-HOUSED:")
+ (ordered true)
+ (words (":FAMILY:") ("_IS_") (":MARGINALLY_HOUSED:")))
+ 
+((ruleid bad-complex-concept-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":BAD_COMPLEX_CONCEPT:")
+ (words (":LIVE_AT::SINGLE_FAMILY_MEMBERS::PATIENT:"
+ 			":ADMISSION::PATIENT::FAMILY:"
+ 			":ADMISSION::PATIENT::SINGLE_FAMILY_MEMBERS:"
+ 			":LIVE_AT::FAMILY::ADMISSION:"
+			":PATIENT::DESIRE::LIVE_IN_NURSING_HOME:"
+			":DESIRE::LIVE_IN_NURSING_HOME:"
+			":PATIENT::AFFIRMATIVE_COMMUNICATION::PATIENT::DESIRE::MOVE_TO::NURSING_HOME:"
+			":PATIENT::PREPARED::MOVE_TO::LIVING_FACILITY:"
+			":PATIENT::DESIRE::MOVE_TO::LIVING_FACILITY:"
+			":PLAN::LIVE_IN_ASSISTED_LIVING:"
+ )))
+ 
+ ((ruleid sentence-invalidation-goal-rule)
+ (concept ":SENTENCE_INVALID:")
+ (words (":GOAL:" ":REVIEW:" ":REVIEW_FOR:"
+ 			":CHECKBOX_UNCHECKED:" 
+ 			":IF:" ":ENCOURAGE:" ":POSSIBLE:" ":LITERATURE:"
+ 			":SCREEN:" ":ELIGIBILITY:" ":INELIGIBLE" ":MEDICAL_STABILITY:" ":APPROPRIATE:" 
+ 			":GOVERNMENT_FUNDING:" ":BULLET:" ":BENEFIT_FROM_REHABILITATION:"
+ 			":COPE:" 
+			":FAMILY_LIVES_WITH_FRIEND:"
+			;; ":PATIENT_AGREEMENT:" 
+			"trigger" "applied" "apply" "applicable" 
+			;; "information" 
+			;; "number for meals on" 
+			
+			;; 8/11/2017 review of performance over 500 patient-classified cases
+			":FACILITY_PLACEMENT:" 
+			":PATIENT_AND_FAMILY_INDETERMINATE:"
+			":NEED::POSSIBLE_SUPPORT:"
+			":QUESTIONABLE_INVALIDATION:"
+			))
+ (actions ("invalidateSentence" ?0 "InvalidSentenceWord")))
+ 
+((ruleid questionable-invalidation-word-rule)
+ (concept ":QUESTIONABLE_INVALIDATION:")
+ (words (":CONSULT:" 
+			":RECOMMEND:" 
+			"unsure" 
+			"information"
+			"cleared to" "cleared for" "have to go"
+			"looking at" "looking for" "okay" "wait list" "waiting list" "referred for"
+			"applied for" "interest in" "interested in" "you will need" "resolve" "resolving"
+			"supply" 
+			"message of encouragement"
+			"ensure" "ensuring" "cooperative" "participate" "participation"
+			"did you get assistance" "get support from family" "provided patient with strong 
+            messages")))
+ 
+((ruleid spouse-at-nursing-home-rule)
+ (concept ":SPOUSE_AT_NURSING_HOME:")
+ (ordered true)
+ (words (":SPOUSE:") (":LIVE_IN_NURSING_HOME:")))
+
+ 
+((ruleid medically-stable-rule-1)
+ (stype "<STATE>")
+ (concept ":MEDICAL_STABILITY:")
+ (words ("medically stable")))
+ 
+((ruleid adl-device-word-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":ADL_DEVICE:")
+ (words ("ambulatory aid" "walker" "crutches" "cane" "rom")))
+ 
+ ((ruleid support-help-line-rule)
+  (stype "<HELP_ORGANIZATION>")
+  (concept ":HELP_LINE:")
+  (words ("caregiver support line" "national caregiver support line" "help line" "support help line"))
+  (tests (notneg ?0)))
+  
+ ((ruleid compliance-word-rule)
+  (stype "<BEHAVIOR>")
+  (concept ":COMPLIANCE:")
+  (words ("compliant" "compliance")))
+  
+ ((ruleid non-compliance-word-rule)
+  (stype "<BEHAVIOR>")
+  (concept ":NON_COMPLIANCE:")
+  (words ("non compliant" "non-compliant" "non compliance" "poor compliance")))
+  
+ ((ruleid veteran-aid-services-rule)
+  (stype "<HELP_ORGANIZATION>")
+  (concept ":VA_AID_SERVICES:")
+  (words ("aid services" "vdhc grant" "vdhc" "home telehealth services" "family care funding"))
+  (tests (notneg ?0)))
+  
+ ((ruleid veteran-aid-services-composite-rule)
+  (stype "<HELP_ORGANIZATION>")
+  (concept ":VA_AID_SERVICES:")
+  (words (":VA_AID_SERVICES:") (":VA_AID_SERVICES:")))
+ 
+((ruleid medical-procedure-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":MEDICAL_CARE:")
+ (words ("wound care" "ivf" "comfort procedure" "comfort procedures" "comfort measure" "comfort measures")))
+ 
+((ruleid medical-measurement-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":MEDICAL_MEASUREMENT:")
+ (words ("bp" "blood pressure" "vs" "vitals" "vital signs")))
+ 
+((ruleid misc-medical-thing-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":MEDICAL_THING:")
+ (words ("ae" "pain" "bsc")))
+
+((ruleid take-medication-rule-1) 
+ (stype "<COMPLEX_EVENT>")
+ (concept ":TAKE_MEDICATION:")
+ (words ("take" "taking" "takes" "took") (":PRESCRIPTION_MEDICATION:")))
+ 
+ ;; "started on lasix"
+((ruleid take-medication-rule-2) 
+ (stype "<COMPLEX_EVENT>")
+ (concept ":TAKE_MEDICATION:")
+ (words (":START_STOP:") (":HOME_PROCEDURE:")))
+	
+((ruleid home-regimen-word-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":HOME_PROCEDURE:")
+ (juxtaposed true)
+ (words ("home" "in-home" "in home") 
+		("safety" "regimen" "procedure" "safety assessment" "assessment" "reassessment" "re-assessment" 
+			"oxygen" "o2" "hospice" "services" "service" "medication" "dose" "meds" "services" "ae" "aed"
+			"hospice" "bedside chair" "bedside drainage bag" "assistive devices" 
+			":PRESCRIPTION_MEDICATION:")))
+			
+
+
+;; Fast way to neutralize a phrase
+((ruleid throwaway-phrase-rule)
+ (stype "<EVENT_THING>")
+ (concept ":THROWAWAY_PHRASE:")
+ (words ("caregiver stress" "dental habits" "followup care" "degree of assistance" "bedside monitoring"
+ "patient advocacy" 
+			
+ )))
+ 
+((ruleid patient-home-regimen-word-rule)
+ (concept ":HOME_PROCEDURE:")
+ (ordered true)
+ (words (":PATIENT:") ("home") ("safety" "regimen" "procedure")))
+
+((ruleid worsening-functioning-rule)
+ (concept ":WORSENING_FUNCTION:")
+ (ordered true)
+ (words (":WORSEN:") (":FUNCTION:")))
+ 
+((ruleid person-plan-event-rule-capture-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":GOAL_OR_DESIRE_TO_BE_HOME:")
+ (ordered true)
+ (words (":PLAN:" ":DESIRE:") (":LIVE_AT_HOME:" ":POSSIBLE_LIVE_AT_HOME:")))
+
+((ruleid unwilling-support-rule)
+ (concept ":MEDICAL_CARE:")
+ (ordered true)
+ (words ("foley") (":CARE:")))
+
+((ruleid confirm-support-rule)
+ (stype "<EVENT_THING>")
+ (concept ":CONFIRM_SUPPORT:")
+ (ordered true)
+ (words ("confirm" "check") ("if" "whether") (":SUPPORT:" ":POSSIBLE_SUPPORT:")))
+
+((ruleid concerns-about-something-rule)
+ (example-snippet "concerns about access to care")
+ (stype "<EMOTION>")
+ (concept ":CONCERN:")
+ (ordered true)
+ (words ("concern" "concerns" "concerned") ("about" "with" "for" "that") ("<THING>"))
+ (properties (object ?2)))
+
+((ruleid family-close-to-patient-rule-1)
+ (concept ":FAMILY_PATIENT_DISTANCE:")
+ (ordered true)
+ (words (":FAMILY:" ":PATIENT:") (":LIVE_AT:") (":DISTANCE:") (":FAMILY:" ":PATIENT:"))
+ (tests (notneg ?*)))
+ 
+((ruleid family-close-to-patient-rule-2)
+ (concept ":FAMILY_PATIENT_DISTANCE:")
+ (ordered true)
+ (words (":FAMILY:" ":PATIENT:") (":DISTANCE:") (":FAMILY:" ":PATIENT:"))
+ (tests (notneg ?*)))
+ 
+((ruleid alternative-caregiver-rule)
+ (stype "<PERSON>")
+ (concept ":ALTERNATIVE_CARE_GIVER:")
+ (words ("alternate" "alternative") ("care giver" "caregiver")))
+ 
+;; e.g. to avoid "patient cares for demented wife"
+((ruleid patient-cares-for-family-member-rule)
+ (stype "<EVENT_THING>")
+ (concept ":PATIENT_CARE_FOR_FAMILY:")
+ (ordered true)
+ (words (":PATIENT:") (":CARE:" ":PROVISION_OF_CARE:") (":FAMILY:")))
+
+((ruleid discharge-from-living-location-rule) 
+  (stype "<SENTENCE>") 
+  (concept ":MOVE_FROM_LIVING_LOCATION:") 
+  (ordered true) 
+  (contains-target true)
+  (words 
+    (":DISCHARGE_FROM:" ":MOVE_FROM_LOCATION:") 
+    ("@living-location-types-rule@")))
+	  
+;; so "health care" isn't mistaken for supportive care
+((ruleid health-care-rule)
+ (stype "<EVENT_THING>")
+ (concept ":HEALTH_CARE:")
+ (words ("health care" "home care" "respite care" "home respite care" "care program" "care meeting")))
+
+;; e.g. "no living relatives", replaces "lives with relatives" implication
+((ruleid surviving-relatives-capture-rule)
+ (concept ":SURVIVING_RELATIVES:")
+ (juxtaposed true)
+ (words ("living" "surviving") ("relatives" "NOK" "family")))
+
+;; e.g. "drug involvement"
+((ruleid involvement-with-drugs-capture-rule)
+ (concept ":INVOLVED_WITH_DRUGS:")
+ (words (":POSSIBLE_SUPPORT:") (":DRUG:")))
+ 
+;; e.g. patient receives care from VA" not confused with social support
+((ruleid community-provision-of-care-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":COMMUNITY_SUPPORT:")
+ (words (":POSSIBLE_SUPPORT:") 
+		(":COMMUNITY_LIVING:" ":MEDICAL_FACILITY:" ":COMMUNITY_SERVICE:" "<FACILITY>")))
+		
+((ruleid medical-support-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":MEDICAL_SUPPORT:")
+ (ordered true)
+ (words ("ventilatory" "anticoagulation" "ue" "UE" ":DEVICE:") ("support")))
+ 
+((ruleid stress-distress-word-rule)
+ (stype "<EVENT_THING>")
+ (concept ":DISTRESS")
+ (words ("distress" "stress")))
+ 
+((ruleid medical-thing-word-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":MEDICAL_CARE:")
+ (ordered true)
+ (words ("medical" "nursing" ":MEDICAL_SUPPORT_TYPE:") (":CARE:")))
+ 
+((ruleid negated-community-living-is-not-lack-of-support-rule)
+ (stype "<HOUSING_STATUS>")
+ (concept ":NEGATED_COMMUNITY_LIVING:")
+ (words (":COMMUNITY_LIVING:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+;; e.g. "afebrile at home"
+((ruleid medical-condition-at-place-rule)
+ (stype ?0)
+ (concept ?0)
+ (ordered true)
+ (words ("<MEDICAL_CONDITION>") ("<PLACE>"))
+ (relations (location-of ?0 ?1)))
+ 
+((ruleid medical-condition-word-rule)
+ (stype "<MEDICAL_CONDITION>")
+ (concept ":MEDICAL_CONDITION:")
+ (words ("afebrile" "ptsd")))
+ 
+((ruleid patient-phone-address-type-stuff-rule)
+ (stype "<THING>")
+ (concept ":PATIENT_PHONE_ADDRESS_INFO:")
+ (words ("phone number" "address")))
+ 
+((ruleid medical-device-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":MEDICAL_DEVICE:")
+ (words ("cpap" "bipap" "intravenous line" "iv" "catheter" "voicebox" "microphone")))
+ 
+((ruleid generic-medical-thing-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":MEDICAL_THING:")
+ (words ("living will" "ad form" "ad forms" 
+			"follow up care" "follow-up care" "f/u care" "care plan" "plan of care")))
+ 
+((ruleid satisfied-with-care-rule)
+ (stype "<MEDICAL_THING>")
+ (concept ":SATISFACTION_WITH_CARE:")
+ (ordered true)
+ (words (":SATISFACTION:") ( ":PROVISION_OF_CARE:")))
+ 
+((ruleid benefit-from-rehab-rule)
+ (concept ":BENEFIT_FROM_REHABILITATION:")
+ (ordered true)
+ (words (":BENEFIT:") (":REHABILITATION:")))
+ 
+ ((ruleid family-lives-with-friend-pseudo-living-alone-rule) 
+  (concept ":FAMILY_LIVES_WITH_FRIEND:") 
+  (ordered true) 
+  (words 
+    (":FAMILY:")
+    (":LIVE_AT:" ":SLEEP:") 
+    ("_PREP_") 
+    (":FAMILY:" ":FRIEND:")) 
+  (tests 
+    (notneg ?1)))
+
+((ruleid object-situation-rule)
+ (concept ":OBJECT_SITUATION:")
+ (ordered true)
+ (words ("<THING>") (":SITUATION:")))
+ 
+((ruleid sitation-word-rule)
+ (stype "<THING>")
+ (concept ":SITUATION:")
+ (words ("situation")))
+
+((ruleid ideations-word-rule)
+ (stype "<THING>")
+ (concept ":BAD_IDEATION:")
+ (ordered true)
+ (words ("suicidal" "homicidal") ("ideation" "ideations")))
+
+((ruleid safety-state-rule)
+ (stype "<STATE>")
+ (concept ":SAFETY_STATE:")
+ (ordered true)
+ (words (":SAFE:" ":UNSAFE:") ("<EVENT>" "<COMPLEX_EVENT>"))
+ (tests (notneg ?1)))
+
+((ruleid need-of-thing-rule)
+ (stype "<COMPLEX-EVENT>")
+ (complex-concept)
+ (ordered true)
+ (words (":NEED:") ("<THING>"))
+ (tests (notneg ?1)))
+
+
+)

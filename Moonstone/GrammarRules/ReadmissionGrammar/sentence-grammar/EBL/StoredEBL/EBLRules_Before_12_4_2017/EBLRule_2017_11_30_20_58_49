@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-event-thing-rule-10-2017/11/30 20:58:49") 
+  (specialized) 
+  (example-snippet "Lives Wife") 
+  (ordered true) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 4) 
+  (bagofconcepts true) 
+  (words 
+    (":LIVE_AT:") 
+    (":FAMILY:")) 
+  (tests (notneg ?0)))
+
+)

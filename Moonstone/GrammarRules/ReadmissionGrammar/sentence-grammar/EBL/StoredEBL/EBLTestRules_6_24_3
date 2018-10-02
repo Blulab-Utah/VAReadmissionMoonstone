@@ -1,0 +1,224 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-rule-31-2016/06/24 20:41:03") 
+  (specialized) 
+  (example-snippet "family will transport him home") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@multi-family-member-word-rule@") 
+    ("@AUTO-ditransitive-event-rule-32-2016/06/24 20:41:03@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-32-2016/06/24 20:41:03") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "transport him home") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@simple_event_transportation-verb-rule-1@") 
+    ("@patient-rule-1@") 
+    ("@living-space-rule@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))))
+
+(
+  (ruleid "AUTO-living-alone-with-family-means-not-living-alone-rule-33-2016/06/24 20:43:26") 
+  (specialized) 
+  (example-snippet "living in a 1st floor apartment with girlfriend") 
+  (sourceid "living-alone-with-family-means-not-living-alone-rule") 
+  (concept ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:") 
+  (stype "<HOUSING_STATUS>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-dative-event-rule-34-2016/06/24 20:43:26@")))
+
+(
+  (ruleid "AUTO-dative-event-rule-34-2016/06/24 20:43:26") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "living in a 1st floor apartment with girlfriend") 
+  (ordered true) 
+  (sourceid "dative-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-35-2016/06/24 20:43:26@") 
+    ("@AUTO-simple-pp-rule-24-2016/06/07 01:31:54@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object 
+      (object ?2))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-35-2016/06/24 20:43:26") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in a 1st floor apartment") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-number-thing-rule-36-2016/06/24 20:43:26@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-number-thing-rule-36-2016/06/24 20:43:26") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "1st floor apartment") 
+  (ordered true) 
+  (sourceid "number-thing-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 32.0) 
+  (words 
+    ("@number-digit-rule@") 
+    ("@living-space-rule@")) 
+  (properties 
+    (number ?0) 
+    (thing ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-38-2016/06/24 20:49:43") 
+  (specialized) 
+  (example-snippet "Significant other available to help with care at home No") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":POSSIBLE_LACK_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@spouse-word-rule@") 
+    ("@AUTO-event-thing-rule-39-2016/06/24 20:49:43@")) 
+ (removeproperties directionality)
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-39-2016/06/24 20:49:43") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "available to help with care at home No") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-help-available-rule-40-2016/06/24 20:49:43@") 
+    ("@AUTO-question-answer-negation-rule-42-2016/06/24 20:49:43@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-help-available-rule-40-2016/06/24 20:49:43") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "available to help") 
+  (sourceid "help-available-rule") 
+  (concept ":HELP:") 
+  (stype "<EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-simple-pp-rule-2-2016/06/03 19:44:13@") 
+    ("@available-word-rule@")))
+
+(
+  (ruleid "AUTO-question-answer-negation-rule-42-2016/06/24 20:49:43") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with care at home No") 
+  (ordered true) 
+  (sourceid "question-answer-negation-rule") 
+  (concept "?0") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-double-pp-rule-43-2016/06/24 20:49:43@") 
+    ("no")) 
+  (properties 
+    (directionality negated)) 
+  (tests 
+    ("usesCombinedHeaderSentence" ?*)))
+
+(
+  (ruleid "AUTO-double-pp-rule-43-2016/06/24 20:49:43") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with care at home") 
+  (ordered true) 
+  (sourceid "double-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-simple-pp-rule-44-2016/06/24 20:49:43@") 
+    ("@AUTO-simple-pp-rule-45-2016/06/24 20:49:43@")) 
+  (properties 
+    (source 
+      (object ?0)) 
+    (destination 
+      (object ?1))))
+
+(
+  (ruleid "AUTO-simple-pp-rule-44-2016/06/24 20:49:43") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with care") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@care-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-45-2016/06/24 20:49:43") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "at home") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@living-space-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

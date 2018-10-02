@@ -1,0 +1,305 @@
+'(readmission
+
+(deftype root (isroot))
+(deftype thing (isa root))
+(deftype place (isa thing))
+(deftype event (isa root)) 
+
+;; 6/18/2016- Test:  Don't convert complex event into an event for further parsing...
+(deftype complex_event (isa root))
+;; (deftype complex_event (isa event))
+
+(deftype sentence (isa root))
+(deftype passive_event (isa root))
+(deftype passive_sentence (isa sentence))
+
+(deftype modifier (isa root))
+(deftype thing_modifier (isa modifier))
+(deftype event_modifier (isa modifier))
+
+;; for hard-to-classify items
+(deftype event_thing (isa event thing)) 
+
+(deftype context (isa modifier))
+
+;; 6/23/2016
+(deftype state (isa root))
+
+;; Disabled 7/13/2016
+;; (deftype state (isa thing event))
+
+(deftype person (isa thing))
+(deftype communication (isa complex_event))
+(deftype provide_care (isa event))
+(deftype care (isa thing event))
+(deftype medical_care (isa care))
+(deftype caregiver (isa person))
+(deftype resource (isa thing))
+(deftype family (isa person))
+(deftype friend (isa person))
+(deftype living_space (isa place))
+(deftype patient_living_space (isa living_space))
+(deftype non_patient_living_space (isa living_space))
+(deftype resting_place (isa place))
+(deftype hospitalization (isa medical_care))
+(deftype facility (isa place))
+(deftype medical_facility (isa facility))
+(deftype shelter (isa facility))
+(deftype medical_thing (isa thing))
+(deftype condition (isa medical_thing))
+(deftype disease (isa medical_thing))
+(deftype symptom (isa medical_thing))
+(deftype person_at_place (isa event))
+(deftype person_with_person (isa event))
+
+(deftype legal (isa thing event))
+(deftype legal_trouble (isa legal))
+(deftype sexual_orientation (isa thing state))
+(deftype employment (isa thing event))
+(deftype crisis (isa thing event))
+(deftype marriage (isa thing event))
+(deftype emotion (isa thing event))
+(deftype behavior (isa thing event))
+(deftype activity (isa behavior))
+(deftype violence (isa behavior))
+(deftype abuse (isa behavior))
+(deftype death (isa thing event))
+(deftype medical_comorbidity (isa disease))
+(deftype program (isa medical_thing))
+(deftype quantity (isa thing_modifier))
+(deftype referral (isa event_thing))
+
+;; 5/5/2015
+(deftype housing_status (isa state thing event))
+(deftype vehicle (isa thing))
+
+(deftype health (isa state))
+(deftype mental_health (isa health))
+(deftype number (isa property))
+(deftype organization (isa thing))
+(deftype help_organization (isa organization))
+(deftype social_support (isa thing event))
+(deftype social_stressor (isa thing event))
+(deftype tabular_scale (isa thing))
+(deftype table_attribute_score (isa number))
+
+;; Time-related
+
+;; 6/11/2015
+;; (deftype time (isa thing))
+(deftype time (isa modifier))
+
+(deftype time_expression (isa time))
+(deftype date (isa time_expression))
+(deftype time_duration (isa time_expression))
+(deftype time_modifier (isa time))
+
+;; 5/20/2015
+(deftype adl_activity (isa activity))
+(deftype iadl_activity (isa activity))
+(deftype adl_device (isa thing))
+(deftype adl_facility (isa thing))
+(deftype accident (isa thing event))
+(deftype impairment (isa thing event))
+(deftype service (isa thing event))
+(deftype therapy (isa service))
+(deftype mental_state (isa state))
+
+;; Substance
+(deftype substance (isa thing))
+(deftype alcohol (isa substance))
+(deftype substance_event (isa behavior))
+(deftype substance_use (isa substance_event))
+(deftype substance_abuse (isa substance_use))
+(deftype alcohol_abuse (isa substance_abuse))
+(deftype substance_program (isa program))
+
+(defstringconstant ":SUBSTANCE_USE:" ":USE_SUBSTANCE:" "<SUBSTANCE_USE>")
+(defstringconstant ":SUBSTANCE_ABUSE:" "<SUBSTANCE_ABUSE>")
+(defstringconstant ":ALCOHOL_ABUSE:" "<ALCOHOL_ABUSE>")
+(defstringconstant ":TOBACCO:" ":PRESCRIPTION_MEDICATION:" ":DRUG:" ":ALCOHOL:" 
+		":SUBSTANCE:" "<SUBSTANCE>")
+(defstringconstant ":SUBSTANCE_QUANTITY:" "<QUANTITY>")
+(defstringconstant ":WITHDRAWAL:" ":DEPENDENCE:" "<SUBSTANCE_EVENT>")
+(defstringconstant ":SUBSTANCE_PROGRAM:" "<SUBSTANCE_PROGRAM>")
+
+(defstringconstant ":ABUSE:" ":VIOLENCE:" ":GAMBLING:" "<BEHAVIOR>")
+(defstringconstant ":VICTIM:" ":PERPETRATOR:" "<PERSON>")
+(defstringconstant ":FEEL_UNSAFE:" ":DESIRE:" "<EMOTION>")
+(defstringconstant ":DEATH:" "<DEATH>")
+(defstringconstant ":GAMBLING:" "<BEHAVIOR>")
+(defstringconstant ":LGBT:" "<SEXUAL_ORIENTATION>")
+(defstringconstant ":EMPLOYED:" ":UNEMPLOYED:" "<EMPLOYMENT>")
+(defstringconstant ":WORK:" ":JOB:" "<EVENT_THING>")
+(defstringconstant ":PROBATION:" ":JAIL:" ":PAROLE:" ":LEGAL_TROUBLE:" "<LEGAL_TROUBLE>")
+(defstringconstant ":CRISIS:" "<CRISIS>")
+(defstringconstant ":DIVORCED:" ":MARRIED:" ":SINGLE:" "<MARRIAGE>")
+
+(defstringconstant ":HISTORY_MODIFIER:" ":EVENT_STOP_START:" ":HISTORICAL_EVENT:" )
+(defstringconstant ":HISTORY_MODIFIER:" "<HISTORY_MODIFIER>")
+
+(defstringconstant ":RESOURCE:" "<RESOURCE>")
+
+(defstringconstant ":MEDICAL_COMORBIDITY:" "<MEDICAL_COMORDIDITY>")
+(defstringconstant ":PATIENT:" ":FAMILY:" ":FRIEND:" ":PROVIDER:" ":CAREGIVER:" 
+			":COMMUNITY-CAREGIVER:" ":NON-PATIENT-PERSON:" ":PERSON:" ":NO-ONE:" "<PERSON>")
+(defstringconstant ":LIVE_WITH_PERSON:" ":LIVE_AT:" ":MOVE_TO:" ":LIVE_AT_PLACE:" 
+		":MOVE_TO_PLACE:" "<PERSON_AT_PLACE>")
+
+(defstringconstant ":FAMILY_CLOSE_TO_PATIENT:" "<PERSON_WITH_PERSON>")
+(defstringconstant ":LIVING_SPACE:" ":MARGINAL_LIVING_SPACE:" ":NON-PATIENT-HOME:" "<LIVING_SPACE>")
+(defstringconstant ":RESTING_PLACE:" "<RESTING_PLACE>")
+(defstringconstant ":COMMUNICATES:" ":UNABLE_TO_CONTACT_FAMILY:" "<COMMUNICATION>")
+
+(defstringconstant ":SHELTER:" "<SHELTER>")
+
+(defstringconstant ":NEED:" ":LACK:" ":INABILITY:" ":INELIGIBLE:" ":ENDING:" ":INADEQUATE:" ":UNSTEADY:" "<MODIFIER>")
+
+(defstringconstant ":DISEASE:" "<DISEASE>")
+(defstringconstant ":LIVING_ALONE:" ":NOT_LIVING_ALONE:" ":HOMELESS:" ":HOMELESSNESS:" ":NOT_HOMELESS:" 
+	":MARGINALLY_HOUSED:" ":AT_RISK_FOR_HOMELESSNESS:" ":LIVE_AT_HOME:" ":POSSIBLE_LIVE_AT_HOME:"
+	":DOES_NOT_LIVE_AT_HOME:" ":LIVE_IN_GROUP_HOME:" ":LIVE_IN_ASSISTED_LIVING:" 
+	":LIVE_IN_NURSING_HOME:" ":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:"
+	"<HOUSING_STATUS>")
+	
+(defstringconstant ":ASSISTED_LIVING:" ":NURSING_HOME:" ":SENIOR_LIVING:" ":GROUP_HOME:" 
+	":BENEFIT_LIVING_CENTER:" ":COMMUNITY_LIVING_CENTER:" ":LIVING_FACILITY:"
+	":COMMUNITY_LIVING:" ":VA:" ":MEDICAL_FACILITY:" "<FACILITY>")
+					
+(defstringconstant ":HOME:" "<PLACE>")
+
+(defstringconstant ":NO_NEEDS:" ":HAVE_COMPANION:" ":LACK_COMPANION:" 
+			":LACK_SUPPORT:" ":HAVE_SUPPORT:" ":NEED_SUPPORT:"		
+			":LACK_RESOURCE:" ":HAVE_RESOURCE:" ":NEED_RESOURCE:"
+			":LACK_CARE:" ":HAVE_CARE:" ":NEED_CARE:" ":PROVIDE_CARE:" ":PROVIDE_TRANSPORT:"
+			":ACCESS_TO_COMMUNITY_SERVICES:" ":UNCLEAR_SUPPORT:" ":POSSIBLE_SUPPORT:"
+			":POSSIBLE_LACK_SUPPORT:" ":PROVISION_OF_CARE:" "<SOCIAL_SUPPORT>")
+			
+;; 8/1/2017
+(defstringconstant ":COMMUNITY_SUPPORT:" ":COMMUNITY_SERVICE:" "<SERVICE>")
+			
+(defstringconstant ":CARING:" "<STATE>")
+
+(defstringconstant ":SUPPORTIVE_PERSON:" "<PERSON>")
+
+(defstringconstant ":SOCIAL_STRESSOR:" ":FINANCIAL_INSECURITY:" 
+	":OTHER_SOCIAL_STRESSOR:" "<SOCIAL_STRESSOR>")
+
+;; NEED A PLACE TO PUT THESE:
+(defstringconstant ":TRANSPORTATION:" ":MONEY:" ":SPIRITUAL:" ":FOOD:"  ":MEDICAL:" 
+		":HOSPITALIZATION:" ":GOVERNMENT_FUNDING:" "<EVENT_THING>")
+
+(defstringconstant ":NUMBER:" "<NUMBER>")
+(defstringconstant ":BRADEN_SCALE:" "<TABULAR_SCALE>")
+(defstringconstant ":BRADEN_ATTRIBUTE_SCORE:" "<TABLE_ATTRIBUTE_SCORE>")
+
+(defstringconstant ":VEHICLE:" "<VEHICLE>")
+
+(defstringconstant ":PAY:" ":AFFORD:" ":PAY_DEBT:" ":PAY_FOR_RESOURCE:" ":CARE:" ":HELP:" "<EVENT>")
+
+;; 8/24/2015:  Treating as an event gets this passed on as the main concept of "help with chores", instead of the more apt "provide care"
+;; (defstringconstant ":CARE:" ":HELP:" "<CARE>")
+
+(defstringconstant ":DEBT:" ":RENT_OR_MORTGAGE:" "<THING>")
+
+(defstringconstant ":ADMISSION:" ":ASSISTED_LIVING_PLACEMENT:" ":PLACEMENT:" "<EVENT_THING>")
+(defstringconstant ":STREET:" "<PLACE>")
+
+(defstringconstant ":PHYSICAL_THERAPY:" ":OCCUPATIONAL_THERAPY:" ":THERAPY:" "<THERAPY>")
+
+(defstringconstant ":FEAR:" ":MENTAL_DISCORD:" "<MENTAL_STATE>")
+(defstringconstant ":MENTAL_ILLNESS:" ":COGNITIVE_IMPAIRMENT:" ":DEPRESSION:"  
+		"<MENTAL_HEALTH>")
+(defstringconstant ":MENTAL_ABILITY:" ":INTERACT_WITH:" "<BEHAVIOR>")
+
+(defstringconstant ":CONFLICT:" "<BEHAVIOR>")
+
+(defstringconstant ":REVIEW:" "<EVENT>")
+
+;; ADL Concepts
+(defstringconstant ":SLEEP:" ":WALKING:" ":AMBULATE:" ":SPEECH:" ":TURNING:" ":MOVEMENT:" 
+		":PHYSICAL_ACTIVITY:" ":TOILETING:" ":DRESSING:" ":HYGIENE:" ":EATING:" 
+		":BATHROOM_USE:" ":ADL_ACTIVITY:" ":ORAL_CARE:" "<ADL_ACTIVITY>")
+		
+(defstringconstant ":CHORES:" "<IADL_ACTIVITY>")
+		
+(defstringconstant ":WALKER:" ":WHEELCHAIR:" ":CANE:" ":ADL_CANE_WALKER_WHEELCHAIR:" 
+				 ":ADL_WHEELCHAIR:" ":ADL_CANE_WALKER:" ":ADL_DEVICE:" "<ADL_DEVICE>")
+(defstringconstant ":FALL:" ":ACCIDENT:" "<ACCIDENT>")
+(defstringconstant ":USE:" "<ACTIVITY>")
+(defstringconstant ":BED:" ":CHAIR:" ":TOILET:" ":BATH:" ":ADL_FACILITY:" 
+		"<ADL_FACILITY>")
+		
+(defstringconstant  ":INDEPENDENT:" ":CONTINENT:" "<STATE>")
+
+(defstringconstant 
+":IMPAIRMENT:"
+":NO_IMPAIRMENT:"
+":ADL_DIFFICULTY_AMBULATING:"
+":ADL_AMBULATES_WITHOUT_ASSISTANCE:" 
+
+":ADL_USES_CANE_WALKER_WHEELCHAIR:" 
+":ADL_USES_NO_CANE_WALKER_WHEELCHAIR:" 
+":ADL_USES_CANE_WALKER:" 
+":ADL_USES_NO_CANE_WALKER:" 
+":ADL_USES_WHEELCHAIR:" 
+":ADL_USES_NO_WHEELCHAIR:"
+
+":ADL_NEEDS_ASSISTANCE_WITH_ADLS:" 
+":ADL_NO_ASSISTANCE_WITH_ADLS:" 
+":ADL_NEEDS_ASSISTANCE_WITH_IADLS:" 
+":ADL_NO_ASSISTANCE_WITH_IADLS:"
+":ADL_FALLS"
+":ADL_NO_FALLS:"
+":ADL_NEEDS_PT:"
+":ADL_NO_NEEDS_PT:"
+":ADL_NEEDS_OT:"
+":ADL_NO_NEEDS_OT:"
+":ADL_UNCLEAR:"
+":ADL_IMPAIRMENT_TRANSFERRING:"
+
+":ADL_IMPAIRMENT_EATING:"
+":ADL_INDEPENDENT:"
+":ADL_IMPAIRMENT_TOILETING:"
+":ADL_IMPAIRMENT_BATHING:"
+":ADL_IMPAIRMENT_ALL:"
+":ADL_IMPAIRMENT_SOME:"
+
+":ADL_IMPAIRMENT:"
+":ADL_NO_IMPAIRMENT:"
+":UNSTEADY:"
+
+":COGNITIVE_IMPAIRMENT:" 
+":DEMENTIA:"
+":POOR_HISTORIAN:"
+"<IMPAIRMENT>")
+
+(defstringconstant ":ADL_ANATOMY:" "<THING>")
+
+;; UMLS-related
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; UMLS-related
+
+;; Connections to medical reports
+(deftype "medical_thing" (isa thing))
+(deftype "medical_condition" (isa medical_thing))
+(deftype "medical_disease" (isa medical_condition))
+(deftype "medical_symptom" (isa medical_condition))
+(deftype "medical_finding" (isa medical_condition))
+(deftype "medical_location" (isa medical_thing))
+(deftype "medical_function" (isa medical_thing))
+(deftype "medical_measurement" (isa medical_function))
+(deftype "medical_test" (isa medical_thing))
+(deftype "medical_procedure" (isa medical_thing))
+(deftype "medical_organization_office_or_discipline" (isa medical_thing))
+(deftype "medical_pathogen" (isa medical_thing))
+(deftype "medical_device" (isa medical_thing))
+(deftype "medical_drug" (isa medical_thing))
+
+
+)
+
+
+
+

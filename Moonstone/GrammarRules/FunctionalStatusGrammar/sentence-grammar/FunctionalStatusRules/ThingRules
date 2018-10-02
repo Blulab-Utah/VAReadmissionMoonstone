@@ -1,0 +1,77 @@
+'(
+wordrule
+ 
+((ruleid simple-pp-rule)
+
+ (concept ?1)
+ (macro "_PP_")
+ (ordered true)
+ (words ("_PREP_") ("<THING>"))
+ (properties (object ?1))
+ (tests ("isInterpreted" ?1)))
+ 
+((ruleid double-pp-rule)
+ (concept ?1)
+ (macro "_PP_")
+ (ordered true)
+ (words ("@simple-pp-rule@") ("@simple-pp-rule@"))
+ (properties  
+ 	(source (object ?0)) 
+ 	(destination (object ?1))))
+
+((ruleid there-is-thing-rule)
+ (concept ?1)
+ (ordered true)
+ (words ("there is" "there are") ("<THING>")))
+
+((ruleid general-thing-thing-conjunct-rule) 
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (words ("<THING>") (":CONJ:") ("<THING>")) 
+  (tests 
+    ("sameType" ?0 ?2)))
+        
+ 
+;; e.g. "friend's couch"
+((ruleid possessive-thing-rule)
+ (concept ?1)
+ (juxtaposed true)
+ (ordered true)
+ (words ("_POSSESSIVE_" "@possessive-person-rule@") ("<THING>"))
+ (properties (person ?0) (object ?1)))
+
+((ruleid possessive-thing-rule)
+ (stype ?1)
+ (concept ?1)
+ (juxtaposed true)
+ (window 4)
+ (ordered true)
+ (words ("_POSSESSIVE_") ("<THING>"))
+ (properties (thing ?1)))
+
+;; e.g. "one bottle of beer"
+((ruleid number-thing-rule)
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ ;;(juxtaposed true)
+ (ordered true)
+ (words (":NUMBER:") ("<THING>"))
+ (properties (number ?0) (thing ?1)))
+
+((ruleid number-digit-rule)
+ (ptype "#NUMBER#")
+ (concept ":NUMBER:")
+ (words ("#NUMBER#"))
+ (properties (number ?0)))
+
+((ruleid number-words-rule) 
+  (words 
+    ("one" "two" "three" "four" "five" "six" 
+	"seven" "eight" "nine" "ten")) 
+  (concept ":NUMBER:")
+  (properties (number ?0))) 
+
+
+)

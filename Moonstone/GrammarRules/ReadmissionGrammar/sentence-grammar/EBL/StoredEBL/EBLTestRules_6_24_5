@@ -1,0 +1,71 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-event-prep-thing-rule-1-2016/06/24 23:22:27") 
+  (specialized) 
+  (example-snippet "lives with his wife who is supportive with care") 
+  (ordered true) 
+  (sourceid "event-prep-thing-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/24 23:22:27@")) 
+  (properties 
+    (event ?0) 
+    (object ?2)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-2-2016/06/24 23:22:27") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with his wife who is supportive with care") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@AUTO-possessive-thing-rule-3-2016/06/24 23:22:27@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-3-2016/06/24 23:22:27") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his wife who is supportive with care") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@AUTO-person-providing-care-rule-4-2016/06/24 23:22:27@")) 
+  (properties 
+    (person ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-person-providing-care-rule-4-2016/06/24 23:22:27") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "wife who is supportive with care") 
+  (sourceid "person-providing-care-rule") 
+  (concept ":PROVISION_OF_CARE:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@family-definition-rule@") 
+    ("@general-provide-care-rule@")) 
+  (tests 
+    (notneg ?1)))
+
+
+)

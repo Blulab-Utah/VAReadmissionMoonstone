@@ -1,0 +1,66 @@
+'(measurementrule
+  
+((ruleid temperature-rule)
+ (stype "<MEDICAL_SYMPTOM>")
+ (concept ":FEVER:")
+ (window 8) 
+ (ordered true)
+ (words ("temperature" "temp") ("<NUMBER>"))
+ (localvar (?num  ("convertToFahrenheit" ?1)))
+ (tests (or (and (> ?num 90) (<= ?num 110))
+ 		    (and (> ?num 35) (<= ?num 45))))
+ (properties 
+    ("directionality" 
+        (if (>= ?num 101) "affirmed" "negated"))))
+
+((ruleid tachycardia-rule)
+ (stype "<MEDICAL_SYMPTOM>")
+ (concept ":TACHYCARDIA:")
+ (window 8) 
+ (ordered true)
+ (words ("pulse" "heart rate" "heart") ("<NUMBER>"))
+ (localvar (?num  ("getNumericValue" ?1)))
+ (tests (and (> ?num 40) (<= ?num 140)))
+ (properties 
+    ("directionality" 
+        (if (>= ?num 100) "affirmed" "negated"))))
+
+((ruleid respiratory-rate-rule)
+ (stype "<MEDICAL_SYMPTOM>")
+ (concept ":TACHYPNIA:")
+ (window 8) 
+ (ordered true)
+ (words ("respiratory" "respiratory rate" "respirations" "respiration")
+ 		("<NUMBER>"))
+ (localvar (?num  ("getNumericValue" ?1)))
+ (tests (and (> ?num 10) (<= ?num 100)))
+ (properties 
+    ("directionality" 
+        (if (>= ?num 30) "affirmed" "negated"))))
+        
+;; [=> "Blood pressure"]
+
+((ruleid blood-pressure-rule)
+ (stype "<MEDICAL_MEASUREMENT>")
+ (concept ":BLOOD-PRESSURE:") 
+ (window 8) 
+ (ordered true)
+ (words ("bp" "blood pressure")
+ 		("<NUMBER>"))
+ (localvar (?top ("getRatioTop" ?1))
+           (?bottom ("getRatioBottom" ?1)))
+ (properties 
+ 	(systolic ?top)
+ 	(diasystolic ?bottom)))
+ 	
+((ruleid weight-rule)
+ (stype "<MEDICAL_MEASUREMENT>")
+ (concept ":WEIGHT:")
+ (ordered true)
+ (words ("weight" "weighs")
+ 		("<NUMBER>"))
+ (localvar (?num  ("getNumericValue" ?1)))
+ (properties (value ?num)))
+        
+
+)

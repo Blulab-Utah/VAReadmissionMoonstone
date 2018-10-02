@@ -1,0 +1,211 @@
+'(
+wordrule
+
+((ruleid financial-insecurity-word-rule)
+ (concept ":FINANCIAL_INSECURITY:")
+ (words ("financial insecurity" "financially insecure" 
+		"financial hardship" "hardship waiver" "evidence of poverty"
+		"food bank" "food pantry" "bankruptcy"))
+ (tests (notneg ?0)))
+ 
+;; 7/8/2015:  Note- overlaps lack/need next rule...
+;; e.g. "running out of funds"
+((ruleid lack-money-connotes-financial-insecurity-rule)
+ (debug true)
+ (concept ":FINANCIAL_INSECURITY:")
+ (words (":LACK:") (":MONEY:"))
+ (tests (notneg ?0)))
+
+((ruleid lack-money-resource-connotes-financial-insecurity-rule)
+ (concept ":FINANCIAL_INSECURITY:")
+ (words (":LACK_RESOURCE:"))
+ (tests (hcr ?0 ":MONEY:")))
+
+((ruleid inability-to-pay-for-debt-or-resource-connotes-financial-insecurity-rule)
+ (concept ":FINANCIAL_INSECURITY:")
+ (words (":DEBT:" ":PAY_DEBT:" ":PAY_FOR_RESOURCE:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+((ruleid money-rule-1)
+ (concept ":MONEY:")
+ (words (":GOVERNMENT_FUNDING:" "money" "funding" "funds"
+	"fund" "expenses" "expense" "health insurance" "insurance"
+	"finances")))
+	
+((ruleid government-funding-types-word-rule)
+ (concept ":GOVERNMENT_FUNDING:")
+ (words ("medicare" "medicaid")))
+
+;; e.g. "medicare funding", "financial benefits"
+((ruleid money-rule-2)
+ (concept ":MONEY:")
+ (words ("medicare" "medicaid" "insurance" "financial")
+	("benefit" "benefits" "fund" "funding" "funds"
+	"expense" "expenses" "resource" "resources")))
+
+((ruleid purchase-resource-rule)
+ (concept ":PAY_FOR_RESOURCE:")
+ (ordered true)
+ (words (":PAY:" ":AFFORD:") (":RESOURCE:" ":PAY_FOR_RESOURCE:")))
+ 
+ ;; "pay mortgage", "afford mortgage", "afford to pay mortgage"
+((ruleid pay-debt-rule)
+ (concept ":PAY_DEBT:")
+ (ordered true)
+ (words (":PAY:" ":AFFORD:") (":DEBT:" ":PAY_DEBT:")))
+ 
+((ruleid unable-to-pay-rent-rule-1)
+ (stype "<EVENT_THING>")
+ (concept ":UNABLE_PAY_RENT:")
+ (ordered true)
+ (words (":INABILITY:") (":PAY_RENT:"))
+ (tests (notneg ?0)))
+ 
+((ruleid unable-to-pay-rent-rule-2)
+ (stype "<EVENT_THING>")
+ (concept ":UNABLE_PAY_RENT:")
+ (words (":RENT_OR_MORTGAGE:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+ 
+((ruleid pay-rent-rule-1)
+ (stype "<EVENT>")
+ (concept ":PAY_RENT:")
+ (ordered true)
+ (words (":PAY:" ":AFFORD:") (":RENT_OR_MORTGAGE:")))
+ 
+((ruleid pay-rent-rule-2)
+ (stype "<EVENT_THING>")
+ (concept ":UNABLE_PAY_RENT:")
+ (ordered true)
+ (words (":PAY:" ":AFFORD:") (":RENT_OR_MORTGAGE:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+
+((ruleid debt-rule-1)
+ (concept ":DEBT:")
+ (words ("mortgage" "rent" "debt" "debts" "financial obligation" 
+	"financial obligations" "copayment" "copayments" "copay" 
+	"co pay" "co payment" "co payments" "co-payment" "co-payments")))
+
+((ruleid rent-mortgage-word-rule)
+ (concept ":RENT_OR_MORTGAGE:")
+ (words ("mortgage" "rent")))
+
+
+
+((ruleid recursive-combined-debt-rule)
+ (concept ":DEBT:")
+ (words (":DEBT:" ":PAY:") (":DEBT:" ":PAY:")))
+	
+((ruleid pay-word-rule)
+ (concept ":PAY:")
+ (words ("pay" "pay for" "paying" "payment" "buy" "purchase")))
+ 
+((ruleid afford-word-rule)
+ (concept ":AFFORD:")
+ (words ("afford" "handle")))
+ 
+((ruleid resource-rule-1)
+ (stype "<RESOURCE>")
+ (concept ":RESOURCE:")
+ (words ("resource" "resources" "means")))
+
+;; "medicare funding" "travel resources"
+((ruleid combination-resource-rule-1)
+ (stype "<RESOURCE>")
+ (concept ":RESOURCE:")
+ (words ("<RESOURCE>") ("<RESOURCE>")))
+
+;; "Patient needs transport to the local VA"
+((ruleid transportation-rule-1)
+ ("<TRANSPORTATION>")
+ (concept ":TRANSPORTATION:")
+ (ordered true)
+ (words (":TRANSPORTATION:") (":FACILITY:")))
+
+ ;; 2/1/2016:  Narrowing down to social support aspects
+((ruleidXXX transportation-rule-2)
+ (concept ":TRANSPORTATION:")
+ (words ("transportation" "taxi" "bus"
+	"travel" 
+	"eligibility for travel" "ride home" 
+	"return ride" "return ride home")))
+	
+((ruleid transportation-rule-2)
+ (concept ":TRANSPORTATION:")
+ (words ("transportation" "give ride" "provide transportation" "provide transport" 		
+	"ride home" "return ride" "return ride home")))
+	
+((ruleid facility-rule-1)
+ (stype "<MEDICAL_FACILITY>")
+ (concept ":FACILITY:")
+ (words ("facility" "hospital")))
+
+((ruleid food-rule-1)
+ (concept ":FOOD:")
+ (words ("food")))
+
+((ruleid medical-rule-1)
+ (concept ":MEDICAL:")
+ (words ("medical care" "medicine" "medicines" "meds")))
+
+((ruleid spiritual-rule-1)
+ (concept ":SPIRITUAL:")
+ (words ("spiritual care" "spiritual needs" "spiritual" "spiritual resources")))
+
+;;;;;;;;;
+;; Employment
+((ruleid unemployment-connotes-financial-insecurity-rule)
+ (concept ":FINANCIAL_INSECURITY:")
+ (words (":UNEMPLOYED:"))
+ (tests (notneg ?0)))
+
+((ruleid employed-rule-3)
+ (concept ":UNEMPLOYED:")
+ (words (":EMPLOYED:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+
+((ruleid not-employed-rule-3)
+ (concept ":EMPLOYED:")
+ (words (":UNEMPLOYED:"))
+ (tests (neg ?0))
+ (removeproperties directionality))
+
+((ruleid employed-rule-4)
+ (concept ":UNEMPLOYED:")
+ (words ("unemployed" "unemployment" "jobless" 
+		"looking for work" "between jobs" "inbetween jobs")))
+
+;; E.g. "He lost his job"
+((ruleid modified-event-lack-employment-rule-1)
+ (concept ":UNEMPLOYED:") 
+ (words (":EMPLOYED:"))
+ (tests (and (ccsr (modifier (event ?0)) "lack") 
+	         (hc ?0 ":EMPLOYED:"))))
+			
+;; e.g. "He has a job".  He is currently working."
+((ruleid patient-has-work-rule-1)
+ (concept ":EMPLOYED:")
+ (words (":WORK:" ":JOB:"))
+ (tests ("hasConcept" (subject ?0) ":PATIENT:")))
+
+((ruleid job-rule-1)
+ (concept ":EMPLOYED:")
+ (words ("job" "employment" "employed")))
+ 
+ ((ruleid job-word-rule-1)
+ (concept ":JOB:")
+ (words ("job" "employment" "employed" )))
+ 
+ ((ruleid work-word-rule-1)
+  (concept ":WORK:")
+  (words ("work" "works" "working")))
+
+
+
+
+)
+

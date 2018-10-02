@@ -1,0 +1,20 @@
+'(
+wordrule
+(
+  (ruleid "BOC-person-event-complex-rule-1-2018/01/16 14:55:05") 
+  (specialized) 
+  (example-snippet "Family members wanted to speak with him") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":FAMILY:") 
+    (":DESIRE:") 
+    ("_PREP_") 
+    (":INTERACT_WITH:") 
+    (":PATIENT:")) 
+  (removeproperties directionality))
+
+)

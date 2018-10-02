@@ -1,0 +1,180 @@
+'(
+wordrule
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; EVENT Rules
+
+;; 9/11/2015:  Extending Event rules to cover intransitive, transitive and distransitive
+;; 1/4/2018:  Added notneg tests to many of the rules.  Too much backward negation that makes no sense.
+
+;; intransitive, with and without destination.
+;; transitive
+;; ditransitive
+
+;; event thing
+;; event prep thing
+;; event thing thing
+;; event thing prep thing
+
+;; 6/20/2016:  Not true of all rules...
+;; (all-rule-properties (all-rules-abstract true))
+
+((ruleid state-prep-event-rule)
+ (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<STATE>") ("in" "at") ("<COMPLEX_EVENT>" "<SENTENCE>"))
+ (tests (notneg ?0) (notneg ?2)))
+ 
+((ruleid sentence-sentence-conjunction-rule)
+ (stype ?0)
+ (concept ?0)
+ (ordered true)
+ (window 32)
+ 
+ ;; 6/23/2016: Complex events are combining items connected with "and"; need to 
+ ;; fail unless explicitly looking for conjunct..
+ (words ("<SENTENCE>") (":CONJ:" ":BUT:") ("<SENTENCE>"))
+ (tests ("sameConcept" ?0 ?2)))
+
+;; e.g. "He was visited today by his brother"
+((ruleid passive-sentence-rule)
+ (stype "<PASSIVE_SENTENCE>")
+ ;; (concept ?1)
+ (complex-concept)
+ (ordered true)
+ (window 32)
+ (words ("<PERSON>") ("<PASSIVE_EVENT>"))
+ (properties (subject ?0) (event (event ?1))))
+
+;; e.g. "was visited today"
+((ruleid passive-event-rule)
+(debug true)
+ (stype "<PASSIVE_EVENT>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words ("_IS_") ("<EVENT>" "<COMPLEX_EVENT>"))
+ (properties (event ?1)))
+ 
+ ;; e.g. "was visited today by his brother"
+((ruleid passive-event-with-actor-rule)
+ (stype "<PASSIVE_EVENT>")
+ ;; (concept ?0) -- 7/13/2016
+ (complex-concept)
+ (ordered true)
+ (window 32)
+ (words ("<PASSIVE_EVENT>") ("by") ("<PERSON>"))
+ (properties (event (event ?0)) (actor ?2))
+ (tests (notneg ?0) (notneg ?2)))
+ 
+((ruleid patient-pp-rule)
+ (stype "<SENTENCE>")
+ (complex-concept)
+ (ordered true)
+ (words ("<PERSON>") ("@simple-pp-rule@"))
+ (tests (notneg ?1)))
+ 
+;; e.g. "Give his son a book"
+((ruleid ditransitive-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+;; (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("<THING>") ("<THING>"))
+ (properties (event ?0) (direct_object ?1) (indirect_object ?2))
+ (tests (not ("annotationHasType" ?2 "<PERSON>")) (notneg ?0)))
+
+;; e.g. "Gave a book to his son"
+((ruleid dative-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+;; (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("<THING>") ("@simple-pp-rule@"))
+ (properties (event ?0) (direct_object ?1) (indirect_object (object ?2)))
+ (tests (notneg ?0) (notneg ?1) (notneg ?2)))
+ 
+((ruleid event-prep-thing-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+;; (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("@simple-pp-rule@"))
+ (properties (event ?0) (object ?2))
+ (tests (notneg ?0) (notneg ?1)))
+ 
+((ruleid event-thing-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+;; (concept ?0)
+ (ordered true)
+ (window 32)
+ (words ("<EVENT>") ("<THING>"))
+ (properties (event ?0) (object ?1))
+ (tests (notneg ?0) (notneg ?1)))
+  
+ ;; 8/1/2016:  Changed back to complex.  Most instances the :PATIENT: is implicit, however...
+((ruleid person-event-complex-rule) 
+ (stype "<SENTENCE>")
+ ;; (concept ?1)
+ (complex-concept)
+ (ordered true)
+ (window 32) 
+ (words ("<PERSON>") ("<EVENT>" "<COMPLEX_EVENT>")) 
+ (properties (subject ?0) (event ?1)))
+
+((ruleid event-time-rule) 
+  (stype "<COMPLEX_EVENT>") 
+  (concept ?0)
+  (window 32) 
+  (words 
+    ("<EVENT>" "<COMPLEX_EVENT>") 
+    ("<TIME_EXPRESSION>")) 
+  (properties 
+    (event ?0) 
+    (time ?1))
+  (tests (notneg ?0)))
+
+((ruleid person-want-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+ ;; (concept ?1)
+ (words (":DESIRE:" ":PLAN:") ("<THING>" "<COMPLEX_EVENT>"))
+ (properties (object ?1))
+ (tests (notneg ?1)))
+
+((ruleid patient-communication-event-affirmed)
+ (stype "<COMMUNICATION>")
+ (complex-concept)
+ ;; (concept ?1)
+ (ordered true)
+ (window 32)
+ (words (":AFFIRMATIVE_COMMUNICATION:") ("<SENTENCE>"))
+ (properties (communication true)))
+
+((ruleid communication-event-negated)
+ (stype "<COMMUNICATION>")
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ (words (":NEGATIVE_COMMUNICATION:") ("<SENTENCE>"))
+ (properties (communication true) (directionality negated))
+ (tests (notneg ?1)))
+ 
+ 
+;; "Patient advised this writer that he lives alone"
+((ruleid affirmation-to-person-of-event-rule)
+ (stype "<COMMUNICATION>")
+ (concept ?2)
+ (ordered true)
+ (window 32)
+ (words (":AFFIRMATIVE_COMMUNICATION:") 
+ 		("<PERSON>") 
+ 		("<SENTENCE>"))
+ (properties (communication true) (directionality affirmed)))
+
+)

@@ -1,0 +1,221 @@
+'(
+wordrule
+
+;;;;;;;;;;;;;;;;
+;; Table-level rules
+
+((ruleid indented-bulleted-content-collection-rule-1)
+ (concept ":BULLETED_CONTENT:")
+ (words ("whitespace:newline") 
+	(":INDENTATION:") 
+	(":BULLET:") 
+	(":CONTENT_COLLECTION:"))
+ (properties (indent-length ("getTokenLength" ?1))
+	     (bullet-number ("getNumericValue" ?2))))
+
+;; e.g. "6) Happy ? I would think not.  Sad ? probably so."
+((ruleid bulleted-content-collection-table-rule-1)
+ (concept ":BULLETED_CONTENT_TABLE:")
+ (words (":BULLETED_CONTENT:"))
+ (properties (indent-length (indent-length ?0))
+	     (bullet-number (bullet-number ?0))))
+  
+((ruleid bulleted-content-collection-table-rule-2)
+ (debug true)
+ (concept ":BULLETED_CONTENT_TABLE:")
+ (words (":BULLETED_CONTENT:") 
+	(":BULLETED_CONTENT_TABLE:"))
+ (localvar (?l0 (indent-length ?0))
+	   (?l1 (indent-length ?1))
+	   (?b0 (bullet-number ?0))
+	   (?b1 (bullet-number ?1)))
+ (tests (== ?l0 ?l1) 
+	(== ("1+" ?b0) ?b1))
+ (properties (indent-length ?l0)
+	     (bullet-number ?b0)))
+
+;;;;;;;;;;;;;;;;
+
+((ruleid numeric-equality-string-rule-1)
+ (concept ":NUMBER_EQUALS_SENTENCE_STRING:")
+ (words ("number")
+	(":NON_NEWLINE_WHITESPACE_COLLECTION:")
+	("=")
+	(":NON_NEWLINE_WHITESPACE_COLLECTION:")
+	(":SENTENCE_STRING:"))
+ (properties (number ?0) (value ?4)))
+
+((ruleid starting-sentence-string-rule-1)
+ (concept ":STARTING_SENTENCE_STRING:")
+ (words (":STARTING_SENTENCE_WORD:")))
+
+((ruleid starting-sentence-string-rule-2)
+ (juxtaposed true)
+ (concept ":STARTING_SENTENCE_STRING:")
+ (words (":STARTING_SENTENCE_WORD:") 
+	(":NON_ALPHA_STRING_CHARACTER_SEQUENCE:") 
+	(":CONTINUATION_SENTENCE_STRING:")))
+
+((ruleid continuing-sentence-string-rule-1)
+ (concept ":CONTINUATION_SENTENCE_STRING:")
+ (words (":WORD:")))
+
+((ruleid continuing-sentence-string-rule-2)
+ (juxtaposed true)
+ (concept ":CONTINUATION_SENTENCE_STRING:")
+ (words (":WORD:")
+	(":NON_ALPHA_STRING_CHARACTER_SEQUENCE:") 
+	(":CONTINUATION_SENTENCE_STRING:")))
+
+((ruleid sentence-string-rule-1)
+ (juxtaposed true)
+ (concept ":SENTENCE_STRING:")
+ (words (":STARTING_SENTENCE_STRING:" ":CONTINUATION_SENTENCE_STRING:")))
+
+((ruleid numeric-equality-sentence-string-rule)
+ (concept ":SENTENCE_STRING:")
+ (words (":NUMBER_EQUALS_SENTENCE_STRING:")))
+
+((ruleid full-sentence-rule-1)
+ (juxtaposed true)
+ (concept ":SENTENCE:")
+ (words (":STARTING_SENTENCE_STRING:") (":SENTENCE_DELIMITER:")))
+
+((ruleid full-sentence-rule-2)
+ (juxtaposed true)
+ (concept ":SENTENCE:")
+ (words (":STARTING_SENTENCE_WORD:") (":SENTENCE_DELIMITER:")))
+
+((ruleid avpair-string-rule-1)
+ (juxtaposed true)
+ (concept ":ATTRIBUTE_VALUE_PAIR:")
+ (words (":SENTENCE_STRING:") 
+	(":AVPAIR_DELIMITER_STRING:") 
+	(":SENTENCE_STRING:" ":SENTENCE:"))
+ (properties (question ?0) (answer ?2)))
+
+((ruleid indentation-rule-1)
+ (concept ":INDENTATION:")
+ (words (":NON_NEWLINE_WHITESPACE_COLLECTION:"))
+ (localvar (?count ("getIndentCount" ?0))))
+
+;; e.g. "[1]"
+((ruleid bullet-rule-1)
+ (concept ":BULLET:")
+ (words ("punctuation:leftbracket" "punctuation:leftparen" "punctuation:hyphen") 
+	("number") 
+	("punctuation:rightbracket" "punctuation:rightparen" "punctuation:hyphen"))
+ (localvar (?number ("getNumericValue" ?1))))
+
+;; "3)"
+((ruleid bullet-rule-2)
+ (concept ":BULLET:")
+ (words ("number") 
+	("punctuation:rightbracket" "punctuation:rightparen" 
+		"punctuation:hyphen" "punctuation:period"))
+ (localvar (?number ("getNumericValue" ?0))))
+
+;; e.g. "5) "
+((ruleid bullet-rule-3)
+ (concept ":BULLET:")
+ (words (":BULLET:")
+	(":NON_NEWLINE_WHITESPACE_COLLECTION:"))
+ (localvar (?number ("getNumericValue" ?0))))
+
+((ruleid interpretable-item-rule)
+ (concept ":CONTENT_ITEM:")
+ (words (":SENTENCE:" ":ATTRIBUTE_VALUE_PAIR:")))
+
+((ruleid interpretable-content-collection-rule-1)
+ (concept ":CONTENT_COLLECTION:")
+ (words (":CONTENT_ITEM:")))
+
+((ruleid interpretable-content-collection-rule-2)
+ (concept ":CONTENT_COLLECTION:")
+ (words (":CONTENT_ITEM:") 
+	(":NON_NEWLINE_WHITESPACE_COLLECTION:") 
+	(":CONTENT_COLLECTION:")))
+
+;;;;;;;;;;;;;;;;
+
+((ruleid continuation-sentence-word-rule)
+ (concept ":CONTINUATION_SENTENCE_WORD:")
+ (words ("word:alllowercase" "word:uppercase" "number")))
+
+((ruleid starting-sentence-word-rule)
+ (concept ":STARTING_SENTENCE_WORD:")
+ (words ("word:firstuppercase")))
+
+((ruleid word-rule-1)
+ (concept ":WORD:") 
+ (words (":CONTINUATION_SENTENCE_WORD:" ":STARTING_SENTENCE_WORD:" "<DATE>")))
+
+((ruleid sentence-delimiter-rule-1)
+ (concept ":SENTENCE_DELIMITER:")
+ (words ("punctuation:period" "punctuation:semicolon" "punctuation:colon" 
+		"punctuation:question")))
+
+((ruleid avpair-delimiter-rule)
+ (concept ":AVPAIR_DELIMITER:")
+ (words ("punctuation:colon" "punctuation:question")))
+
+((ruleid avpair-delimiter-string-rule-1)
+ (concept ":AVPAIR_DELIMITER_STRING:")
+ (words (":AVPAIR_DELIMITER:")))
+
+((ruleid avpair-delimiter-string-rule-2)
+ (concept ":AVPAIR_DELIMITER_STRING:")
+ (words (":AVPAIR_DELIMITER:") (":WHITESPACE_COLLECTION:"))
+ (tests (<= ("getTokenLength" ?*) 6)))
+
+((ruleid avpair-delimiter-string-rule-3)
+ (concept ":AVPAIR_DELIMITER_STRING:")
+ (juxtaposed true)
+ (words (":WHITESPACE_COLLECTION:") (":AVPAIR_DELIMITER:")))
+
+((ruleid avpair-delimiter-string-rule-4)
+ (concept ":AVPAIR_DELIMITER_STRING:")
+ (juxtaposed true)
+ (words (":WHITESPACE_COLLECTION:") (":AVPAIR_DELIMITER:") (":WHITESPACE_COLLECTION:")))
+
+((ruleid nondelimiting-character-rule)
+ (concept ":NON_ALPHA_STRING_CHARACTER:")
+ (words ("punctuation:hyphen" "punctuation:slash" "punctuation:rightparen" 
+	"punctuation:leftparen" "punctuation:comma" "punctuation:equals" "whitespace:space")))
+
+((ruleid nondelimiting-whitespace-collection-rule-1)
+ (concept ":NON_ALPHA_STRING_CHARACTER_SEQUENCE:")
+ (words (":NON_ALPHA_STRING_CHARACTER:")))
+
+((ruleid nondelimiting-whitespace-collection-rule-2)
+ (concept ":NON_ALPHA_STRING_CHARACTER_SEQUENCE:")
+ (words (":NON_ALPHA_STRING_CHARACTER:") (":NON_ALPHA_STRING_CHARACTER_SEQUENCE:"))
+ (tests (<= ("getTokenLength" ?*) 3)))
+
+((ruleid whitespace-space-rule-1)
+ (juxtaposed true)
+ (concept ":WHITESPACE_COLLECTION:")
+ (words ("whitespace")))
+
+((ruleid whitespace-space-rule-2)
+ (juxtaposed true)
+ (concept ":WHITESPACE_COLLECTION:")
+ (words ("whitespace") (":WHITESPACE_COLLECTION:")))
+
+((ruleid non-newline-whitespace-rule)
+ (concept ":NON_NEWLINE_WHITESPACE:")
+ (words ("whitespace:space" "whitespace:tab")))
+
+((ruleid non-newline-whitespace-collection-rule-1)
+ (concept ":NON_NEWLINE_WHITESPACE_COLLECTION:")
+ (words (":NON_NEWLINE_WHITESPACE:")))
+
+((ruleid non-newline-whitespace-collection-rule-2)
+ (concept ":NON_NEWLINE_WHITESPACE_COLLECTION:")
+ (words (":NON_NEWLINE_WHITESPACE:") 
+	(":NON_NEWLINE_WHITESPACE_COLLECTION:")))
+
+
+
+
+)

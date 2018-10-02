@@ -1,0 +1,39 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-passive-event-rule-1-2016/11/02 14:57:25") 
+  (specialized) 
+  (example-snippet "was discharged to home with pain medication") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept ":STABLE_HOUSING:") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-ditransitive-event-rule-2-2016/11/02 14:57:25@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-2-2016/11/02 14:57:25") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "discharged to home with pain medication") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@discharge-word-rule@") 
+    ("@AUTO-simple-pp-rule-3-2016/07/18 18:56:39@") 
+    ("@AUTO-simple-pp-rule-7-2016/06/07 01:01:30@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))))
+
+)

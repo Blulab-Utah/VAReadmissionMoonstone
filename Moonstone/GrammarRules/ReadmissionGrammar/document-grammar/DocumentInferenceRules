@@ -1,0 +1,117 @@
+'(
+wordrule
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LIVING SITUATION RULES
+
+
+((ruleid gate-keeper-homelessness-rule)
+ (stype ?0)
+ (concept ":HOMELESS:")
+ (words (":POSSIBLY_HOMELESS:"))
+ (tests (notneg ?0) 
+		;; (<= ("getSentenceWordTokenLength" ?0) 16) ;; Removed 1/15/2018 
+		))
+ 
+((ruleid gate-keeper-homelessness-rule-2)
+ (debug true)
+ (stype ?0)
+ (concept ":NOT_HOMELESS:")
+ (words (":POSSIBLY_HOMELESS:"))
+ (tests (neg ?0))
+ (properties (emptyprop whatever))
+ (removeproperties directionality))
+		
+((ruleid general-stable-housing-rule)
+ (stype ?0)
+ (concept ":STABLE_HOUSING:")
+ (words (":LIVE_AT_HOME:" ":POSSIBLE_LIVE_AT_HOME:" 
+		":NOT_HOMELESS_BUT_OTHER_LIVING_SITUATION:" 
+		":NOT_HOMELESS:" 
+		":RETURN_TO_OR_LIVE_AT_HOME:"
+		":PATIENT::STABLE_HOUSING:"
+		
+		;; REMOVED 2/14/2017.  This is adding StableHousing to ALL annotations 
+		;; indicating not living alone...
+		;; ":NOT_LIVING_ALONE:"  ;; 11/6/2016:  TEST.  HAIL-MARY PASS TO PUSH FOR BETTER ACCURACY...
+		))
+ (tests (notneg ?0) 
+		;; (<= ("getSentenceWordTokenLength" ?0) 16)
+		))
+ 
+ ;; 5/28/2017 ":POSSIBLY_HOMELESS:" needs vetting first
+((ruleid general-unstable-housing-rule)
+ (stype ?0)
+ (concept ":UNSTABLE_HOUSING:")
+ (words (":HOMELESS:" 
+		;; ":POSSIBLY_HOMELESS:" 
+		":MARGINALLY_HOUSED:"))
+ (tests (notneg ?0)))
+ 
+ ;; 1/15/2018 REMOVED:  Patient homeless NO is interpreted as not homeless, then lower "homeless" gets
+ ;; interpreted.
+((ruleidXXX homelessness-in-short-sentence-indicates-homeless-rule)
+ (stype ?0)
+ (concept ":HOMELESS:")
+ (window 64)
+ (words (":HOMELESSNESS:"))
+ (tests (notneg ?0)))
+		
+;; 12/20/2017:  "lives alone at Seacrest nursing home" does not mean living alone.
+((ruleidXXX general-live-in-facility-means-not-living-alone-rule)
+ (stype ?0)
+ (concept ":NOT_LIVING_ALONE:")
+ (words (":LIVES_IN_FACILITY:"))
+ (tests (notneg ?0)))
+ 
+((ruleid general-live-in-facility-rule)
+ (stype ?0)
+ (concept ":LIVES_IN_FACILITY:")
+ (words (":LIVE_IN_NURSING_HOME:" ":LIVE_IN_ASSISTED_LIVING:" ":LIVE_IN_GROUP_HOME:"))
+ (tests (notneg ?0)
+		(not ("sentenceContainsString" ?0 "if "))))
+ 
+((ruleid not-homeless-rule-1)
+ (concept ":NOT_HOMELESS:")
+ (words (":HOMELESS:" ":HOMELESSNESS:"))
+ (tests (neg ?0)
+		(< ("getSentenceWordTokenLength" ?*) 8))
+ (removeproperties directionality))
+ 
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; SOCIAL SUPPORT DOCUMENT RULES 
+
+((ruleid gate-keeper-support-rule)
+(debug true)
+ (concept ":HAVE_SUPPORT:")
+ (words (":POSSIBLE_SUPPORT:" ":FAMILY_SUPPORT:"))
+ (tests (notneg ?0) 
+		;; (not ("containsComma" ?0))
+		;; (not ("containsUnderline" ?0))
+		
+		;; 12/11/2017:  Mentions of medicare / personnel with family
+		(or (hcr ?0 ":FAMILY:") (not (hcr ?0 ":PROVIDER:")))
+		(or (hcr ?0 ":FAMILY:") (not (hcr ?0 ":MEDICAL_CARE:")))
+		;; (not (atct ?0 "and"))
+		;; fails- Expression.evalPattern() returns null for Vector
+		;; (not ("containsSomeConcepts" ?0 (":PROVIDER:" ":MEDICAL_CARE:")))
+	))
+	
+((ruleid gate-keeper-lack-support-rule)
+ (concept ":LACK_SUPPORT:")
+ (words (":POSSIBLE_LACK_SUPPORT:"))
+ (tests (notneg ?0) (not ("containsComma" ?0)) (not (atct ?0 "alternat"))))
+
+ ;; 8/12/2017 PROBLEM:  NEED STATEMENT ABOUT RECEIPT OF SERVICES.  OTHERWISE "GAVE NUMBER TO MEALS ON WHEELS" WILL MATCH
+ ;; 1/10/2018:  Let anything match as long as not negated
+((ruleid community-service-gatekeeper-rule) 
+  (concept ":ACCESS_TO_COMMUNITY_SERVICES:") 
+  (words (":COMMUNITY_SERVICE:")) 
+  (tests (notneg ?0)))
+
+((ruleid help-from-church-connotes-access-to-community-services-rule) 
+  (concept ":ACCESS_TO_COMMUNITY_SERVICES:") 
+  (words (":POSSIBLE_SUPPORT:")) 
+  (tests (notneg ?0) (hcr ?0 ":CHURCH:") (< ("getSentenceWordTokenLength" ?*) 8)))
+)

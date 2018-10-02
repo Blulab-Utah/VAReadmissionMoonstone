@@ -1,0 +1,70 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-0-2016/07/18 18:56:39") 
+  (specialized) 
+  (example-snippet "Two adult sons live in the home") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@AUTO-number-thing-rule-1-2016/07/18 18:56:39@") 
+    ("@AUTO-live-at-own-home-rule-2-2016/07/18 18:56:39@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-number-thing-rule-1-2016/07/18 18:56:39") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Two adult sons") 
+  (ordered true) 
+  (sourceid "number-thing-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 32.0) 
+  (words 
+    ("@number-words-rule@") 
+    ("@family-definition-rule@")) 
+  (properties 
+    (number ?0) 
+    (thing ?1)))
+
+(
+  (ruleid "AUTO-live-at-own-home-rule-2-2016/07/18 18:56:39") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "live in the home") 
+  (ordered true) 
+  (sourceid "live-at-own-home-rule") 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@AUTO-simple-pp-rule-3-2016/07/18 18:56:39@")) 
+  (tests 
+    (notneg ?0)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-3-2016/07/18 18:56:39") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in the home") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PLACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@home-word-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

@@ -1,0 +1,35 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-thing-is-state-rule-3-2018/01/16 17:28:03") 
+  (specialized) 
+  (example-snippet "patient is safe to go home") 
+  (ordered true) 
+  (sourceid "thing-is-state-rule") 
+  (concept ":LIVE_AT_HOME:") 
+  (window 16.0) 
+  (words 
+    ("@patient-word-rule-1@") 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-safety-state-rule-4-2018/01/16 17:28:03@")) 
+  (tests 
+    (notneg ?2)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-safety-state-rule-4-2018/01/16 17:28:03") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "safe to go home") 
+  (ordered true) 
+  (sourceid "safety-state-rule") 
+  (concept ":SAFETY_STATE:") 
+  (stype "<STATE>") 
+  (window 16.0) 
+  (words 
+    ("@safe-word-rule@") 
+    ("@AUTO-get-home-word-rule-2-2018/01/16 14:56:52@")) 
+  (tests 
+    (notneg ?1)))
+
+)

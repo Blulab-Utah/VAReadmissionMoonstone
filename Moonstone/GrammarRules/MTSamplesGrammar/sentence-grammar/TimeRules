@@ -1,0 +1,116 @@
+'(
+wordrule
+
+
+((ruleid time-prior-to-event)
+ (concept ":TIME_UNIT:")
+ (ordered true)
+ (words ("<TIME_EXPRESSION>") ("before" "prior to" "until") ("<EVENT>"))
+ (properties (time ?0) (event ?2)))
+
+((ruleid time-duration-expression-rule)
+ (stype "<TIME_EXPRESSION>")
+ (concept ?0)
+ (words ("<TIME_DURATION>" "<DATE>")))
+
+;; e.g. "five years"
+((ruleid time-number-rule)
+ (concept ?1)
+ (juxtaposed true)
+ (words ("<NUMBER>") ("<TIME_DURATION>"))
+ (number-of ?0))
+
+;; e.g. "past five years"
+((ruleid elapsed-time-rule-1)
+ (concept ":TIME_UNIT:")
+ (juxtaposed true)
+ (words ("past" "last" "previous") (":NUMBER:") (":TIME_UNIT:"))
+ (properties (temporal-relation elapsed) (number ?1) (time-unit ?2)))
+
+((ruleid modified-time-duration-rule)
+ (stype "<TIME_DURATION>")
+ (concept ?1)
+ (ordered true)
+ (words ("<TIME_MODIFIER>") ("<TIME_DURATION>")))
+ 
+((ruleid time-duration-ago-rule)
+ (stype "<TIME_EXPRESSION>")
+ (concept ?0)
+ (juxtaposed true)
+ (words ("<TIME_DURATION>") ("ago"))
+ (properties (time-ago ("getNumericValue" ?1))))
+ 
+
+;; "patient currently drinks alcohol"
+((ruleid modified-time-expression-rule)
+ (gtype "<EVENT>")
+ (concept ?1)
+ (ordered true)
+ (words ("<TIME_MODIFIER>") ("<EVENT>"))
+ (relations (time-modifier ?* ?0) (event ?* ?1)))
+
+;; "weekly", "per year"
+((ruleid time-unit-rule) 
+  (concept ":TIME_UNIT:")
+  (words 
+    ("years" "year" "day" "days" "night" "nights"
+	"week" "weeks" "one-week" "month" "months" "one-month" "minute" "minutes"
+	"hour" "hours")))
+
+((ruleid per-time-unit-rule-1)
+ (concept ":PER_TIME_UNIT:")
+ (words ("per") (":TIME_UNIT:")))
+
+;; 6/11/2015
+((ruleid temporal-regularity-rule) 
+  (concept ":REGULARLY:")
+  (words 
+    ("monthly" "every month" "daily" "every day" "nightly" "every night" 
+	"weekly" "every week" "hourly" "every hour" "regularly" "frequently"))
+  (properties (frequency regular)))
+  
+((ruleid temporal-currently-rule) 
+  (concept ":CURRENTLY:")
+  (words 
+    ("currently" "at the present time" "at this time" "in the recent times"))
+  (properties (time current)))
+
+;; "drinks on social occasions"
+((ruleid temporal-sometimes-rule) 
+  (concept ":SOMETIMES:")
+  (words 
+    ("social occasions"))
+  (properties (frequency sometimes)))
+
+((ruleid time-modifier-rule) 
+  (stype "<TIME_MODIFIER>") 
+  (words 
+    ("since" "until" "per" "lasting until" "lasting up to" 
+	"until" "current" "currently" "occasionally" 
+	"frequently" "infrequently" "occasionally" "regularly" "continually"
+	"later than" "up to" "recent" "recently" "prior to")))
+
+;; "cough that started recently"
+((ruleid start-end-time-rule)
+ (concept ?0)
+ (ordered true)
+ (words ("<MEDICAL_THING>")
+ 		("start" "started" "begin" "began" "end" "ended" "finished")
+ 		(":TIME_UNIT:"))
+ (properties (start-end-time-of ?2)))
+
+;; e.g. "1984"
+((ruleid simple-year-date-rule)
+  (concept ":DATE:")
+  (words ("<NUMBER>"))
+  (localvar (?num ("getNumericValue" ?0)))
+  (tests (and (>= ?num 1900) (< ?num 2020))))
+  
+((ruleid episode-word-rule)
+ (concept ?1)
+ (ordered true)
+ (words ("episode" "episodes" "episodic") ("<MEDICAL_THING>"))
+ (properties (temporality episodic)))
+ 
+
+)

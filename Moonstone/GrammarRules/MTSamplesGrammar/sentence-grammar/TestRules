@@ -1,0 +1,16 @@
+'(
+wordrule
+
+
+((ruleid condition-at-location-rule-1)
+ (concept ?0)
+ (words ("<UMLSCONDITION>") ("at" "in" "of") ("<UMLSLOCATION>"))
+ (relations (located-at ?0 ?2)))
+
+((ruleid condition-at-location-rule-2)
+ (concept ?1)
+ (juxtaposed true)
+ (words ("<UMLSLOCATION>") ("<UMLSCONDITION>") )
+ (relations (located-at ?1 ?0)))
+
+)

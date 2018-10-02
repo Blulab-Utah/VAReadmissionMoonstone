@@ -1,0 +1,21 @@
+'(
+wordrule
+
+((ruleid sentence-target-concept-list-rule)
+ (concept ?0)
+  (words (":STABLE_HOUSING:" 
+			":UNSTABLE_HOUSING:"
+			":LIVES_IN_FACILITY:"
+			":SINGLE_ROOM_OCCUPANCY:"
+  
+			":UNABLE_TO_LIVE_ALONE:"
+			":LIVING_ALONE:" ":NOT_LIVING_ALONE:" 
+			":HAVE_SUPPORT:" ":LACK_SUPPORT:" 
+			":ACCESS_TO_COMMUNITY_SERVICES:"
+		))
+ (tests (notneg ?0))
+ (actions ("applyModifierProperties" ?rule ?0))
+ (properties (contains-target true)))
+	
+  
+)

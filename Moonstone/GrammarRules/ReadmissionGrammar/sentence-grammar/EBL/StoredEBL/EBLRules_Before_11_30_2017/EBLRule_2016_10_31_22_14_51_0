@@ -1,0 +1,35 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-0-2016/10/31 22:08:53") 
+  (specialized) 
+  (example-snippet "patient will return back home") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":LIVE_AT_HOME:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-event-thing-rule-1-2016/10/31 22:08:53@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-1-2016/10/31 22:08:53") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "return back home") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@moving-action-word-rule@") 
+    ("@living-space-rule@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+)

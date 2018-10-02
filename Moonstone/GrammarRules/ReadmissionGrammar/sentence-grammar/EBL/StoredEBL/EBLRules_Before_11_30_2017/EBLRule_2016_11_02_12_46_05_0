@@ -1,0 +1,52 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-4-2016/11/02 12:46:05") 
+  (specialized) 
+  (example-snippet "Patient currently visiting with family") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":HAVE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-modified-time-expression-rule-5-2016/11/02 12:46:05@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-modified-time-expression-rule-5-2016/11/02 12:46:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "currently visiting with family") 
+  (ordered true) 
+  (sourceid "modified-time-expression-rule") 
+  (concept "?1") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@time-modifier-rule@") 
+    ("@AUTO-event-thing-rule-6-2016/11/02 12:46:05@")) 
+  (relations 
+    (time-modifier ?* "?0") 
+    (event ?* "?1")))
+
+(
+  (ruleid "AUTO-event-thing-rule-6-2016/11/02 12:46:05") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "visiting with family") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@visit-event-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/07/14 19:38:03@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+)

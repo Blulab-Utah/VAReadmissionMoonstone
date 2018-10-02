@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-family-concern-word-rule-22-2017/12/04 18:56:48") 
+  (specialized) 
+  (example-snippet "family was worried") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":FAMILY:") 
+    (":CONCERN:")) 
+  (removeproperties directionality))
+
+)

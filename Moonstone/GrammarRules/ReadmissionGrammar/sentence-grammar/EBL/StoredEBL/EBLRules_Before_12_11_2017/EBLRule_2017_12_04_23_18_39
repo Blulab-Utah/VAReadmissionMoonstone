@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "BOC-BOC-complex-rule-social-support-rule-3-2016/07/26 17:35:54-26-2017/12/04 23:18:39") 
+  (specialized) 
+  (example-snippet "discharge to home with son") 
+  (ordered true) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":DISCHARGE:") 
+    ("_PREP_") 
+    (":HOME:") 
+    (":FAMILY:")) 
+  (removeproperties directionality))
+
+)

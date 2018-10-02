@@ -1,0 +1,61 @@
+'(
+
+;;ruleid=0, ;;stype=1,concept=2,ordered=3,juxtaposed=4,window=5,words=6,pattern=6,
+;;localvars=7,tests=8,properties=9,relations=10,subpattern=11
+
+;; 5/11/2016:  Excel spreadsheet order:
+(ruleid string ruleid 0)
+(stype string null 1)
+(concept string null 2)
+(cui string null 3)
+(words vlist null 4)
+(pattern vlist null 4)
+(ordered boolean false 5)
+(juxtaposed boolean false 6)
+(localvar vlist null 7)
+(tests vlist null 8)
+(properties vlist null 9)
+(relations vlist null 10)
+(macro string null 11)
+(ptype string null 12)
+(window number 16 13)
+(subpattern vlist null 14)
+(specialization vlist null 15)
+(flags list null 16)
+(removeproperties list null 17)
+(header_strings list null 18)
+(permit-interstitial boolean false 19)
+(inhibit-interstitial boolean false 20)
+(actions vlist null 21)
+(contextlexicon list null 22)
+(stopword list null 23)
+(example-snippet string null 24)
+
+
+;; Features
+(directionality string affirmed)
+(temporality string acute)
+(experiencer string patient)
+(rule string acute)
+(certainty number 1)
+(predicates vlist null)
+(inferencerules vlist null)
+(inheritproperties boolean true)
+(terminal boolean false)
+(query vlist null)
+(place string null)
+(tags list null)
+(precedes boolean true)
+(istag boolean false)
+(interstitial boolean false)
+
+
+
+(inferencerules vlist null)
+(sourcefile string null)
+(storelist boolean false)
+(gtype string null)
+(sinterp vlist null)
+(features vlist null)
+
+)

@@ -1,0 +1,34 @@
+'(
+wordrule
+
+(
+  (XXXruleid community-living-living-indicates-not-living-alone-rule) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (words 
+    (":COMMUNITY_LIVING:")) 
+  (tests 
+    (notneg ?0)))
+	
+;; 2/22/2016:  TEMPORARILY DISCONNECTED
+((XXXruleid lacks-support-if-homeless-rule)
+ (concept ":LACK_SUPPORT:")
+ (words (":HOMELESS:"))
+ (tests (notneg ?0)))
+ 
+ ;; 2/22/2016:  TEMPORARILY DISCONNECTED
+((XXXruleid community-living-implies-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (words (":COMMUNITY_LIVING:"))
+ (tests (notneg ?0)))
+    
+ ;; 2/22/2016:  TEMPORARILY DISCONNECTED
+;; 7/15/2015:  There are lots of conditions that indicate that a person is not homeless;
+;; being marginally housed, etc.  (DO:  Add more conditions)
+((XXXruleid if-living-somewhere-is-not-homeless-rule)
+ (concept ":NOT_HOMELESS:")
+ (words (":MARGINALLY_HOUSED:" ":AT_RISK_FOR_HOMELESSNESS:" 
+			":LIVE_AT_HOME:" ":COMMUNITY_LIVING:" ":NOT_LIVING_ALONE:"))
+ (tests (notneg ?0)))
+		
+
+)

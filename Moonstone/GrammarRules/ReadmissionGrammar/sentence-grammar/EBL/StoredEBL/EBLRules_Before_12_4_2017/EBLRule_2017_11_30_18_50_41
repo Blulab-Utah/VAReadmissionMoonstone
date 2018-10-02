@@ -1,0 +1,21 @@
+'(
+wordrule
+(
+  (ruleid "BOC-person-event-complex-rule-7-2017/11/30 18:50:41") 
+  (specialized) 
+  (example-snippet "She needs to cue and assist him in all of his personal hygiene") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PERSON:") 
+    (":NEED:") 
+    ("_PREP_") 
+    (":PROVISION_OF_CARE:") 
+    (":PATIENT:") 
+    (":HYGIENE:")) 
+  (removeproperties directionality))
+
+)

@@ -1,0 +1,75 @@
+'(
+wordrule
+
+;; 1/16/2018:  TEST:  set directionality with checkbox
+
+((ruleid checkbox-checked-item-rule-1)
+ (concept ?1)
+ (ordered true)
+ (words (":CHECKBOX_CHECKED:") (?interpreted))
+ 
+ (tests (not (hcr ?1 ":CHECKBOX_CHECKED:"))
+		(not (hcr ?1 ":CHECKBOX_UNCHECKED:")))
+ 
+ (properties (directionality affirmed)))
+
+((ruleid checkbox-checked-item-rule-2)
+ (concept ?0)
+ (ordered true)
+ (words (?interpreted) (":CHECKBOX_CHECKED:"))
+ 
+ (tests (not (hcr ?0 ":CHECKBOX_CHECKED:"))
+		(not (hcr ?0 ":CHECKBOX_UNCHECKED:")))
+		
+ (properties (directionality affirmed)))
+ 
+((ruleid checkbox-unchecked-item-rule-1)
+ (concept ?1)
+ (ordered true)
+ (words (":CHECKBOX_UNCHECKED:") (?interpreted))
+ 
+ (tests (not (hcr ?1 ":CHECKBOX_CHECKED:"))
+		(not (hcr ?1 ":CHECKBOX_UNCHECKED:")))
+		
+ (properties (directionality negated)))
+
+((ruleid checkbox-unchecked-item-rule-2)
+ (concept ?0)
+ (ordered true)
+ (words (?interpreted) (":CHECKBOX_UNCHECKED:"))
+ 
+ (tests (not (hcr ?0 ":CHECKBOX_CHECKED:"))
+		(not (hcr ?0 ":CHECKBOX_UNCHECKED:")))
+		
+ (properties (directionality negated)))
+ 
+;;;;;;;;;;;;;;;;;;;;;;;;;
+;; BEFORE 3/26/2018:  PROBLEM WITH INFINITE LOOP
+;; (Need more permanent solution for this...)
+
+((ruleidXXX checkbox-checked-item-rule-1)
+ (concept ?1)
+ (ordered true)
+ (words (":CHECKBOX_CHECKED:") (?interpreted))
+ (properties (directionality affirmed)))
+
+((ruleidXXX checkbox-checked-item-rule-2)
+ (concept ?0)
+ (ordered true)
+ (words (?interpreted) (":CHECKBOX_CHECKED:"))
+ (properties (directionality affirmed)))
+ 
+((ruleidXXX checkbox-unchecked-item-rule-1)
+ (concept ?1)
+ (ordered true)
+ (words (":CHECKBOX_UNCHECKED:") (?interpreted))
+ (properties (directionality negated)))
+
+((ruleidXXX checkbox-unchecked-item-rule-2)
+ (concept ?0)
+ (ordered true)
+ (words (?interpreted) (":CHECKBOX_UNCHECKED:"))
+ (properties (directionality negated)))
+
+
+)

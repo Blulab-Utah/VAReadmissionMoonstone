@@ -1,0 +1,19 @@
+'(
+wordrule
+
+((ruleid referred-to-facility-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ":PLACEMENT:")
+ (words ("placement" "placed") ("<FACILITY>")))
+ 
+((ruleid referral-for-placement-rule)
+ (concept ?1)
+ (words (":REFERRAL:") (":PLACEMENT:"))) 
+ 
+((ruleid room-place-word-rule)
+ (stype "<PLACE>")
+ (concept ":ROOM:")
+ (words ("living room" "room")))
+ 
+
+)

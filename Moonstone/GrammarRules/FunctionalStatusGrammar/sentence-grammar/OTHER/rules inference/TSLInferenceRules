@@ -1,0 +1,50 @@
+'(
+inferencerule
+
+((ruleid subject-event-object-tsl-rule)
+ (-> (and (subject ?annotation ?subject)
+ 		  (event ?annotation ?event)
+ 		  (object ?event ?object))
+ 	 (subject-event-object ?annotation ?subject ?event ?object)))
+ 	 
+((ruleid patient-subject-event-tsl-rule)
+ (-> (and (subject ?annotation ?subject)
+ 		  (event ?annotation ?event)
+ 		  ("hasConceptRecursive" ?subject ":PATIENT:"))
+ 	 (patient-subject-event ?annotation ?subject ?event)))
+ 	 
+((ruleid patient-subject-adl-event-rule)
+ (->  (and (patient-subject-event ?annotation ?subject ?event)
+ 		   ("containsSomeConcepts" ?event 
+ 		  		(":ADL_ACTIVITY:" ":IADL_ACTIVITY:" 
+ 		  		":ADL_FACILITY:" ":WALKING:" ":FOOD:" ":ADL_CANE_WALKER:"
+ 		  		":HELP_WITH_ADL_ACTIVITY:" ":ADL_WHEELCHAIR:" )))
+ 	   (is-patient-adl-event ?annotation ?event)))
+ 	   
+((ruleid patient-adl-no-impairment-rule)
+ (-> (and (patient-subject-event ?annotation ?subject ?event)
+ 		  ("containsSomeConcepts" ?event 
+ 		  		(":ADL_NO_IMPAIRMENT:"))
+ 		  ("doTest" ?event "1")
+ 		  (notneg ?event))
+ 	 (inferred-target ?annotation ":ADL_NO_IMPAIRMENT:" 
+ 	 		":ADL_AMBULATES_WITHOUT_ASSISTANCE:")))
+	 
+((ruleid
+	patient-needing-help-with-adls-tsl-rule-1)
+ (-> (and (is-patient-adl-event ?annotation ?event)
+ 		  ("isJavaOr" 
+ 		  		(("containsSomeConcepts" ?event (":NEED:" ":HELP:"))
+ 		  		 ("containsSomeConcepts" ?event (":INABILITY:" ":LACK:" 
+ 		  		 								":ADL_DIFFICULTY_AMBULATING:"))
+ 		  		 (neg ?event)
+ 		  		 ))
+ 		  ("isJavaNot" ("containsSomeConcepts" ?event 
+ 		  						(":ADL_AMBULATES_WITHOUT_ASSISTANCE:"
+ 		  						 ":ADL_NO_ASSISTANCE_WITH_ADLS:"
+ 		  						 ":ADL_NO_IMPAIRMENT:")))
+ 		  (notneg ?event))
+	 (inferred-target ?annotation ":ADL_IMPAIRMENT:")))
+	 
+	
+)

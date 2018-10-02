@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "BOC-thing-is-state-rule-0-2018/02/07 22:28:21") 
+  (specialized) 
+  (example-snippet "he was safe to return home") 
+  (ordered true) 
+  (concept ":LIVE_AT_HOME:") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PATIENT:") 
+    ("_IS_") 
+    (":SAFE:" ":UNSAFE:") 
+    (":MOVE_TO:") 
+    (":HOME:")) 
+  (removeproperties directionality))
+
+)

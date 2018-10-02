@@ -1,0 +1,20 @@
+'(
+wordrule
+(
+  (ruleid "BOC-person-event-complex-rule-0-2017/12/12 13:46:57") 
+  (specialized) 
+  (example-snippet "He will discuss Living Will portion with his friend") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":PATIENT:") 
+    (":DISCUSS:") 
+    (":MEDICAL_THING:") 
+    ("_PREP_") 
+    (":FRIEND:" ":FAMILY:")) 
+  (tests (notneg ?1)))
+
+)

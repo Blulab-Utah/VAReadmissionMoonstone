@@ -1,0 +1,115 @@
+'(
+wordrule
+
+((ruleid thing-from-person-rule)
+ (stype ?0)
+ (concept ?0)
+ (ordered true)
+ (words ("<THING>") ("from") ("<PERSON>"))
+ (properties (person ?2) (source ?2) (object ?0)))
+ 
+;; 7/13/2016, e.g. "supportive visit"
+((ruleid state-thing-rule)
+ (stype ?1)
+ (complex-concept)
+ (ordered true)
+ (words ("<STATE>") ("<THING>"))
+ (properties (state ?0) (object ?1)))
+ 
+((ruleid simple-pp-rule)
+ (concept ?1)
+ (macro "_PP_")
+ (ordered true)
+ (words ("_PREP_") ("<THING>"))
+ (properties (object ?1))
+ (tests ("isInterpreted" ?1)))
+ 
+((ruleid double-pp-rule)
+ (complex-concept)
+ ;; (concept ?1)
+ (macro "_PP_")
+ (ordered true)
+ (words ("@simple-pp-rule@") ("@simple-pp-rule@"))
+ (properties  
+ 	(source (object ?0)) 
+ 	(destination (object ?1))))
+
+((ruleid there-is-thing-rule)
+ (concept ?1)
+ (ordered true)
+ (words ("there is" "there are") ("<THING>")))
+
+((ruleid general-thing-thing-conjunct-rule) 
+  (stype ?0)
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (words ("<THING>") (":CONJ:") ("<THING>")) 
+  (tests 
+    ("sameType" ?0 ?2)
+	(not (hcr ?2 ":PATIENT_SUBJECT:"))))
+
+;; 7/13/2016:  family is supportive
+((ruleid thing-is-state-rule)
+ (complex-concept)
+ (ordered true)
+ (words ("<THING>") ("_IS_") ("<STATE>"))
+ (tests (notneg ?2)))
+ 
+((ruleid thing-is-state-negated-rule)
+ (complex-concept)
+ (ordered true)
+ (words ("<THING>") ("_IS_") ("<STATE>"))
+ (tests (neg ?2))
+ (properties (directionality negated)))
+ 
+((ruleid thing-isnt-state-rule)
+ (complex-concept)
+ (ordered true)
+ (words ("<THING>") ("_ISNT_") ("<STATE>"))
+ (properties (directionality negated)))
+ 
+	
+((ruleid general-state-state-conjunct-rule) 
+  (stype ?0)
+  (concept ?0) 
+  (ordered true) 
+  (flags conj) 
+  (words ("<STATE>") (":CONJ:") ("<STATE>")) 
+  (tests 
+    ("sameType" ?0 ?2)))
+        
+((ruleid possessive-thing-rule)
+ (stype ?1)
+ (concept ?1)
+ (juxtaposed true)
+ (window 8)
+ (ordered true)
+ (pattern ("_POSSESSIVE_" "@possessive-person-rule@") ("<THING>"))
+ (properties (thing ?1)))
+
+;; e.g. "one bottle of beer"
+((ruleid number-thing-rule)
+ (concept ?1)
+ (ordered true)
+ (window 32)
+ ;;(juxtaposed true)
+ (ordered true)
+ (words (":NUMBER:") ("<THING>"))
+ (properties (number ?0) (thing ?1)))
+
+((ruleid number-digit-rule)
+ (stype "<NUMBER>")
+ (concept ":NUMBER:")
+ (words ("#NUMBER#"))
+ (properties (number ?0)))
+
+((ruleid number-words-rule) 
+  (words 
+    ("one" "two" "three" "four" "five" "six" 
+	"seven" "eight" "nine" "ten")) 
+  (concept ":NUMBER:")
+  (properties (number ?0))) 
+
+
+)

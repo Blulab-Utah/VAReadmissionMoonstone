@@ -1,0 +1,17 @@
+INDEX VERSION 1.130+/Users/leechristensen/Desktop/READMISSION/VAReadmissionMoonstone_9_25_2018/VAReadmissionMoonstoneWorkspace/.metadata/.plugins/org.eclipse.jdt.core
+3797586955.index
+69662873.index
+3290202197.index
+1095488228.index
+1549591860.index
+2719236672.index
+3734052592.index
+2986939606.index
+2266385353.index
+3543059272.index
+1441831095.index
+2023851649.index
+3955803773.index
+3370592086.index
+1098915302.index
+3079193877.index

@@ -1,0 +1,102 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-0-2017/12/19 19:40:57") 
+  (specialized) 
+  (example-snippet "Vet reports that he is adequately assisted in the home") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-patient-communication-event-affirmed-1-2017/12/19 19:40:57@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-patient-communication-event-affirmed-1-2017/12/19 19:40:57") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "reports that he is adequately assisted in the home") 
+  (ordered true) 
+  (sourceid "patient-communication-event-affirmed") 
+  (stype "<COMMUNICATION>") 
+  (window 32.0) 
+  (words 
+    ("@affirm-word-rule@") 
+    ("@AUTO-passive-sentence-rule-2-2017/12/19 19:40:57@")) 
+  (properties 
+    (communication true)))
+
+(
+  (ruleid "AUTO-passive-sentence-rule-2-2017/12/19 19:40:57") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "he is adequately assisted in the home") 
+  (ordered true) 
+  (sourceid "passive-sentence-rule") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-passive-event-rule-3-2017/12/19 19:40:57@")) 
+  (properties 
+    (subject ?0) 
+    (event 
+      (event ?1))))
+
+(
+  (ruleid "AUTO-passive-event-rule-3-2017/12/19 19:40:57") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "is adequately assisted in the home") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-event-thing-rule-4-2017/12/19 19:40:57@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-4-2017/12/19 19:40:57") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "assisted in the home") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@help-rule-1@") 
+    ("@AUTO-simple-pp-rule-3-2016/07/18 18:56:39@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-5-2017/12/19 19:40:57") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in the home") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PLACE>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@home-word-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

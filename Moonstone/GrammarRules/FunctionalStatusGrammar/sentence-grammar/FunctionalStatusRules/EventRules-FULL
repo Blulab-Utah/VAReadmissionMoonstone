@@ -1,0 +1,85 @@
+'(
+wordrule
+
+    
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+ 
+((ruleid increase-decrease-in-condition-rule)
+ (concept ?1)
+ (words ("increase" "increased" "decrease" "decreased") 
+  		("<MEDICAL_CONDITION>"))
+ (properties (change-in-amount ?1)))
+
+((ruleid inability-to-do-something-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?1)
+ (ordered true)
+ (words (":INABILITY:" ":IMPAIRMENT:") ("<COMPLEX_EVENT>"))
+ (tests (notneg ?0) (notneg ?1))
+ (properties (directionality negated)))
+ 
+((ruleid continue-to-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?1)
+ (ordered true)
+ (words ("continue") ("<COMPLEX_EVENT>")))
+ 
+((ruleid communicate-about-rule)
+ (stype "<COMMUNICATION>")
+ (concept ?1)
+ (ordered true)
+ (words (":COMMUNICATE_ABOUT:") ("<THING>" "<COMPLEX_EVENT>"))
+ (properties (topic ?1)))
+ 
+((ruleid ready-to-do-something-rule)
+ (stype ?1)
+ (concept ?1)
+ (ordered true)
+ (words (":PREPARED:") ("<COMPLEX_EVENT>"))
+ (properties (topic ?1)))
+ 
+((ruleid need-to-do-something-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?1)
+ (ordered true)
+ (words (":NEED:") ("<THING>" "<COMPLEX_EVENT>"))
+ (properties (topic ?1)))
+ 
+((ruleid start-stop-doing-something-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?1)
+ (words (":START_STOP:") ("<EVENT>" "<COMPLEX_EVENT>")))
+ 
+ ;; e.g. "unwilling to take him home", "agreed to take him home"
+((ruleid willing-unwilling-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?1)
+ (ordered true)
+ (words (":WILLING:" ":UNWILLING:") ("<COMPLEX_EVENT>"))
+ (properties (emotional-state ?0)))
+ 
+((ruleid able-to-do-something-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?1)
+ (ordered true)
+ (words (":ABILITY:") ("<COMPLEX_EVENT>"))
+ (tests (notneg ?0) (notneg ?1))
+ (properties (directionality affirmed)))
+ 
+((ruleid come-to-do-something-rule)
+ (stype "<COMPLEX_EVENT>")
+ (concept ?1)
+ (ordered true)
+ (words (":COME:" ":GO:") ("<COMPLEX_EVENT>"))
+ (tests (notneg ?0) (notneg ?1)))
+ 
+((ruleid some-event-to-do-some-event-rule)
+ (stype "<COMPLEX_EVENT>")
+ (complex-concept)
+ (ordered true)
+ (words ("<COMPLEX_EVENT>") ("to" "in order to") ("<COMPLEX_EVENT>"))
+ (properties (means ?0) (objective ?2)))
+
+)

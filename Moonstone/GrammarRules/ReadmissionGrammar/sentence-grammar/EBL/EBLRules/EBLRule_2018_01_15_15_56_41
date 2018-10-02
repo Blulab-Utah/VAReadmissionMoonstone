@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "BOC-ditransitive-event-rule-0-2018/01/15 15:56:41") 
+  (specialized) 
+  (example-snippet "sent with pt to CLC") 
+  (ordered true) 
+  (concept ":LIVE_IN_ASSISTED_LIVING:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":SEND:") 
+    ("_PREP_") 
+    (":PATIENT:") 
+    (":COMMUNITY_LIVING:")) 
+  (removeproperties directionality))
+
+)

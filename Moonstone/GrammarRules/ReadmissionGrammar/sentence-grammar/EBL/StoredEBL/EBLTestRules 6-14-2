@@ -1,0 +1,134 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-passive-sentence-rule-3-2016/06/14 14:43:39") 
+  (specialized) 
+  (example-snippet "he was brought home") 
+  (ordered true) 
+  (sourceid "passive-sentence-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-passive-event-rule-4-2016/06/14 14:43:39@")) 
+  (properties 
+    (subject ?0) 
+    (event 
+      (event ?1))))
+
+(
+  (ruleid "AUTO-passive-event-rule-4-2016/06/14 14:43:39") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "was brought home") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-event-thing-rule-5-2016/06/14 14:43:39@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-5-2016/06/14 14:43:39") 
+  
+  (specialized) 
+  (intermediate) 
+  (example-snippet "brought home") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@accompany-word-rule@") 
+    ("@home-rule-1@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-passive-sentence-rule-6-2016/06/14 14:43:50") 
+  (specialized) 
+  (example-snippet "he was brought home") 
+  (ordered true) 
+  (sourceid "passive-sentence-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-passive-event-rule-7-2016/06/14 14:43:50@")) 
+  (properties 
+    (subject ?0) 
+    (event 
+      (event ?1))))
+
+(
+  (ruleid "AUTO-passive-event-rule-7-2016/06/14 14:43:50") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "was brought home") 
+  (ordered true) 
+  (sourceid "passive-event-rule") 
+  (concept "?1") 
+  (stype "<PASSIVE_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@is-auxilliary-word-rule@") 
+    ("@AUTO-event-thing-rule-8-2016/06/14 14:43:50@")) 
+  (properties 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-event-thing-rule-8-2016/06/14 14:43:50") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "brought home") 
+  (ordered true) 
+  (sourceid "event-thing-rule") 
+  (concept "?0") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@accompany-word-rule@") 
+    ("@home-rule-1@")) 
+  (properties 
+    (event ?0) 
+    (object ?1)))
+
+(
+  (ruleid "AUTO-person-event-rule-9-2016/06/14 15:02:27") 
+  (specialized) 
+  (example-snippet "He also receives some in home services") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept ":HOME_PROCEDURE:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-home-regimen-word-rule-10-2016/06/14 15:02:27@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-home-regimen-word-rule-10-2016/06/14 15:02:27") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in home services") 
+  (juxtaposed true) 
+  (sourceid "home-regimen-word-rule") 
+  (concept ":HOME_PROCEDURE:") 
+  (stype "<MEDICAL_THING>") 
+  (window 16.0) 
+  (words 
+    ("in home") 
+    ("services")))
+
+)

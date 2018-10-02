@@ -1,0 +1,39 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-pre-negation-context-rule-file-4-2017/11/30 14:07:04") 
+  (specialized) 
+  (example-snippet "no family help") 
+  (ordered true) 
+  (sourceid "pre-negation-context-rule-file") 
+  (concept ":LACK_SUPPORT:") 
+  (stype "<ROOT>") 
+  (window 8.0) 
+  (words 
+    ("@pre-negation-word-rule@") 
+    ("@AUTO-person-providing-care-rule-4-2016/06/24 23:22:27@")) 
+  (properties 
+    (directionality negated)) 
+  (tests 
+    (notneg ?1) 
+    (not 
+      ("firstWordBeginsWithUppercase" ?1))) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-person-event-complex-rule-5-2017/11/30 14:07:04") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "family help") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@family-definition-rule@") 
+    ("@general-provide-care-rule@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+)

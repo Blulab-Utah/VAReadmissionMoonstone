@@ -1,0 +1,49 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-general-provide-care-rule-0-2016/06/03 19:44:13") 
+  (specialized) 
+  (example-snippet "Significant other available to help") 
+  (sourceid "general-provide-care-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (words 
+    ("@AUTO-person-event-rule-1-2016/06/03 19:44:13@")))
+
+(
+  (ruleid "AUTO-person-event-rule-1-2016/06/03 19:44:13") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "Significant other available to help") 
+  (ordered true) 
+  (sourceid "person-event-rule") 
+  (concept "?1") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@spouse-word-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/03 19:44:13@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-2-2016/06/03 19:44:13") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "to help") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@help-rule-1@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

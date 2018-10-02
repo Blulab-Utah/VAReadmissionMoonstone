@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;EvaluationWorkbenchNoUIMA/src.zip&apos;" deleteContents="false" description="Delete resource &apos;EvaluationWorkbenchNoUIMA/src.zip&apos;" element1="/EvaluationWorkbenchNoUIMA/src.zip" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1537936123408"/>
+</session>

@@ -1,0 +1,36 @@
+'(
+wordrule
+
+;; e.g. "50-year-old male"
+((ruleid person-with-age)
+ (concept ":PATIENT:")
+ (ordered true)
+ (words ("<NUMBER>") 
+	("<PERSON>"))
+ (localvar (?num  ("getNumericValue" ?0)))
+ (tests (> ?num 0) (<= ?num 120))
+ (properties (age ?num)))
+
+((ruleid patient-rule-1)
+ (concept ":PATIENT:")
+ (words ("patient" "he" "veteran" "this veteran" "the veteran" "him")))
+
+((ruleid third-person-possessive-rule)
+ (macro "_POSSESSIVE_")
+ (words ("his" "her" "their" "this veteran's" "the veteran's" "this patient's" 
+	"the patient's" "patient's" "his own" "her own" "their own")))
+
+((ruleid male-word-rule) 
+ (stype "<PERSON>")
+ (concept ":MALE:")
+ (words ("male" "man" "him" "he"))
+ (properties (gender ":MALE:")))
+ 
+((ruleid female-word-rule) 
+ (stype "<PERSON>")
+ (concept ":FEMALE:")
+ (words ("female" "woman" "she" "her"))
+ (gender ":FEMALE:"))
+
+
+)

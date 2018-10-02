@@ -1,0 +1,19 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-provide-thing-to-patient-rule-9-2016/11/02 14:36:05") 
+  (specialized) 
+  (example-snippet "son provides good support for patient") 
+  (sourceid "person-provide-thing-to-patient-rule") 
+  (concept ":HAVE_SUPPORT:") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (words 
+    ("@family-definition-rule@") 
+    ("@provide-rule-1@") 
+    ("@well-supported-rule@") 
+    ("@AUTO-simple-pp-rule-2-2016/06/16 16:07:59@")) 
+  (tests 
+    (notneg ?1)))
+
+)

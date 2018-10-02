@@ -1,0 +1,24 @@
+'(
+
+	("AdjudicationEHostVsMoonstone"
+		("adjudicationEHostVsMoonstone" ?annotation ?value ?loop))
+
+	("AnnotationHasClassification"
+		("annotationHasClassification" ?annotation ?value))
+
+	("AnnotationHasValue"
+		("annotationHasValue" ?annotation ?value))
+
+	("EitherHistoricalOrOther"
+		(and ("annotationHasClassification" ?annotation ?value)
+		     (or ("annotationHasAttributeValue" ?annotation temporality historical)
+			 ("annotationHasAttributeValue" ?annotation experiencer other))))
+
+	("NotPatient"
+		(and ("annotationHasClassification" ?annotation ?value)
+		     (not ("annotationHasAttributeValue" ?annotation experiencer patient))))
+
+
+
+)
+

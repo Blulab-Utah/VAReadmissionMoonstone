@@ -1,0 +1,18 @@
+'(
+wordrule
+(
+  (ruleid "BOC-dative-event-rule-8-2017/12/01 22:10:40") 
+  (specialized) 
+  (example-snippet "Lives in ALF with wife") 
+  (ordered true) 
+  (concept ":NOT_LIVING_ALONE:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":LIVE_AT:") 
+    (":ASSISTED_LIVING:") 
+    (":SPOUSE:")) 
+  (removeproperties directionality))
+
+)

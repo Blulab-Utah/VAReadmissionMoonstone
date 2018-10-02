@@ -1,0 +1,410 @@
+
+? What is most needed?
+
+1- Salomeh's no-mention stats for Monday talk.  I need to look at all the patients, see which patient/variables have "no mention", find which percentage of each classification is assigned by WEKA for each classification.  The percentage of "no mention" for each patient should not be 90%.
+
+2- Test trained WEKA classifier against Phase2 cases.  Parse phase2 documents and created MoonstoneSaved.  Then load those annotations and create ARFF test files.
+
+********
+THIS WEEK:  i- Release all document texts in workbench.  ii- Make sure that patients in phase1 are the same as in training sets used for WEKA.  Run patient comparisons for Salomeh. iii- Implement patient classification class, means to import EHost files to tabular files, means to store Moonstone WEKA results in those files, and means of comparing two annotators are patient level.  iv- Synch Moonstone versions from home and VINCI.  4- Fix OWL grammar extraction.
+
+**********
+Phase2_Holly
+Phase2_Kristi
+Phase2_Tiffany
+Phase2_moonstone
+
+Phase2_Holly,Phase2_moonstone
+Phase2_Holly,Phase2_Kristi
+Phase2_Holly,Phase2_Tiffany
+
+Phase2_Kristi,Phase2_moonstone
+Phase2_Kristi,Phase2_Holly
+Phase2_Kristi,Phase2_Tiffany
+
+Phase2_Tiffany,Phase2_moonstone
+Phase2_Tiffany,Phase2_Holly
+Phase2_Tiffany,Phase2_Kristi
+
+**********
+Patient is socially isolated
+
+Not well supported
+
+He lacks social support
+
+No help from family
+
+No support from family  
+
+No one to help
+
+No one to give ride to clinic
+
+He came by bus to the clinic
+
+Patient not well supported
+
+*****
+
+He receives good support
+
+Children are helpful
+
+*********
+? How to indicate that if you have any sentence with a provided communicating with a family, that is support?  Intervening words don't count.
+
+COULD:  i- Add Provider::InteractWith::Family
+
+? How to generate new training ARFF file?
+
+DO:  i- TextInputDir = directory containing all test sets. Use "corpus" as constraint. ii- Results file:  named in tsl.properties.  iii- Ehost directory= same as input.  Use "truthset" as constraint.
+
+PROBLEM:  I am currently reading in the entire corpus into the workbench, then reading it again for the EHost patient analysis.
+
+COULD:  i- Create a separate parameter for EHostTextInputDirectory.  If that is found, use that instead of TextInputDirectory parameter.  
+
+******
+HOW TO IMPLEMENT NEW INTEGRATED TRAINER:
+
+1- Write function that iterates over all annotations for a given concept and writes the sentences with those annotations to a file.  Use that file for training.  2- Upgrade the ontology. 
+
+? Should I use constants or specialized types?  What ware the principles?
+
+THOUGHTS:  1- Types can exponentially increase if I start combining lower into higher types.  I should keep types abstract, and use compound constants to represent useful combinations of ideas. 2- OTOH, there needs to be a hierarchy, e.g. family giving patient a ride is an instance of family helping patient is an instance of person helping person which is an instance of ComplexEvent.  Could have ontology tree that includes Action+Object, Action+DObject+IObject, Action+DObject+Destination, Subject+Event, Person+HelpingEvent+Person as subtype of Subject+Event, etc.  These would be the upper ontology, and could be included in other ontologies.  Could create a StringConstant automatically for every type, as a way to represent term instance of that type.  
+
+Intermediate types:  PersonRelationToPlace, PersonLivingSomewhere, PatientLivingAtHome, SomeoneLivingWithSomeone, PatientLivingWithFamily,
+FamilyLivingWithPatient, PersonHelpingPatient, PersonHelpingPatientWithALDS, PersonHelpingPatientGetSomewhere, PersonHelpingPatientGetToMedicalFacility, PatientTravelSomewhere, etc.
+
+****
+SKELETAL IDEAS FOR TYPE HIERARCHY:
+
+Action
+Thing
+Event
+ComplexEvent
+
+ComplexEvent <- ActionThing, ActionDObj, ActionThingThing, ActionDObjIObj, ActionDobjPlace, ActionWithThing, ActionThingPrepThing, ActionThing
+
+PersonState, PatientState
+
+Thing -> SupportThing-> support, supported, well supported
+PersonHaveThing, PersonLackThing -> PatientLackThing -> PatientLackSupport
+
+State -> SocialState -> EmotionalIsolation, Emotionally isolated
+
+PersonIsState -> PatientIsState -> PatientIsEmotionallyIsolated
+
+HelpThing:  Help, support, care
+
+ThingFromPerson -> 
+No help from family
+
+No support from family  
+
+PersonAvailableForThing, PersonAvailableForHelp, PersonAvailableForTransportation, No one to help
+
+TransportationToDestination -> TransportationToClinic
+
+GiveThing -> GiveTransportationToClinic
+
+No one to give ride to clinic
+
+
+He came by bus to the clinic
+
+Patient not well supported
+
+***
+All the forms of social support:
+
+F/F helps patient with ADL
+F/F provides transportation for patient somewhere
+F/F communicates with doctor about patient
+F/F at bedside
+F/F with patient
+Arrived with F/F
+
+SubjectActionThingPP
+
+******
+DO:  Add OtherPersonLivingSpace and OwnLivingSpace as subtypes of LivingSpace.  
+
+
+*************
+FPs in MarginalHousing/Homelessness:
+
+ Permanent housing for formerly homeless persons (such as SHP, S+C, or SRO MOD 
+Rehab)   0
+
+j. Non-VA transitional housing for homeless persons   0
+
+
+Allergies:Patient has answered NKA comment: 
+Homeless: Telephone:
+Mode of Arrival: 
+Pain Scale: Due to injury:
+
+She is staying with his sister in SJ while he is in the 
+hospital. 
+
+f. Permanent housing for formerly homeless persons (such as SHP, S+C, or SRO MOD 
+Rehab)   0
+
+FN:  
+24. Housing stability: How would you describe your current housing situation? 
+Unstably housed/at risk of losing housing
+
+26. How many separate episodes of homelessness have you experienced in the last 
+three years? Include current episode of homelessness.   0
+
+ Veteran stated that he would not be able to [live off of that amount as he has a car payment]. 
+
+Mode of Arrival: 
+Homeless : 
+Allergies: 
+
+divorced, male veteran who lives in Lebanon in a motel apartment for 
+veterans run by the American Legion.
+
+Clinical Reminders Activity
+   HOMELESS SURVEY:
+    In an effort to end homelessness for our veteran's, please ask each
+    veteran about their current housing status at least once a year to
+    identify veterans that may be homeless or at risk of becoming
+    homeless. 
+           Note: ** items require handoff/Consult to a social worker. (Lee:  Jumps too quickly to target concept from "homelessness".  Too little exposure to this concept in training; did not weed out sources of FPs)
+
+
+Veteran stated that the granddaughter doesn't work, and 
+is able to stay home with Veteran's son, while he still works at a local 
+church and volunters in homeless person food drives.
+
+SW informed her 
+of the information the Veteran has provided regarding his past SNF [stays which 
+she] was able to confirm, and also reports that she may be able to help the 
+Veteran remember which Nursing Homes he has disliked staying in the past to 
+
+
+
+
+****
+FPs for LackSocialSupport:
+
+Do you feel that because of the time you spend with your relative that you don't 
+have enough time for yourself? 
+0= [Never
+Do you feel stress between caring for your relative] and trying to meet other 
+responsibilities (work/family)? 
+
+Mrs. Melchiorri's inpatient physician and staff were informed that Mrs. 
+Melchiorri would not be able to come to the hospital until tomorrow because [she 
+will not have a ride] until that time. 
+
+ "I'm 94 years old and never felt this bad". "No one will help me. "I'm 
+going to die." "Can someone go get me some Epsom Salts?" (Lee:  Patient's verbalizations)
+
+Do not stop taking your medicines [without talking to your caregiver].  (Lee:  Templated instructions, overly general negation. As C&P, this appears in multiple documents.)
+
+ Instruct patient to [not get OOB without assist].  (Instructions; 6 template instances.)
+ 
+The [veteran has the following support services in place]:
+        - HBPC
+        - VA H/HHA (2hrs/2x's/wk)
+        - Private pay H/HHA (4-6hrs/day)
+        - Athens CBOC
+        - Dr. Steven Clay (non-VA PCP)
+		
+[Pt is currently living 
+Living Alone 
+Veteran] is  Homeless
+(Lee:  Missed homeless because of wrong sentence segmentation.  No punctuation; spilling over newlines.)
+
+Full weight bearing [without 
+assistance or assistive devices
+daughter] in room. (Lee:  No punctuation!  Interpreted as "no help from family -> no social support")
+		
+************************************************
+CHANGES TO TRY WITH HOMELESS FPS:
+
+Include "survey" with words to omit.  Let the gatekeeper rule omit if the sentences has > N words; same for all document "homeless"-related rules.  Add "stable + living + situation".  Add "with, at" to LivingArrangementRules.stay-with-friend-indicates-marginal-housing-rule.  Add "0" to header negation. Interpret "homeless" as ":HOMELESSNESS:" and require patient to be subject, or in header rule, or in short sentence, to jump to ":POSSIBLE_HOMELESSNESS:".
+
+************************************************
+? How to remove target duplicates?
+
+To just remove duplicates I iterate over the list, adding each annotation to the list if it hasn't already been added.  Now, I need to remove all annotations with the same concept and overlapping another annotation, but with lower ID.
+
+COULD:  If two annotations are the same, add the id to sameAnnotationHash.  For each annotation, if it is in sameannotationhash, add it and remove from sameannotationhash.
+
+************************************************
+
+3480_1400335262074_NURSING ADMISSION ASSESSMENT.txt.knowtator
+
+*****
+no family was present to verify pt responses (produces two sentences:  "no family present" and "present to verify pt", so produces 2 classifications)
+
+ Lives on his own at Seacrest nursing home
+ 
+  Chanel reports that veteran is not able to 
+live alone and care for himself.
+
+He will discuss Living Will portion with his friend 
+
+living relative (not "living with relative")
+
+ son to discuss vet's home situation
+ 
+Virginia to notify Pt's son of Pt's d/c home 10/16/12. 
+ 
+denies EtOH/illicits
+lives alone
+works construction
+
+Living Situation: Lives in Hayward in a house with multiple other people
+
+Patient and son live together
+
+Nursing admission information obtained from daughter who is living with 
+pt for the past month. 
+
+per grand daughter patient lives with his wife and the grand daughter checks on them (Need not living alone)
+
+lives in duplex house with sister/brother in law
+
+ patient has a full time caregiver(not living alone, social support)
+ 
+ Wallet: Yes,   Sent to Home with: sister
+ 
+ **********
+ CHANGES 1/15/2017:  In finding relevant document parse input, don't search children of negated child.  Took out search of all annotations in gatherDocumentGrammarInput() if no relevant annotations found.  Removed lower concepts from generated index tokens; this has immediate effect of removing :CHECKBOX_UNCHECKED: from indices, allowing unchecked checkbox items to pass capture filter.
+ 
+ 1/17/2018:  Added concept to gate equivalence table, so that if have :NOT_HOMELESS:, don't permit :POSSIBLY_HOMELESS: also.  Add JavaFunction that determines whether "no" is immediately followed by newline, to suppress attachment of "no" to checklist item below.
+ 
+ NOT YET FIXED:
+ 
+ FAMILY MEMBERS PRESENT AT TIME OF ASSESSMENT: 
+(x) None 
+ 
+ if No: Does Veteran drive? ___Yes _x__No
+       Does Veteran have local family that helps out? ___Yes _x__No
+       Does Veteran have friends that offer support? ___Yes _x__No
+
+ ****
+ PATIENT:
+ 
+ living alone- 56
+ facility- 15
+ community = 0
+ no support = 0
+ 
+ ********************************************************
+ float precision = 0;
+		den = tp + fp;
+		if (den > 0) {
+			precision = tp / den;
+		}
+		
+float recall = 0;
+		float den = tp + fn;
+		if (den > 0) {
+			recall = tp / den;
+		}
+		
+		
+		
+		
+Classification=no social support ,UnadjustedPrecision=0.4 ,UnadjustedRecall=0.84 ,UnadjustedFMeasure=0.54 ,AdjustedPrecision=0.95 ,AdjustedRecall=0.95 ,AdjustedFMeasure=0.95
+
+Classification=does not live alone ,UnadjustedPrecision=0.84 ,UnadjustedRecall=0.95 ,UnadjustedFMeasure=0.89 ,AdjustedPrecision=0.98 ,AdjustedRecall=0.96 ,AdjustedFMeasure=0.97
+
+Classification=has access to community services ,UnadjustedPrecision=0.43 ,UnadjustedRecall=0.81 ,UnadjustedFMeasure=0.56 ,AdjustedPrecision=0.66 ,AdjustedRecall=0.90 ,AdjustedFMeasure=0.76
+
+Classification=lives in a facility ,UnadjustedPrecision=0.47 ,UnadjustedRecall=0.73 ,UnadjustedFMeasure=0.57 ,AdjustedPrecision=0.97 ,AdjustedRecall=0.86 ,AdjustedFMeasure=0.91
+
+Classification=living alone ,UnadjustedPrecision=0.9 ,UnadjustedRecall=0.97 ,UnadjustedFMeasure=0.93 ,AdjustedPrecision=1.0 ,AdjustedRecall=0.97 ,AdjustedFMeasure=0.98
+
+Classification=lives at home/not homeless ,UnadjustedPrecision=0.69 ,UnadjustedRecall=0.93 ,UnadjustedFMeasure=0.79 ,AdjustedPrecision=0.95 ,AdjustedRecall=0.95 ,AdjustedFMeasure=0.95
+
+Classification=homeless/marginally housed/temporarily housed/at risk of homelessness ,UnadjustedPrecision=0.58 ,UnadjustedRecall=0.55 ,UnadjustedFMeasure=0.57 ,AdjustedPrecision=0.88 ,AdjustedRecall=0.78 ,AdjustedFMeasure=0.83
+
+Classification=has social support ,UnadjustedPrecision=0.72 ,UnadjustedRecall=0.91 ,UnadjustedFMeasure=0.81 ,AdjustedPrecision=0.93 ,AdjustedRecall=0.95 ,AdjustedFMeasure=0.94
+
+Classification=lives in a permanent single room occupancy ,UnadjustedPrecision=0.0 ,UnadjustedRecall=0.0 ,UnadjustedFMeasure=0.0 ,AdjustedPrecision=0.0 ,AdjustedRecall=1.0 ,AdjustedFMeasure=0.0
+
+AllTotals=1169.0,AllCorrectedFPs=798,AllCorrectedFNs=38,PercentMoonstoneValidation=0.7151411
+
+*******************************************
+TASK:  Generate features for patient classifier.
+
+NOTES:  i- Need to avoid features that are negated or lead to implicitly negative features higher up.
+
+COULD:  Walk each parsetree, and if the concept is not negated, add it to table.  If negated, break out.
+
+? What to do with word-level annotations? Could:  i- ignore them- just use normalizations.
+
+? How to include patient classification?  
+
+COULD:  i- Keep another table with "patid + variable" = "classification".  Print to another file.
+
+Function pathway to ARFF feature creation:
+actionPerformed("generateMultipleReadmissionPatientResultsARFFTrain").analyzeMultipleCasesFromSingleFolder.ReadmissionPatientResults.analyzeTrainingSet.processPatients.processFilesMultiLayer.invokeMoonstoneARFF(document).invokeMoonstoneARFF(document, variable, annotations).addFeature.addFeature
+
+DO: Add new processing mode. In processFilesMultiLayer(), call invokeMoonstoneProcessSingleLinePatientClassifierFeatures(doc), which mimics invokeMoonstoneARFF(doc).
+
+? Where to store the files?
+
+public static String patientClassificationLineFeatureFilename = "PatientClassificationLineFeatureFile";
+	public static String patientClassificationVariableAnswerFilename = "PatientClassificationVariableAnswerFile";
+	
+	public static String patientClassificationLineFeatureFilename = "PatientClassificationLineFeatureFile";
+	public static String patientClassificationVariableAnswerFilename = "PatientClassificationVariableAnswerFile";
+
+??? WHERE HAVE I STORED THE CODE TO GENERATE THE UNADJUSTED COUNTS?
+
+sensitivity
+specificity
+NPV
+PPV
+Accuracy
+F-score
+
+*****
+? How to get counts on use of direct rules, and get ratio with non-direct rules?
+
+COULD:  i- Not use Workbench.  Parse all the reports, and keep table with number of targets of each classification that contain direct rules and all targets.  At the end, for each classification, get ratio of specialized vs. all.
+
+
+Concept= :LIVING_ALONE:, DirectRatio=0.25373134
+Concept= :NOT_LIVING_ALONE:, DirectRatio=0.0061601643
+Concept= :HAVE_SUPPORT:, DirectRatio=0.04761905
+Concept= :STABLE_HOUSING: (Not homeless / lives at home), DirectRatio=0.057522785
+Concept= :UNSTABLE_HOUSING: (Homeless / marginally housed), DirectRatio=0.80508476
+Concept= :LIVES_IN_FACILITY:, DirectRatio=0.0
+Concept= :LACK_SUPPORT:, DirectRatio=0.20212767
+
+((ruleid well-supported-word-rule) 
+  (concept ":WELL_SUPPORTED:") 
+  (states-target true)
+  (words 
+    ("well supported" "well-supported" "good support" "good system of support" "good support system"
+		"good family support"  "good family supports" "good social support" "good social support system"
+		"good social support systems")))
+		
+((ruleid family-support-thing-word-rule)
+ (stype "<SOCIAL_SUPPORT>") 
+ (concept ":FAMILY_SUPPORT:")
+ (states-target true) 
+ (contains-target true)
+ (words 
+    ("family support" "support from family" "supportive family" "family supportive" 
+	"good support from family" "support from family" "support from children")))
+
+
+public static String patientClassificationLineFeatureFilename = "PatientClassificationLineFeatureFile";
+public static String patientClassificationVariableAnswerFilename = "PatientClassificationVariableAnswerFile";
+
+
+	
+
+
+

@@ -1,0 +1,35 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-0-2017/12/19 20:57:27") 
+  (specialized) 
+  (example-snippet "she wants to take him home") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@third-person-subject-word-rule@") 
+    ("@AUTO-person-want-event-rule-1-2017/12/19 20:57:27@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-person-want-event-rule-1-2017/12/19 20:57:27") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "wants to take him home") 
+  (sourceid "person-want-event-rule") 
+  (concept "?1") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 16.0) 
+  (words 
+    ("@desire-word-rule@") 
+    ("@complex_event_transportation-verb-rule-1@")) 
+  (properties 
+    (object ?1)))
+
+)

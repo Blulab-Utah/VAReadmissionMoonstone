@@ -1,0 +1,116 @@
+'(
+wordrule
+
+((ruleid use-substance-conjunct-rule)
+  (stype ?0)
+  (concept ?0)
+  (ordered true)
+  (juxtaposed true)
+  (flags conj)
+  (words (":USE_SUBSTANCE:") ("and" "or" "as well as") (":USE_SUBSTANCE:")))
+  
+((ruleid substance-action-rule) 
+ (concept ":USE_SUBSTANCE:")
+  (words 
+    ("drink" "drinks" "drinking" "drank" "drinker" "take" 
+	"taking" "takes" "took" "smoke" "smokes" "smoked" "smoking" 
+	"consumes" "consumption")))
+
+;; "smoke cigarettes", "drink alcohol"
+((ruleid substance-event-rule-1) 
+  (window 32)
+  (concept ":SUBSTANCE_USE:")
+  (words 
+    (":USE_SUBSTANCE:" ":USE:") 
+    ("<SUBSTANCE>")) 
+  (relations (usage ?* ?0) (substance ?* ?1)))
+
+((ruleid substance-event-rule-2) 
+  (concept ":SUBSTANCE_USE:")
+  (words 
+    ("alcohol use" "drug use")))
+
+((ruleid substance-per-time) 
+ (window 32)
+ (concept ":SUBSTANCE_USE:") 
+ (words ("<SUBSTANCE>") ("<TIME_EXPRESSION>")) 
+ (relations (substance ?* ?0) (time ?* ?1)))
+
+((ruleid all-substance-types-rule)
+ (debug true)
+ (concept ":SUBSTANCE:")
+ (window 2)
+ (words (":TOBACCO:" ":PRESCRIPTION_MEDICATION:" ":DRUG:" ":ALCOHOL:")))
+
+((ruleid substance-rule)
+  (concept ":SUBSTANCE:")
+  (words ("substance")))
+
+((ruleid alcohol-rule)
+  (concept ":ALCOHOL:")
+  (words ("etoh" "ethyl alchohol" "ethanol" "alcohol" 
+	"alcoholic beverage" "alcoholic beverages" 
+	"ethyl" "wine" "beer" "vodka" "rum" "vodka or rum")))
+
+((ruleid alcohol-abuse-rule)
+  (concept ":ALCOHOL_ABUSE:")
+  (words ("alcohol abuse" "abuses alcohol" "alcoholic abuse" 
+	"alcoholism" "drinking binge" "alcohol cravings" "craving alcohol" 
+	"drinking habit" "drinking habits")))
+
+((ruleid tobacco-rule)
+  (concept ":TOBACCO:")
+  (words ("tobacco" "cigarettes" "cigarette")))
+
+((ruleid prescription-medication-rule)
+  (concept ":PRESCRIPTION_MEDICATION:")
+  (words ("prescription medication" "prescription medications" "prescription drugs")))
+
+((ruleid substance-quantity)
+ (words ("glass" "glasses" "cups" "glasses or cups" "bottle" "bottles" "pack" "packs"))
+ (concept ":SUBSTANCE_QUANTITY:")
+ (relations (quantity ?* ?0)))
+
+;; e.g. "pint of ale"
+((ruleid quantity-of-substance)
+ (concept ":SUBSTANCE:")
+ (ordered true)
+ (words (":SUBSTANCE_QUANTITY:") ("<SUBSTANCE>"))
+ (relations (quantity ?* ?0) (substance ?* ?1)))
+
+;; e.g. "one glass of beer per day"
+((ruleid time-modified-substance-rule)
+ (concept ":SUBSTANCE_USE:")
+ (words ("<SUBSTANCE>") ("<TIME_EXPRESSION>"))
+ (relations (substance ?* ?0) (time ?* ?1)))
+
+((ruleid drug-rule)
+  (concept ":DRUG:")
+  (words ("drug" "drugs" "cocaine" "heroin" "illegal drugs")))
+
+((ruleid substance-abuse-rule-1)
+  (concept ":SUBSTANCE_ABUSE:")
+  (words ("<SUBSTANCE>") ("abuse" "substance abuse" "drug abuse" 
+	"alcohol abuse" "overdose" "sa")))
+
+((ruleid substance-abuse-rule-2)
+  (concept ":SUBSTANCE_ABUSE:")
+  (words ("<SUBSTANCE>") ("<ABUSE>")))
+
+((ruleid substance-dependence-rule)
+  (concept ":DEPENDENCE:")
+  (words ("<SUBSTANCE>") 
+	 ("dependence" "abuse/dependence" "addictions" "addiction")))
+
+((ruleid substance-withdrawal-rule)
+  (concept ":WITHDRAWAL:")
+  (words ("withdrawal" "withdrawal seizures")))
+
+;; 6/11/2015:  (For later...  Inferferes with other types of rehab)
+;;((ruleid substance-rehabilitation-program-rule)
+;;  (concept ":SUBSTANCE_PROGRAM:")
+;;  (words ("rehabilitation" "rehab" "alcohol rehab" 
+;;	"drug rehab" "satp" "sa rehab" "sa groups" "sa group")))
+
+
+)

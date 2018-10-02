@@ -1,0 +1,17 @@
+'(
+wordrule
+(
+  (ruleid "BOC-family-agreement-word-rule-21-2017/12/04 17:43:43") 
+  (specialized) 
+  (example-snippet "Wife agreed") 
+  (ordered true) 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<ROOT>") 
+  (window 16.0) 
+  (bagofconcepts true) 
+  (words 
+    (":FAMILY:") 
+    (":AGREEMENT:")) 
+  (tests (notneg ?1)))
+
+)

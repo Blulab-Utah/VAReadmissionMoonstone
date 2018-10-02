@@ -1,0 +1,65 @@
+'(
+tagrule
+ 
+((ruleid pre-negation-context-rule-FILE)
+  (concept ?1)
+  (ordered true)
+  (window 8)
+  (words (?filestring "never" "no" "not" "without" "w/o" "can't" "never") 
+  		 (?interpreted))
+ 
+  ;; 3/12/2016:  Need action for phrases like "family not here".
+  ;; (actions ("applyModifierProperties" ?rule ?1))
+  
+  (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=forward"))
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_"))
+  (properties (directionality negated))
+  (tests ;; (notneg ?1)
+		 (not ("firstWordBeginsWithUppercase" ?1))  ;; 2/6/2016 klooge
+		 ;; DOESN'T WORK; e.g. in "not  Get support", parser simply ignores "Get"
+	))
+	
+((ruleid question-answer-negation-rule)
+  (concept ?0)
+  (ordered true)
+  (words (?interpreted) ("no" "false" "unknown")) 
+  (properties (directionality negated))
+  (tests ("usesCombinedHeaderSentence" ?*)))
+  
+;; 3/8/2016  "not" should not apply to header question.
+;; e.g. "Lives at home? no"
+((ruleidXXX question-answer-negation-rule)
+  (concept ?0)
+  (ordered true)
+  (words (?interpreted) (?filestring)) 
+  (contextlexicon 
+    ("category=definiteNegatedExistence" "en (sv) action=forward"))
+  (properties (directionality negated))
+  (tests ("usesCombinedHeaderSentence" ?*)))
+	
+((ruleid post-affirmation-context-rule) 
+  (concept ?0)
+  (ordered true)
+  (words (?interpreted) ("yes" "true")) 
+  (stopword 
+    ("_BUT_" "_PRESENTATION_" "_AND_" "_REMAIN_" "_ETIOLOGY_")) 
+  (properties 
+    ("directionality" "affirmed")))
+	
+((ruleid checklist-affirmation-context-rule) 
+  (concept ?1)
+  (juxtaposed true)
+  (words ("(x)" "[x]") (?interpreted)) 
+  (properties 
+    ("directionality" "affirmed")))
+	
+((ruleid checklist-negation-context-rule) 
+  (concept ?1)
+  (juxtaposed true)
+  (words ("()" "[]") (?interpreted)) 
+  (properties 
+    ("directionality" "negated")))
+
+)

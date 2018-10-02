@@ -1,0 +1,59 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-dative-event-rule-2-2017/12/11 23:19:02") 
+  (specialized) 
+  (example-snippet "Discharged in care of with family") 
+  (ordered true) 
+  (sourceid "dative-event-rule") 
+  (concept ":POSSIBLE_SUPPORT:") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@discharge-word-rule@") 
+    ("@AUTO-simple-pp-rule-3-2017/12/11 23:19:02@") 
+    ("@AUTO-simple-pp-rule-2-2016/07/14 19:38:03@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object 
+      (object ?2))) 
+  (removeproperties directionality))
+
+(
+  (ruleid "AUTO-simple-pp-rule-3-2017/12/11 23:19:02") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "in care of") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<SOCIAL_SUPPORT>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@general-provide-care-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+(
+  (ruleid "AUTO-simple-pp-rule-4-2017/12/11 23:19:02") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "with family") 
+  (ordered true) 
+  (sourceid "simple-pp-rule") 
+  (concept "?1") 
+  (stype "<PERSON>") 
+  (window 16.0) 
+  (words 
+    ("@preposition-word-rule@") 
+    ("@family-definition-rule@")) 
+  (properties 
+    (object ?1)) 
+  (tests 
+    ("isInterpreted" ?1)))
+
+)

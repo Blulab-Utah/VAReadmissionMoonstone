@@ -1,0 +1,24 @@
+'(
+wordrule
+
+;; 2/22/2016:  TEMPORARILY DISCONNECTED
+((XXXruleid community-living-connotes-not-living-alone-rule)
+ (concept ":NOT_LIVING_ALONE:")
+ (words (":COMMUNITY_LIVING:"))
+ (tests (notneg ?0)))
+  
+ ;; 2/22/2016:  TEMPORARILY DISCONNECTED
+((XXXruleid marginal-housing-connotes-not-homeless-rule)
+ (concept ":NOT_HOMELESS:")
+ (words (":MARGINALLY_HOUSED:"))
+ (tests (notneg ?0)))
+ 
+;; 2/22/2016:  TEMPORARILY DISCONNECTED
+ ;; e.g."lives with: wife at home" (makes no sense...)
+((XXXruleid living-with-connotes-outside-support-somehow-rule)
+ (concept ":HAVE_SUPPORT:")
+ (words ("@live-with-connotes-not-living-alone-header-rule@")))
+ 
+ 
+
+)

@@ -1,0 +1,71 @@
+'(
+wordrule
+(
+  (ruleid "AUTO-person-event-complex-rule-4-2016/11/06 22:14:59") 
+  (specialized) 
+  (example-snippet "he lives in the basement of his friends house") 
+  (ordered true) 
+  (sourceid "person-event-complex-rule") 
+  (concept ":STABLE_HOUSING:") 
+  (stype "<SENTENCE>") 
+  (window 32.0) 
+  (words 
+    ("@patient-rule-1@") 
+    ("@AUTO-ditransitive-event-rule-5-2016/11/06 22:14:59@")) 
+  (properties 
+    (subject ?0) 
+    (event ?1)))
+
+(
+  (ruleid "AUTO-ditransitive-event-rule-5-2016/11/06 22:14:59") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "lives in the basement of his friends house") 
+  (ordered true) 
+  (sourceid "ditransitive-event-rule") 
+  (stype "<COMPLEX_EVENT>") 
+  (window 32.0) 
+  (words 
+    ("@reside-word-rule@") 
+    ("@marginal-living-space-rule@") 
+    ("@AUTO-possessive-thing-rule-3-2016/11/06 16:38:05@")) 
+  (properties 
+    (event ?0) 
+    (direct_object ?1) 
+    (indirect_object ?2)) 
+  (tests 
+    (not 
+      ("annotationHasType" ?2 "<PERSON>"))))
+
+(
+  (ruleid "AUTO-possessive-thing-rule-6-2016/11/06 22:14:59") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "his friends house") 
+  (ordered true) 
+  (juxtaposed true) 
+  (sourceid "possessive-thing-rule") 
+  (concept "?1") 
+  (stype "<LIVING_SPACE>") 
+  (window 4.0) 
+  (words 
+    ("@third-person-possessive-rule@") 
+    ("@AUTO-someone-elses-home-rule-4-2016/11/06 16:38:05@")) 
+  (properties 
+    (thing ?1)))
+
+(
+  (ruleid "AUTO-someone-elses-home-rule-7-2016/11/06 22:14:59") 
+  (specialized) 
+  (intermediate) 
+  (example-snippet "friends house") 
+  (ordered true) 
+  (sourceid "someone-elses-home-rule") 
+  (concept ":NON-PATIENT-HOME:") 
+  (stype "<LIVING_SPACE>") 
+  (window 16.0) 
+  (words 
+    ("@possessive-person-rule@") 
+    ("@home-word-rule@")))
+
+)

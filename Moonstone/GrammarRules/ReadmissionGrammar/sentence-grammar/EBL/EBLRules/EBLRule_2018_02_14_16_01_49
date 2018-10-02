@@ -1,0 +1,14 @@
+'(
+wordrule
+(
+  (ruleid "BOC-passive-sentence-rule-0-2018/02/14 16:01:49") 
+  (specialized) 
+  (example-snippet "He was admitted from nursing home") 
+  (ordered true) 
+  (concept ":LIVES_IN_FACILITY:") 
+  (stype "<PASSIVE_SENTENCE>") 
+  (window 32.0) 
+  (bagofconcepts true) 
+  (words 
+    (":MOVE_FROM_LIVING_FACILITY:")))
+)
